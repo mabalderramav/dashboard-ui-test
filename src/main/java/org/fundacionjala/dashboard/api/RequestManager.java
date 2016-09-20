@@ -1,4 +1,4 @@
-package org.fundacionjala.dashboarduitest.api;
+package org.fundacionjala.dashboard.api;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;

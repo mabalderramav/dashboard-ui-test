@@ -1,9 +1,9 @@
-package org.fundacionjala.dashboarduitest.api;
+package org.fundacionjala.dashboard.api;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
-import org.fundacionjala.dashboarduitest.utility.Environment;
+import org.fundacionjala.dashboard.utility.Environment;
 
 /**
  * Class to manage the connection to pivotal tracker.
@@ -11,8 +11,11 @@ import org.fundacionjala.dashboarduitest.utility.Environment;
 public final class Connection {
 
     private static final String X_TRACKER_TOKEN_HEADER = "X-TrackerToken";
+
     private static final Environment ENVIRONMENT = Environment.getInstance();
+
     private static Connection connection;
+
     private RequestSpecification requestSpecification;
 
     /**
