@@ -1,7 +1,7 @@
 import net.masterthought.cucumber.Configuration
 import net.masterthought.cucumber.ReportBuilder
 
-group 'org.fundacionjala.dashboarduitest'
+group 'org.fundacionjala.dashboard'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -28,6 +28,7 @@ buildscript {
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.53.1'
     compile group: 'io.rest-assured', name: 'rest-assured', version: '3.0.1'
     compile group: 'io.rest-assured', name: 'json-schema-validator', version: '3.0.1'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.6.2'

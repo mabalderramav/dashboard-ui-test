@@ -1,4 +1,4 @@
-package org.fundacionjala.dashboarduitest.utility;
+package org.fundacionjala.dashboard.utility;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,6 +21,10 @@ public final class Environment {
     private static final String AUTHENTICATION_PROXY = "authentication.proxy";
 
     private static final String AUTHENTICATION_BASE_URI = "authentication.baseURI";
+
+    private static final String TIMEOUT = "timeout";
+
+    private static final String BROWSER = "browser";
 
     private static Environment environment;
 
@@ -95,5 +99,21 @@ public final class Environment {
      */
     public String getToken() {
         return getEnv(AUTHENTICATION_TOKEN);
+    }
+
+    /**
+     * Get the timeout.
+     * @return String with the configure timeout.
+     */
+    public int getTimeout() {
+        return Integer.parseInt(getEnv(TIMEOUT));
+    }
+
+    /**
+     * Get the timeout.
+     * @return String with the configure timeout.
+     */
+    public String getBrowser() {
+        return getEnv(BROWSER);
     }
 }
