@@ -9,11 +9,22 @@ import org.openqa.selenium.support.PageFactory;
  */
 public abstract class AbstractBasePage {
 
+    private WebDriver driver;
+
     /**
      * This builds initialize the AbstractBasePage.
      */
     public AbstractBasePage() {
-        final WebDriver driver = DriverManager.getInstance().getDriver();
+        driver = DriverManager.getInstance().getDriver();
         PageFactory.initElements(driver, this);
+    }
+
+    /**
+     * this methos return the driver.
+     *
+     * @return Webdriver.
+     */
+    protected final WebDriver getDriver() {
+        return driver;
     }
 }

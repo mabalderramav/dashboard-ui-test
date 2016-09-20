@@ -22,6 +22,10 @@ public final class Environment {
 
     private static final String AUTHENTICATION_BASE_URI = "authentication.baseURI";
 
+    private static final String AUTHENTICATION_USER = "authentication.user";
+
+    private static final String AUTHENTICATION_PASSWORD = "authentication.password";
+
     private static final String TIMEOUT = "timeout";
 
     private static final String BROWSER = "browser";
@@ -103,6 +107,7 @@ public final class Environment {
 
     /**
      * Get the timeout.
+     *
      * @return String with the configure timeout.
      */
     public int getTimeout() {
@@ -111,9 +116,28 @@ public final class Environment {
 
     /**
      * Get the timeout.
+     *
      * @return String with the configure timeout.
      */
     public String getBrowser() {
         return getEnv(BROWSER);
+    }
+
+    /**
+     * Return the user name.
+     *
+     * @return String whit the name user
+     */
+    public String getUser() {
+        return getEnv(AUTHENTICATION_USER);
+    }
+
+    /**
+     * return the password.
+     *
+     * @return String whit the password
+     */
+    public String getPassword() {
+        return getEnv(AUTHENTICATION_PASSWORD);
     }
 }
