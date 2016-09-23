@@ -16,7 +16,7 @@ public final class Environment {
 
     //private static final Logger LOGGER = Logger.getLogger(Environment.class);
 
-    private static final String AUTHENTICATION_TOKEN = "token";
+    private static final String AUTHENTICATION_TOKEN = "authentication.token";
 
     private static final String AUTHENTICATION_PROXY = "authentication.proxy";
 
@@ -24,11 +24,14 @@ public final class Environment {
 
     private static final String AUTHENTICATION_USER = "authentication.user";
 
+
     private static final String AUTHENTICATION_PASSWORD = "authentication.password";
 
-    private static final String TIMEOUT = "timeout";
+    private static final String AUTHENTICATION_BASE_URL = "authentication.baseURL";
 
-    private static final String BROWSER = "browser";
+    private static final String AUTHENTICATION_BROWSER = "authentication.browser";
+
+    private static final String TIMEOUT = "timeout";
 
     private static Environment environment;
 
@@ -81,7 +84,7 @@ public final class Environment {
     /**
      * Get the base url of pivotal tracker.
      *
-     * @return String url.
+     * @return String uri.
      */
     public String getBaseUri() {
         return getEnv(AUTHENTICATION_BASE_URI);
@@ -120,7 +123,7 @@ public final class Environment {
      * @return String with the configure timeout.
      */
     public String getBrowser() {
-        return getEnv(BROWSER);
+        return getEnv(AUTHENTICATION_BROWSER);
     }
 
     /**
@@ -139,5 +142,14 @@ public final class Environment {
      */
     public String getPassword() {
         return getEnv(AUTHENTICATION_PASSWORD);
+    }
+
+    /**
+     * Get the base url of pivotal tracker.
+     *
+     * @return String url.
+     */
+    public String getBaseUrl() {
+        return getEnv(AUTHENTICATION_BASE_URL);
     }
 }

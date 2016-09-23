@@ -14,7 +14,8 @@ public final class DriverManager {
 
     private static final Environment ENVIRONMENT = Environment.getInstance();
 
-    private static final IDriver BROWSER = DriverFactory.getDriver(ENVIRONMENT.getBrowser());
+    private static final IDriver BROWSER =
+            DriverFactory.getDriver(Browser.valueOf(ENVIRONMENT.getBrowser().toUpperCase()));
 
     private WebDriver driver;
 
@@ -22,7 +23,7 @@ public final class DriverManager {
      * This method is in charge to initialize the DriverManager.
      */
     private DriverManager() {
-        final String baseUrl = ENVIRONMENT.getBaseUri();
+        final String baseUrl = ENVIRONMENT.getBaseUrl();
         final int timeout = ENVIRONMENT.getTimeout();
         driver = BROWSER.initDriver();
         driver.get(baseUrl);
@@ -30,7 +31,7 @@ public final class DriverManager {
     }
 
     /**
-     * this method Instance the driverManager if this does not exist.
+     * This method Instance the driverManager if this does not exist.
      *
      * @return a driverManager.
      */

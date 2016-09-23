@@ -22,6 +22,6 @@ public class LoginTest {
         mainPageMach2.setUsername(userName);
         mainPageMach2.setPasswordTextField(password);
         mainPageMach2.clickNextButton();
-        mainPageMach2.clickClose();
+        //mainPageMach2.clickClose();
     }
 }
