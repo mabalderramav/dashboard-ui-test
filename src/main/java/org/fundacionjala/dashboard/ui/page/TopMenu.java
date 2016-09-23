@@ -21,6 +21,8 @@ public class TopMenu extends AbstractBasePage {
     @FindBy(css = "div.menu.transition.visible > a[class=\"item\"][href=\"/profile\"]")
     private WebElement profileButton;
 
+    @FindBy(css = "div.main.container.pusher.owner-permission.edit-permission.view-permission.owner.dimmed")
+    private WebElement menuIcon;
 
     /**
      * this method click the button.
@@ -28,7 +30,6 @@ public class TopMenu extends AbstractBasePage {
     public final void clickMenuBoard() {
         menuBoard.click();
     }
-
 
     public final void clickOnDropDownList() {
         dropDownList.click();
@@ -38,8 +39,17 @@ public class TopMenu extends AbstractBasePage {
         logOutButton.click();
     }
 
-
     public void clickOnProfile() {
-       profileButton.click();
+        profileButton.click();
+    }
+
+    public BoardPage clickAddBoardMenu() {
+        clickMenuBoard();
+        addBoard.click();
+        return new BoardPage();
+    }
+
+    public void clickMainMenuIcon() {
+        menuIcon.click();
     }
 }

@@ -39,8 +39,10 @@ public class LoginPage extends AbstractBasePage {
     /**
      * this method click the button.
      */
-    public final void clickNextButton() {
+    public final HomePage clickNextButton() {
         nextSigninButton.click();
+//        getDriver().get("http://10.31.2.215:3666/groups/6fZHG86ZmNHxeNNXs");
+        return new HomePage();
     }
 
     public final void clickOnLogOut() {
@@ -48,6 +50,10 @@ public class LoginPage extends AbstractBasePage {
         topMenu.clickOnDropDownList();
         topMenu.clickOnLogOut();
     }
-
-
+    public HomePage loginWithUser(String userName, String password) {
+        LoginPage mainPageMach2 = new LoginPage();
+        mainPageMach2.setUsername(userName);
+        mainPageMach2.setPasswordTextField(password);
+        return mainPageMach2.clickNextButton();
+    }
 }
