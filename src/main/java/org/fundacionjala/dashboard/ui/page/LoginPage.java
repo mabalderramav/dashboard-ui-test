@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public class LoginPage extends AbstractBasePage {
 
+
     @FindBy(name = "username")
     private WebElement usernameTextField;
     @FindBy(name = "password")
@@ -44,18 +45,15 @@ public class LoginPage extends AbstractBasePage {
         return new HomePage();
     }
 
-    /**
-     * This method close the browser.
-     */
-    public final void clickClose() {
-        getDriver().quit();
+    public final void clickOnLogOut() {
+        final TopMenu topMenu = new TopMenu();
+        topMenu.clickOnDropDownList();
+        topMenu.clickOnLogOut();
     }
-
     public HomePage loginWithUser(String userName, String password) {
         LoginPage mainPageMach2 = new LoginPage();
         mainPageMach2.setUsername(userName);
         mainPageMach2.setPasswordTextField(password);
         return mainPageMach2.clickNextButton();
     }
-
 }
