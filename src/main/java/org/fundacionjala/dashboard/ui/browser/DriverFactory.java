@@ -1,15 +1,11 @@
 package org.fundacionjala.dashboard.ui.browser;
 
+import org.openqa.selenium.WebDriverException;
+
 /**
  * This class handle the logic related to what kind of browser.
  */
 public final class DriverFactory {
-
-    private static final String CHROME = "CHROME";
-
-    private static final String FIREFOX = "FIREFOX";
-
-    private static final String SAFARI = "SAFARI";
 
     /**
      * Private constructor.
@@ -23,13 +19,14 @@ public final class DriverFactory {
      * @param browser kind of driver to return.
      * @return Kind of driver Browser.
      */
-    public static IDriver getDriver(final String browser) {
-        IDriver driver = null;
-        if (browser.toUpperCase().equalsIgnoreCase(CHROME)) {
-            driver = new Chrome();
-        } else if (browser.toUpperCase().equalsIgnoreCase(SAFARI)) {
-            driver = new Safari();
+    public static IDriver getDriver(final Browser browser) {
+        switch (browser) {
+            case CHROME:
+                return new Chrome();
+            case SAFARI:
+                return new Safari();
+            default:
+                throw new WebDriverException("Browser not found.");
         }
-        return driver;
     }
 }
