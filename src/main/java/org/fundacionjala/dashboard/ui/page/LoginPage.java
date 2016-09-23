@@ -38,8 +38,10 @@ public class LoginPage extends AbstractBasePage {
     /**
      * this method click the button.
      */
-    public final void clickNextButton() {
+    public final HomePage clickNextButton() {
         nextSigninButton.click();
+//        getDriver().get("http://10.31.2.215:3666/groups/6fZHG86ZmNHxeNNXs");
+        return new HomePage();
     }
 
     /**
@@ -47,6 +49,13 @@ public class LoginPage extends AbstractBasePage {
      */
     public final void clickClose() {
         getDriver().quit();
+    }
+
+    public HomePage loginWithUser(String userName, String password) {
+        LoginPage mainPageMach2 = new LoginPage();
+        mainPageMach2.setUsername(userName);
+        mainPageMach2.setPasswordTextField(password);
+        return mainPageMach2.clickNextButton();
     }
 
 }
