@@ -8,14 +8,13 @@ import org.openqa.selenium.support.FindBy;
  */
 public class LoginPage extends AbstractBasePage {
 
+
     @FindBy(name = "username")
     private WebElement usernameTextField;
     @FindBy(name = "password")
     private WebElement passwordTextField;
     @FindBy(css = "button.ui.right.floated.blue.submit.button")
     private WebElement nextSigninButton;
-//    @FindBy(css = "button.ui.right.floated.blue.submit.button")
-//    private WebElement profileDropDownList;
 
     /**
      * This method set the username in the text field.
@@ -36,12 +35,18 @@ public class LoginPage extends AbstractBasePage {
         passwordTextField.clear();
         passwordTextField.sendKeys(password);
     }
+
     /**
      * this method click the button.
      */
-    public final FavoritePage clickNextButton() {
+    public final void clickNextButton() {
         nextSigninButton.click();
-        return new FavoritePage();
+    }
+
+    public final void clickOnLogOut() {
+        final TopMenu topMenu = new TopMenu();
+        topMenu.clickOnDropDownList();
+        topMenu.clickOnLogOut();
     }
 
 
