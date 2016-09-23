@@ -7,12 +7,6 @@ import org.openqa.selenium.WebDriverException;
  */
 public final class DriverFactory {
 
-    private static final String CHROME = "CHROME";
-
-    private static final String FIREFOX = "FIREFOX";
-
-    private static final String SAFARI = "SAFARI";
-
     /**
      * Private constructor.
      */
@@ -25,15 +19,14 @@ public final class DriverFactory {
      * @param browser kind of driver to return.
      * @return Kind of driver Browser.
      */
-    public static IDriver getDriver(final String browser) {
-        IDriver driver = null;
-        if (CHROME.equalsIgnoreCase(browser)) {
-            driver = new Chrome();
-        } else if (SAFARI.equalsIgnoreCase(browser)) {
-            driver = new Safari();
-        } else {
-            throw new WebDriverException("Not found");
+    public static IDriver getDriver(final Browser browser) {
+        switch (browser) {
+            case CHROME:
+                return new Chrome();
+            case SAFARI:
+                return new Safari();
+            default:
+                throw new WebDriverException("Browser not found.");
         }
-        return driver;
     }
 }

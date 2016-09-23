@@ -8,16 +8,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class Chrome implements IDriver {
 
-    private static final String WEBDRIVER_DIRECTION = "webdrivers/chromedriver.exe";
 
-    private static final String WEBDRIVER_KEY = "webdriver.chrome.driver";
+    private static final String WEB_DRIVER_PATH = "webdrivers/chromedriver2.2.exe";
+
+    private static final String WEB_DRIVER_KEY = "webdriver.chrome.driver";
 
     /**
      * {@inheritDoc}
      */
     @Override
     public final WebDriver initDriver() {
-        System.setProperty(WEBDRIVER_KEY, WEBDRIVER_DIRECTION);
+        System.setProperty(WEB_DRIVER_KEY, WEB_DRIVER_PATH);
         return new ChromeDriver();
     }
 }
