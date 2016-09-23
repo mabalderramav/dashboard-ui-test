@@ -8,9 +8,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class Chrome implements IDriver {
 
-    public static final String WEBDRIVER_DIRECTION = "WebDrivers\\chromedriver.exe";
+    private static final String WEBDRIVER_DIRECTION = "webdrivers/chromedriver.exe";
 
-    public static final String WEBDRIVER_KEY = "webdriver.chrome.driver";
+    private static final String WEBDRIVER_KEY = "webdriver.chrome.driver";
 
     /**
      * {@inheritDoc}

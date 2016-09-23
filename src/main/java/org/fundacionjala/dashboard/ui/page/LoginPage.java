@@ -14,6 +14,8 @@ public class LoginPage extends AbstractBasePage {
     private WebElement passwordTextField;
     @FindBy(css = "button.ui.right.floated.blue.submit.button")
     private WebElement nextSigninButton;
+//    @FindBy(css = "button.ui.right.floated.blue.submit.button")
+//    private WebElement profileDropDownList;
 
     /**
      * This method set the username in the text field.
@@ -34,19 +36,13 @@ public class LoginPage extends AbstractBasePage {
         passwordTextField.clear();
         passwordTextField.sendKeys(password);
     }
-
     /**
      * this method click the button.
      */
-    public final void clickNextButton() {
+    public final FavoritePage clickNextButton() {
         nextSigninButton.click();
+        return new FavoritePage();
     }
 
-    /**
-     * This method close the browser.
-     */
-    public final void clickClose() {
-        getDriver().quit();
-    }
 
 }

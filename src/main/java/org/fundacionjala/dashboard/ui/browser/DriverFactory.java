@@ -1,5 +1,7 @@
 package org.fundacionjala.dashboard.ui.browser;
 
+import org.openqa.selenium.WebDriverException;
+
 /**
  * This class handle the logic related to what kind of browser.
  */
@@ -25,10 +27,12 @@ public final class DriverFactory {
      */
     public static IDriver getDriver(final String browser) {
         IDriver driver = null;
-        if (browser.toUpperCase().equalsIgnoreCase(CHROME)) {
+        if (CHROME.equalsIgnoreCase(browser)) {
             driver = new Chrome();
-        } else if (browser.toUpperCase().equalsIgnoreCase(SAFARI)) {
+        } else if (SAFARI.equalsIgnoreCase(browser)) {
             driver = new Safari();
+        } else {
+            throw new WebDriverException("Not found");
         }
         return driver;
     }
