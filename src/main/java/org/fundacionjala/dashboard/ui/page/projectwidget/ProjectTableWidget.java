@@ -20,7 +20,7 @@ public class ProjectTableWidget extends AbstractBasePage{
     /**
      * Method to get the table for projects.
      *
-     * @return a Map with the information of the project table.
+     * @return a Map with the information of the features.project table.
      */
     public final Map<String, String> getProjectTable() {
         Map<String, String> result = new HashMap<>();

@@ -14,7 +14,7 @@ public class ConfigTableProject extends AbstractBasePage {
     private WebElement saveButton;
 
     /**
-     * Method to config the table project.
+     * Method to config the table features.project.
      *
      * @return the ProjectTableWidget object.
      */

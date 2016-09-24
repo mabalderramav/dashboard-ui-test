@@ -15,7 +15,7 @@ Feature: Project widget
 
     And I store as Project1
     Then I expect the status code 200
-    Given I have a configured service
+    #Given I have a configured service
 
     @deleteAllProjects
   Scenario: Validate All information of the projects from pivotal are displayed in Mach2 table widget

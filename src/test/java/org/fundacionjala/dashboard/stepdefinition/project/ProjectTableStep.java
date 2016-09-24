@@ -15,7 +15,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Class to manage Step definition  for table widget of project.
+ * Class to manage Step definition  for table widget of features.project.
  */
 public class ProjectTableStep {
 
@@ -25,6 +25,7 @@ public class ProjectTableStep {
     private HomePage homePage;
     private WidgetPage widgetPage;
     Map<String, String> tableProjectValues;
+    TopMenu topMenu;
 
     @Given("^I login with valid credentials to Mach2$")
     public final void iLogin() {
@@ -32,33 +33,34 @@ public class ProjectTableStep {
         final String password = ENVIRONMENT.getPassword();
         LoginPage mainPageMach2 = new LoginPage();
         homePage = mainPageMach2.loginWithUser(userName, password);
+        topMenu = homePage.goToTopMenu();
     }
 
 
     /**
-     * Method to add a table widget for a project.
+     * Method to add a table widget for a features.project.
      */
     @Given("^I add a table widget in the board$")
     public final void iAddATableWidgetInTheBoard() {
-        homePage.clickMenuBoard();
-        BoardPanelPage boardPanelPage = homePage.clickAddBoard();
-        boardPanelPage.clickAddBoard();
+        topMenu.clickMenuBoard();
+        BoardPage boardPage = topMenu.clickAddBoardMenu();
+        boardPage.clickAddWidgetMenu();
         widgetPage = new WidgetPage();
     }
 
     /**
-     * Method to Select the project option form the UI.
+     * Method to Select the features.project option form the UI.
      */
     @When("^I select the Project option$")
     public final void iSelectTheProjectOption() {
-        ServiceForm serviceForm = widgetPage.clickOpenTable();
+        ServiceForm serviceForm = widgetPage.clickTableWidgetType();
         ConfigTableProject configTableForm = serviceForm.clickOpenProject();
         ProjectTableWidget projectTableWidget = configTableForm.clickSaveConfigurationProject();
         tableProjectValues = projectTableWidget.getProjectTable();
     }
 
     /**
-     * Method to assert the pivotal tracker project with the Mach2 project tables.
+     * Method to assert the pivotal tracker features.project with the Mach2 features.project tables.
      */
     @Then("^All information of Pivotal Tracker projects should be displayed in project table widget of Mach(\\d+)$")
     public final void allInformationOfPivotalTrackerprojectsShouldBeDisplayedInProjectTableWidgetOfMach() {
