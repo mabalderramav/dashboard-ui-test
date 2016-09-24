@@ -11,8 +11,17 @@ public class ServiceForm extends AbstractBasePage {
 
     @FindBy(xpath = "//div[@id='mach-wizard']/div/div[3]/div/div/div[2]/div[1]/div[2]/div")
     private WebElement projectButton;
-        public final ConfigTableProject clickOpenProject() {
+    @FindBy(xpath = "//div[@id='mach-wizard']/div/div[3]/div/div/div[2]/div[2]/div[2]/div")
+    private WebElement storyButton;
+
+    public final ConfigTableProject clickOpenProject() {
         projectButton.click();
         return new ConfigTableProject();
+    }
+
+
+    public final StoryItemPage clickOpenStoryItem() {
+        storyButton.click();
+        return new StoryItemPage();
     }
 }
