@@ -1,18 +1,17 @@
 package org.fundacionjala.dashboard.api;
 
-import io.restassured.response.Response;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import io.restassured.response.Response;
 
 import static io.restassured.path.json.JsonPath.from;
 
 /**
  * This class map the end point.
  */
-
 public final class Mapper {
 
     private static final String REGEX_INSIDE_BRACKETS = "(?<=\\[)(.*?)(?=\\])";

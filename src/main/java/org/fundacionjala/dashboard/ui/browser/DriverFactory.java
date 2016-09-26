@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriverException;
  */
 public final class DriverFactory {
 
+    private static final String BROWSER_NOT_FOUND_MSG = "Browser not found.";
+
     /**
      * Private constructor.
      */
@@ -26,7 +28,7 @@ public final class DriverFactory {
             case SAFARI:
                 return new Safari();
             default:
-                throw new WebDriverException("Browser not found.");
+                throw new WebDriverException(BROWSER_NOT_FOUND_MSG);
         }
     }
 }

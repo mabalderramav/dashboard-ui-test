@@ -3,7 +3,8 @@ package org.fundacionjala.dashboard.api;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.specification.RequestSpecification;
-import org.fundacionjala.dashboard.utility.Environment;
+
+import org.fundacionjala.dashboard.utils.Environment;
 
 /**
  * Class to manage the connection to pivotal tracker.
@@ -35,7 +36,7 @@ public final class Connection {
     /**
      * Get the request specification.
      *
-     * @return Request Specification.
+     * @return {@link RequestSpecification}
      */
     public RequestSpecification getRequestSpecification() {
         return requestSpecification;
@@ -44,7 +45,7 @@ public final class Connection {
     /**
      * this method Instance the connection if this does not exist.
      *
-     * @return a connection.
+     * @return {@link Connection}
      */
     public static Connection getInstance() {
         if (connection == null) {

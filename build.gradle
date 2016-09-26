@@ -16,7 +16,7 @@ repositories {
 
 buildscript {
     repositories {
-        jcenter ()
+        jcenter()
         maven {
             url "http://repo.bodar.com"
         }
@@ -53,9 +53,8 @@ task executeFeatures() {
                         '--plugin', 'html:build/cucumber-html-report',
                         '--plugin', 'json:build/cucumber.json',
                         '--plugin', 'rerun:build/rerun.txt',
-                        '--glue', 'org.fundacionjala.pivotaltracker', 'src/test/resources/features']
+                        '--glue', 'org.fundacionjala.dashboard', 'src/test/resources/features']
                 jvmArgs = ["-Dtoken=" + token]
-                println "token : " + token
             }
         } catch (Exception e) {
             //In order to avoid FAILURE: Build failed with an exception.
