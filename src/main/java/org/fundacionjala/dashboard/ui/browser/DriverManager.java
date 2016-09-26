@@ -1,21 +1,20 @@
 package org.fundacionjala.dashboard.ui.browser;
 
-import org.fundacionjala.dashboard.utility.Environment;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 
-import java.util.concurrent.TimeUnit;
+import org.fundacionjala.dashboard.utils.Environment;
 
 /**
  * this class is to provide basic methods for manage the Selenium driver,
  * and initialize the logger main resources path.
  */
 public final class DriverManager {
-    private static DriverManager driverManager;
 
     private static final Environment ENVIRONMENT = Environment.getInstance();
 
-    private static final IDriver BROWSER =
-            DriverFactory.getDriver(Browser.valueOf(ENVIRONMENT.getBrowser().toUpperCase()));
+    private static DriverManager instance;
 
     private WebDriver driver;
 
@@ -25,21 +24,23 @@ public final class DriverManager {
     private DriverManager() {
         final String baseUrl = ENVIRONMENT.getBaseUrl();
         final int timeout = ENVIRONMENT.getTimeout();
-        driver = BROWSER.initDriver();
-        driver.get(baseUrl);
+        final Browser browser = Browser.valueOf(ENVIRONMENT.getBrowser().toUpperCase());
+        driver = DriverFactory.getDriver(browser).initDriver();
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
+        driver.get(baseUrl);
+        driver.manage().window().maximize();
     }
 
     /**
-     * This method Instance the driverManager if this does not exist.
+     * This method Instance the instance if this does not exist.
      *
-     * @return a driverManager.
+     * @return a instance.
      */
     public static DriverManager getInstance() {
-        if (driverManager == null) {
-            driverManager = new DriverManager();
+        if (instance == null) {
+            instance = new DriverManager();
         }
-        return driverManager;
+        return instance;
     }
 
     /**

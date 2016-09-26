@@ -6,10 +6,11 @@ import org.openqa.selenium.WebDriver;
  * This interface define the methods related to initialize the Selenium driver.
  */
 public interface IDriver {
+
     /**
      * Initialize the Selenium web driver.
      *
-     * @return Selenium Web Driver.
+     * @return {@link WebDriver}.
      */
     WebDriver initDriver();
 }
