@@ -17,3 +17,10 @@ Feature: Project widget
     When I add a table widget in the board
     And I select the Project option
     Then Validate project table against pivotal project
+
+  Scenario: C65_PW-Verify that the info in the Name field on a INFO in M2 is the same as on PT
+    When I add a info widget in the board
+      And I select the Project option
+      And Click on ‘Save’ button
+      And Go to the Project table 'Name' column
+    Then Verify that the project name is the same that the project on Pivotal Tracker
