@@ -1,5 +1,6 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.api;
 
+import java.util.List;
 import java.util.Map;
 
 import cucumber.api.java.en.And;
@@ -45,6 +46,19 @@ public class ResourcesSteps {
     @When("^I send a POST request to (.*)")
     public void iSendAPostRequestTo(final String endPoint, final Map<String, Object> jsonData) {
         resp = RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData);
+    }
+
+    /**
+     * Method to validate the post request for a given list of map.
+     *
+     * @param endPoint end point of the post request.
+     * @param jsonData List of data in map format.
+     */
+    @When("^I send a POST request with list to (.*)")
+    public void iSendAPostRequestWithListTo(final String endPoint, final List<Map<String, Object>> jsonData) {
+        for(int i = 0; i< jsonData.size();i++){
+            resp = RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData.get(i));
+        }
     }
 
     /**
