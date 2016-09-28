@@ -22,7 +22,11 @@ public final class Environment {
 
     private static final String AUTHENTICATION_USER = "authentication.user";
 
+    private static final String SECONDARY_AUTHENTICATION_USER = "secondaryAuthentication.user";
+
     private static final String AUTHENTICATION_PASS = "authentication.password";
+
+    private static final String SECONDARY_AUTHENTICATION_PASSWORD = "secondaryAuthentication.password";
 
     private static final String AUTHENTICATION_BASE_URL = "authentication.baseURL";
 
@@ -131,6 +135,10 @@ public final class Environment {
         return getEnv(AUTHENTICATION_USER);
     }
 
+    public String getSecondaryUser(){
+        return getEnv(SECONDARY_AUTHENTICATION_USER);
+    }
+
     /**
      * return the password.
      *
@@ -138,6 +146,10 @@ public final class Environment {
      */
     public String getPassword() {
         return getEnv(AUTHENTICATION_PASS);
+    }
+
+    public String getSecondaryPassword(){
+        return getEnv(SECONDARY_AUTHENTICATION_PASSWORD);
     }
 
     /**

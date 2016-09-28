@@ -22,7 +22,9 @@ public class GlobalHooks {
     public void beforeAll() {
         if (!beforeAllFlag) {
             // Login as Primary
-            HomePage homePage = LoginPage.loginAsPrimaryUser();
+//            HomePage homePage = LoginPage.loginAsPrimaryUser();
+                HomePage homePage = LoginPage.loginAsSecondaryUser();
+
 
             // Select the Service
             TopMenu topMenu = homePage.goToTopMenu();

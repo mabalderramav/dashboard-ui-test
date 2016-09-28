@@ -65,4 +65,11 @@ public class LoginPage extends AbstractBasePage {
         return loginAs(Environment.getInstance().getUser(), Environment.getInstance().getPassword());
     }
 
+    public static HomePage loginAsSecondaryUser(){
+        return loginAs(Environment.getInstance().getSecondaryUser(), Environment.getInstance().getSecondaryPassword());
+    }
+
+    public void isUserLogged(){
+
+    }
 }
