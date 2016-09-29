@@ -11,13 +11,9 @@ import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
  * Class to manage Step definition  for table widget of features.project.
  */
 public class WidgetSteps {
-    private static Widget type;
+    private Widget type;
 
-    public WidgetSteps() {
-        type = Widget.TABLE;
-    }
-
-    public static Widget getType(){
+    public Widget getType(){
         return type;
     }
     /**

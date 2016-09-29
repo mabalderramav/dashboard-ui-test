@@ -14,13 +14,17 @@ import java.util.Map;
  * Class to manage Step definition  for table widget of features.project.
  */
 public class ProjectSteps {
+    private WidgetSteps widgetSteps;
 
+    public ProjectSteps (WidgetSteps widgetSteps){
+        this.widgetSteps = widgetSteps;
+    }
     /**
      * Method to Select the features.project option form the UI.
      */
     @When("^I select the Project option$")
     public void iSelectTheProjectOption() {
-        final Widget type = WidgetSteps.getType();
+        final Widget type = widgetSteps.getType();
         WidgetPage widgetPage = new WidgetPage();
         StoryServiceForm storyServiceForm = widgetPage.clickWidgetType(type);
         ConfigTableProject configTableForm = storyServiceForm.clickOpenProject();
