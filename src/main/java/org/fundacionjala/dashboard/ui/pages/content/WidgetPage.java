@@ -1,42 +1,24 @@
 package org.fundacionjala.dashboard.ui.pages.content;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.fundacionjala.dashboard.ui.pages.menu.StoryServiceForm;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 /**
- * Created by brunovasquez on 9/22/2016.
+ * This is WidgetPage class.
  */
 public class WidgetPage extends AbstractBasePage {
 
-    @FindBy(css = "div.circular i.table-type")
-    private WebElement widgetTable;
-
-    @FindBy(css = "div.circular i.info-type")
-    private WebElement widgetInfo;
-
-    public final StoryServiceForm clickWidgetType(Widget type) {
-        switch (type){
-            case TABLE:
-                widgetTable.click();
-                break;
-            case INFO:
-                widgetInfo.click();
-                break;
-            default:
-                break;
-        }
-        return new StoryServiceForm();
-    }
-    public final StoryServiceForm clickTableWidgetType() {
-        widgetTable.click();
-        return new StoryServiceForm();
-    }
-
-    public StoryServiceForm clickInfoWidgetType() {
-        widgetInfo.click();
+    /**
+     * This method get a Story service form.
+     *
+     * @param type Widget type for example table, info, list.
+     * @return StoryServiceForm.
+     */
+    public StoryServiceForm clickWidgetType(final Widget type) {
+        WebElement specificWidget = driver.findElement(By.cssSelector("div.circular i." + type + "-type"));
+        specificWidget.click();
         return new StoryServiceForm();
     }
 }

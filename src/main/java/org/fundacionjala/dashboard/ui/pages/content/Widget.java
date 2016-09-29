@@ -1,10 +1,18 @@
 package org.fundacionjala.dashboard.ui.pages.content;
 
 /**
- * Created by AldoBalderrama on 9/28/2016.
+ * This is enum the widget.
  */
 public enum Widget {
     INFO,
     TABLE,
-    LIST
+    LIST;
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return name().toLowerCase();
+    }
 }
