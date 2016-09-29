@@ -13,11 +13,8 @@ import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
 public class WidgetSteps {
     private Widget type;
 
-    public Widget getType(){
-        return type;
-    }
     /**
-     * Method to add a table widget for a features.project.
+     * Method to add a widget for a features.project.
      */
     @When("^I add a (table|info|list) widget in the board$")
     public void iAddATableWidgetInTheBoard(String type) {
@@ -27,4 +24,11 @@ public class WidgetSteps {
         WidgetPage widgetPage = boardPage.clickAddWidgetMenu();
     }
 
+    /**
+     * Obtain Widget type.
+     * @return Widget type.
+     */
+    public Widget getType(){
+        return type;
+    }
 }
