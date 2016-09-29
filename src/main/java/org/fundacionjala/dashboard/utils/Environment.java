@@ -20,19 +20,21 @@ public final class Environment {
 
     private static final String AUTHENTICATION_BASE_URI = "authentication.baseURI";
 
-    private static final String AUTHENTICATION_USER = "authentication.user";
+    private static final String PRIMARY_AUTHENTICATION_USER = "primaryAuthentication.user";
 
     private static final String SECONDARY_AUTHENTICATION_USER = "secondaryAuthentication.user";
 
-    private static final String AUTHENTICATION_PASS = "authentication.password";
+    private static final String PRIMARY_AUTHENTICATION_PASS = "primaryAuthentication.password";
 
-    private static final String SECONDARY_AUTHENTICATION_PASSWORD = "secondaryAuthentication.password";
+    private static final String SECONDARY_AUTHENTICATION_PASS = "secondaryAuthentication.password";
 
     private static final String AUTHENTICATION_BASE_URL = "authentication.baseURL";
 
     private static final String AUTHENTICATION_BROWSER = "authentication.browser";
 
     private static final String TIMEOUT = "timeout";
+
+    public static final String PRIMARY_DISPLAY_NAME = "primaryDisplayName";
 
     private static Environment environment;
 
@@ -131,8 +133,8 @@ public final class Environment {
      *
      * @return String whit the name user
      */
-    public String getUser() {
-        return getEnv(AUTHENTICATION_USER);
+    public String getPrimaryUser() {
+        return getEnv(PRIMARY_AUTHENTICATION_USER);
     }
 
     public String getSecondaryUser(){
@@ -144,12 +146,16 @@ public final class Environment {
      *
      * @return String whit the password
      */
-    public String getPassword() {
-        return getEnv(AUTHENTICATION_PASS);
+    public String getPrimaryPassword() {
+        return getEnv(PRIMARY_AUTHENTICATION_PASS);
     }
 
     public String getSecondaryPassword(){
-        return getEnv(SECONDARY_AUTHENTICATION_PASSWORD);
+        return getEnv(SECONDARY_AUTHENTICATION_PASS);
+    }
+
+    public String getPrimaryDisplayName() {
+        return getEnv(PRIMARY_DISPLAY_NAME);
     }
 
     /**

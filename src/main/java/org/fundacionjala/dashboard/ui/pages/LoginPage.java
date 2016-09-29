@@ -1,5 +1,8 @@
 package org.fundacionjala.dashboard.ui.pages;
 
+import com.gargoylesoftware.htmlunit.ElementNotFoundException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -61,15 +64,38 @@ public class LoginPage extends AbstractBasePage {
         return loginPage.clickNextButton();
     }
 
-    public static HomePage loginAsPrimaryUser() {
-        return loginAs(Environment.getInstance().getUser(), Environment.getInstance().getPassword());
+
+
+//    public static HomePage loginAsPrimaryUser() {
+//        return loginAs(Environment.getInstance().getPrimaryUser(), Environment.getInstance().getPrimaryPassword());
+//    }
+
+    public static HomePage loginAsPrimaryUser(){
+        String userNameValue= Environment.getInstance().getPrimaryUser();
+        String displayName= Environment.getInstance().getPrimaryDisplayName();
+        String passwordValue=Environment.getInstance().getPrimaryPassword();
+        HomePage homePage;
+
+        try{
+            homePage = new HomePage();
+            TopMenu topMenu =  homePage.goToTopMenu();
+            if(topMenu.isUserMenuPresent()){
+                if(!topMenu.isUserLogged(displayName)){
+                    LoginPage loginPage = topMenu.logout();
+                    homePage = loginAs(userNameValue, passwordValue);
+                }
+            }
+
+        }
+        catch(WebDriverException e){
+            homePage = loginAs(userNameValue, passwordValue);
+        }
+        return homePage;
     }
 
     public static HomePage loginAsSecondaryUser(){
         return loginAs(Environment.getInstance().getSecondaryUser(), Environment.getInstance().getSecondaryPassword());
     }
 
-    public void isUserLogged(){
 
-    }
 }
