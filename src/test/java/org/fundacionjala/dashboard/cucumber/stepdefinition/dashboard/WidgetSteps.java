@@ -3,8 +3,8 @@ package org.fundacionjala.dashboard.cucumber.stepdefinition.dashboard;
 import cucumber.api.java.en.When;
 
 import org.fundacionjala.dashboard.ui.pages.content.BoardPage;
-import org.fundacionjala.dashboard.ui.pages.content.Widget;
-import org.fundacionjala.dashboard.ui.pages.content.WidgetPage;
+import org.fundacionjala.dashboard.ui.pages.content.widget.Widget;
+import org.fundacionjala.dashboard.ui.pages.content.widget.WidgetPage;
 import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
 
 /**

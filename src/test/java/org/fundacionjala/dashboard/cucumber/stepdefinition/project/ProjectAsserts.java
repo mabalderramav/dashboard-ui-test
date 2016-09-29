@@ -2,8 +2,10 @@ package org.fundacionjala.dashboard.cucumber.stepdefinition.project;
 
 import cucumber.api.java.en.Then;
 import io.restassured.path.json.JsonPath;
-
 import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
+import org.fundacionjala.dashboard.ui.pages.content.widget.ProjectTypeWidget;
+
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,9 +15,11 @@ import static org.junit.Assert.assertEquals;
 public class ProjectAsserts {
 
     private ResourcesSteps resources;
+    private ProjectTypeWidget projectTypeWidget;
 
-    public ProjectAsserts(ResourcesSteps resources) {
+    public ProjectAsserts(ResourcesSteps resources, ProjectTypeWidget projectTypeWidget) {
         this.resources = resources;
+        this.projectTypeWidget = projectTypeWidget;
     }
 
     /**
@@ -29,6 +33,13 @@ public class ProjectAsserts {
 //        assertEquals(jsonPath.get("week_start_day"), tableProjectValues.get("week_start_date"));
         assertEquals(jsonPath.get("name"), "AT01 project-01");
         assertEquals(jsonPath.get("week_start_day"), "Monday");
+    }
+
+    @Then("^Verify that the project name is the same that the project on Pivotal Tracker$")
+    public void verifyThatTheProjectNameIsTheSameThatTheProjectOnPivotalTracker() {
+        Map<String, String> list = projectTypeWidget.getProjectType();
+        JsonPath jsonPath = resources.getResponse().jsonPath();
+        assertEquals("aldo", "aldo");
     }
 
 }

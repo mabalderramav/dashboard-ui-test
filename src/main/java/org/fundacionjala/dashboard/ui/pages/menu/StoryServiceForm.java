@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
-import org.fundacionjala.dashboard.ui.pages.content.ConfigTableProject;
+import org.fundacionjala.dashboard.ui.pages.content.widget.ConfigTableProject;
 import org.fundacionjala.dashboard.ui.pages.content.StoryItemPage;
 
 /**

@@ -5,12 +5,12 @@ import cucumber.api.java.en.When;
 import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
 import org.fundacionjala.dashboard.ui.pages.content.StoryItemPage;
 import org.fundacionjala.dashboard.ui.pages.content.StoryItemTable;
-import org.fundacionjala.dashboard.ui.pages.content.WidgetPage;
+import org.fundacionjala.dashboard.ui.pages.content.widget.WidgetPage;
 import org.fundacionjala.dashboard.ui.pages.menu.StoryServiceForm;
 
 import java.util.Map;
 
-import static org.fundacionjala.dashboard.ui.pages.content.Widget.TABLE;
+import static org.fundacionjala.dashboard.ui.pages.content.widget.Widget.TABLE;
 import static org.junit.Assert.assertEquals;
 
 /**

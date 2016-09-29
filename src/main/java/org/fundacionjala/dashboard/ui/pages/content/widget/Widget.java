@@ -1,4 +1,4 @@
-package org.fundacionjala.dashboard.ui.pages.content;
+package org.fundacionjala.dashboard.ui.pages.content.widget;
 
 /**
  * This is enum the widget.

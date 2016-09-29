@@ -1,4 +1,4 @@
-package org.fundacionjala.dashboard.ui.pages.content;
+package org.fundacionjala.dashboard.ui.pages.content.widget;
 
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.fundacionjala.dashboard.ui.pages.menu.StoryServiceForm;
