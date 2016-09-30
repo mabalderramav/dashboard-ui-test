@@ -16,7 +16,6 @@ import org.fundacionjala.dashboard.api.RequestManager;
  */
 public class ResourcesSteps {
 
-    private Response resp;
     private List<Response> responseList;
 
     /**
@@ -33,7 +32,9 @@ public class ResourcesSteps {
      */
     @And("^I store as (.*)")
     public void storedAs(final String key) {
-        Mapper.addResponse(key, resp);
+        for (Response resp : responseList) {
+            Mapper.addResponse(key, resp);
+        }
     }
 
     /**
@@ -89,15 +90,6 @@ public class ResourcesSteps {
     @When("^I send a DELETE request to (.*)$")
     public void iSendADeleteRequestTo(final String endPoint) {
         responseList.add(RequestManager.delete(Mapper.mapEndpoint(endPoint)));
-    }
-
-    /**
-     * Get the Response.
-     *
-     * @return the response.
-     */
-    public Response getResponse() {
-        return resp;
     }
 
     /**
