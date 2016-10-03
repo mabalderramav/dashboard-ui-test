@@ -1,26 +1,41 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.Login;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fundacionjala.dashboard.ui.pages.HomePage;
 import org.fundacionjala.dashboard.ui.pages.LoginPage;
+import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
+
+import java.util.Map;
+
+import static org.junit.Assert.assertTrue;
 
 /**
- * Class to manage the step definition for Login to Mach2 page
+ * Class to manage the step definition for Login to Mach2 page.
  */
-
 public class LoginSteps {
+    private HomePage homePage;
+    private TopMenu topMenu;
 
-    @When("^I perform a login to (.*)$")
-    public void iPerformALoginToMach(){
-        HomePage homePage = LoginPage.loginAsSecondaryUser();
+    /**
+     * Step definition to perform a login as a user to Mach2 application.
+     *
+     * @param userData Data of the user to perform a login to Mach2 application.
+     */
+    @When("^I perform a login as$")
+    public void iPerformALoginAs(final Map<String, Object> userData) {
+        homePage = LoginPage.loginOtherUser(String.valueOf(userData.get("userName")),
+                String.valueOf(userData.get("password")));
+        topMenu = homePage.goToTopMenu();
+        topMenu.clickUserMenu();
     }
 
-    @Then("^I will have a session started$")
+    /**
+     * Step definition to validate if the user has been logged.
+     */
+    @Then("^I will have a user logged$")
     public void iWillBeInTheHomepage() {
-        LoginPage loginPage = new LoginPage();
-//        loginPage.isUserLogged();
-
+        topMenu = homePage.goToTopMenu();
+        assertTrue(topMenu.isUserMenuPresent());
     }
 }

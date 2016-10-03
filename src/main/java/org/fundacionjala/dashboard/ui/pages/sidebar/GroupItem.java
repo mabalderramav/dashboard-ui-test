@@ -6,24 +6,26 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
-import org.fundacionjala.dashboard.ui.pages.content.GroupPage;
 
 /**
- * Created by JimmyRomero on 9/23/2016.
+ * Class to manage the group items.
  */
 public class GroupItem extends AbstractBasePage {
 
     private WebElement groupElement;
 
-    public GroupItem(WebElement groupElement) {
-        this.groupElement = groupElement;
+    /**
+     * Method to manage the group item.
+     *
+     * @param newGroupElement The group element.
+     */
+    public GroupItem(final WebElement newGroupElement) {
+        this.groupElement = newGroupElement;
     }
 
-    public GroupPage clickOnGroup() {
-        groupElement.findElement(By.className("inline-edit")).click();
-        return new GroupPage();
-    }
-
+    /**
+     * Method to perform a double click on group name.
+     */
     public void doubleClickGroupName() {
         WebElement groupName = groupElement.findElement(By.className("inline-edit"));
         Action action = new Actions(driver)
@@ -31,7 +33,12 @@ public class GroupItem extends AbstractBasePage {
         action.perform();
     }
 
-    public void editGroupName(String newGroupName) {
+    /**
+     * Method to change the group name.
+     *
+     * @param newGroupName The name of the group changed.
+     */
+    public void editGroupName(final String newGroupName) {
         groupElement.findElement(By.className("inline-edit-text")).sendKeys(newGroupName);
     }
 }

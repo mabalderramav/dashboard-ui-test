@@ -16,9 +16,15 @@ import java.util.Map;
 public class ProjectSteps {
     private WidgetSteps widgetSteps;
 
-    public ProjectSteps (WidgetSteps widgetSteps){
-        this.widgetSteps = widgetSteps;
+    /**
+     * Constructor method that initializes the widget steps.
+     *
+     * @param newWidgetSteps The steps of the widget.
+     */
+    public ProjectSteps(final WidgetSteps newWidgetSteps) {
+        this.widgetSteps = newWidgetSteps;
     }
+
     /**
      * Method to Select the features.project option form the UI.
      */

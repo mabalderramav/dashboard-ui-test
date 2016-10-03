@@ -9,21 +9,34 @@ import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.fundacionjala.dashboard.ui.pages.content.BoardPage;
 
 /**
- * Created by JimmyRomero on 9/23/2016.
+ * Class to manage the board item in the sidebar.
  */
 public class BoardItem extends AbstractBasePage {
 
-    private WebElement boardElement;
+    private final WebElement boardElement;
 
-    public BoardItem(WebElement boardElement) {
-        this.boardElement = boardElement;
+    /**
+     * Method to find the board element.
+     *
+     * @param newBoardElement The board element.
+     */
+    public BoardItem(final WebElement newBoardElement) {
+        this.boardElement = newBoardElement;
     }
 
+    /**
+     * Method to click on board.
+     *
+     * @return The board page.
+     */
     public BoardPage clickOnBoard() {
         boardElement.findElement(By.className("inline-edit")).click();
         return new BoardPage();
     }
 
+    /**
+     * Method to change the board name.
+     */
     public void doubleClickBoardName() {
         WebElement groupName = boardElement.findElement(By.className("inline-edit"));
         Action action = new Actions(driver)
@@ -31,7 +44,12 @@ public class BoardItem extends AbstractBasePage {
         action.perform();
     }
 
-    public void editBoardName(String newGroupName) {
+    /**
+     * Method to edit the board name.
+     *
+     * @param newGroupName The name of the group changed.
+     */
+    public void editBoardName(final String newGroupName) {
         boardElement.findElement(By.className("inline-edit-text")).sendKeys(newGroupName);
     }
 }

@@ -1,8 +1,6 @@
 package org.fundacionjala.dashboard.ui.pages;
 
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 import org.fundacionjala.dashboard.ui.browser.DriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,7 +25,7 @@ public class LoginPage extends AbstractBasePage {
     /**
      * This method set the username in the text field.
      *
-     * @param username String whit the username
+     * @param username String whit the username.
      */
     public void setUsernameTextField(final String username) {
         usernameTextField.clear();
@@ -37,7 +35,7 @@ public class LoginPage extends AbstractBasePage {
     /**
      * This method set the password in the text field.
      *
-     * @param password String  whit the password
+     * @param password String  whit the password.
      */
     public void setPasswordTextField(final String password) {
         passwordTextField.clear();
@@ -45,59 +43,70 @@ public class LoginPage extends AbstractBasePage {
     }
 
     /**
-     * this method click the button.
+     * Method to click on next button.
+     *
+     * @return The home page.
      */
     public HomePage clickNextButton() {
         nextSigninButton.click();
         return new HomePage();
     }
 
+    /**
+     * Method to perform a Logout from Mach2 application.
+     */
     public static void clickOnLogOut() {
         final TopMenu topMenu = new TopMenu();
         topMenu.clickUserMenu();
         topMenu.clickOnLogOut();
     }
 
-    public static HomePage loginAs(String userName, String password) {
+    /**
+     * Method used to perform a login to Mach2 application.
+     *
+     * @param userName Username used to perform a login to Mach2 application.
+     * @param password Password used to perform a login to Mach2 application.
+     * @return The login to Mach2 application.
+     */
+    public static HomePage loginAs(final String userName, final String password) {
         LoginPage loginPage = new LoginPage();
         loginPage.setUsernameTextField(userName);
         loginPage.setPasswordTextField(password);
         return loginPage.clickNextButton();
     }
 
-
-
-//    public static HomePage loginAsPrimaryUser() {
-//        return loginAs(Environment.getInstance().getPrimaryUser(), Environment.getInstance().getPrimaryPassword());
-//    }
-
-    public static HomePage loginAsPrimaryUser(){
-        String userNameValue= Environment.getInstance().getPrimaryUser();
-        String displayName= Environment.getInstance().getPrimaryDisplayName();
-        String passwordValue=Environment.getInstance().getPrimaryPassword();
+    /**
+     * Method to perform a login with other user.
+     *
+     * @param userName Username to perform a login with other user.
+     * @param password Password to perform a login with other user.
+     * @return The login to Mach2 application.
+     */
+    public static HomePage loginOtherUser(final String userName, final String password) {
         HomePage homePage;
-
-        try{
+        try {
             homePage = new HomePage();
-            TopMenu topMenu =  homePage.goToTopMenu();
-            if(topMenu.isUserMenuPresent()){
-                if(!topMenu.isUserLogged(displayName)){
-                    LoginPage loginPage = topMenu.logout();
-                    homePage = loginAs(userNameValue, passwordValue);
-                }
+            TopMenu topMenu = homePage.goToTopMenu();
+            if (topMenu.isUserMenuPresent() && !topMenu.isUserLogged(topMenu.getUserName())) {
+                LoginPage loginPage = topMenu.logout();
+                homePage = loginAs(userName, password);
             }
 
-        }
-        catch(WebDriverException e){
+        } catch (WebDriverException e) {
             DriverManager.getInstance().getDriver().get(Environment.getInstance().getBaseUrl());
-            homePage = loginAs(userNameValue, passwordValue);
+            homePage = loginAs(userName, password);
         }
         return homePage;
     }
 
-    public static HomePage loginAsSecondaryUser(){
-        return loginAs(Environment.getInstance().getSecondaryUser(), Environment.getInstance().getSecondaryPassword());
+    /**
+     * Method to perform a login as Primary user.
+     *
+     * @return Login to Mach2 application.
+     */
+    public static HomePage loginAsPrimaryUser() {
+        String userNameValue = Environment.getInstance().getPrimaryUser();
+        String passwordValue = Environment.getInstance().getPrimaryPassword();
+        return loginOtherUser(userNameValue, passwordValue);
     }
-
-
 }

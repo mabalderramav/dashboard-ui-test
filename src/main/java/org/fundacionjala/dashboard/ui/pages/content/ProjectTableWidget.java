@@ -14,7 +14,7 @@ import org.fundacionjala.dashboard.utils.Utils;
 /**
  * Manage Project table Widget page.
  */
-public class ProjectTableWidget extends AbstractBasePage{
+public class ProjectTableWidget extends AbstractBasePage {
     @FindBy(xpath = "//table[@class='ui celled dash table table-widget sortable']")
     private WebElement projectTable;
 

@@ -7,8 +7,10 @@ import org.openqa.selenium.support.FindBy;
 
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.fundacionjala.dashboard.ui.pages.content.BoardPage;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
+/**
+ * Class to manage the Top menu of Mach2.
+ */
 public class TopMenu extends AbstractBasePage {
 
     @FindBy(css = "i[class='needsclick plus icon']")
@@ -30,63 +32,100 @@ public class TopMenu extends AbstractBasePage {
     private WebElement jalasoftIcon;
 
     /**
-     * this method click the button.
+     * This method clicks the Board button.
      */
     public void clickMenuBoard() {
         menuBoard.click();
     }
 
+    /**
+     * This method clicks the user menu.
+     */
     public void clickUserMenu() {
         userMenu.click();
     }
 
+    /**
+     * Method to perform a click on Logout.
+     */
     public void clickOnLogOut() {
         logOutButton.click();
         driver.navigate().back();
         driver.navigate().back();
     }
 
+    /**
+     * Method to perform a click on Profile menu.
+     *
+     * @return The profile.
+     */
     public Profile clickOnProfileMenu() {
         clickUserMenu();
         profileButton.click();
         return new Profile();
     }
 
+    /**
+     * Method to perform a click on Add board menu.
+     *
+     * @return The board page.
+     */
     public BoardPage clickAddBoardMenu() {
         clickMenuBoard();
         addBoard.click();
         return new BoardPage();
     }
 
+    /**
+     * Method to perform a click on Jalasoft Icon.
+     */
     public void clickJalasoftIcon() {
         jalasoftIcon.click();
     }
 
-
-    public String getUserName(){
+    /**
+     * Method to get the user name.
+     *
+     * @return The user name.
+     */
+    public String getUserName() {
         String userLogged = "";
-        try{
-      //      wait.until(ExpectedConditions.visibilityOf(userMenu));
+        try {
+            //      wait.until(ExpectedConditions.visibilityOf(userMenu));
             userLogged = this.userMenu.getText();
-        }
-        catch (WebDriverException e){
+        } catch (WebDriverException e) {
             throw new WebDriverException(e);
         }
         return userLogged;
     }
 
-    public boolean isUserMenuPresent(){
+    /**
+     * Method to knows if the user menu is present.
+     *
+     * @return The user name.
+     */
+    public boolean isUserMenuPresent() {
         return !getUserName().equals("");
     }
 
-    public boolean isUserLogged(String account){
+    /**
+     * Method to knows if the user is logged.
+     *
+     * @param account The user account.
+     * @return The user account.
+     */
+    public boolean isUserLogged(final String account) {
         return getUserName().equals(account);
     }
 
-    public LoginPage logout(){
+    /**
+     * Method to perform the logout of Mach2.
+     *
+     * @return The login page.
+     */
+    public LoginPage logout() {
         this.clickUserMenu();
         logOutButton.click();
-
         return new LoginPage();
     }
 }

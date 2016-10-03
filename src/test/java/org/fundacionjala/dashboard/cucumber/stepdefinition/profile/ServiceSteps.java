@@ -11,6 +11,9 @@ import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
  */
 public class ServiceSteps {
 
+    /**
+     * Step definition to synchronize Mach2 and Pivotal Tracker applications.
+     */
     @And("^Synchronize Mach2 and Pivotal$")
     public void synchronizeMach2AndPivotal() {
         TopMenu topMenu = new TopMenu();
@@ -18,8 +21,6 @@ public class ServiceSteps {
         Service service = profile.clickSetting();
         service.setDescriptionTextField(String.valueOf(System.currentTimeMillis()));
         service.clickSaveButton();
-
         topMenu.clickJalasoftIcon();
     }
-
 }
