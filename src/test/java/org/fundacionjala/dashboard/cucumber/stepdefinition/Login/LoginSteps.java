@@ -20,7 +20,7 @@ public class LoginSteps {
     @Then("^I will have a session started$")
     public void iWillBeInTheHomepage() {
         LoginPage loginPage = new LoginPage();
-        loginPage.isUserLogged();
+//        loginPage.isUserLogged();
 
     }
 }

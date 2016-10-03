@@ -1,6 +1,7 @@
 package org.fundacionjala.dashboard.ui.pages;
 
 import com.gargoylesoftware.htmlunit.ElementNotFoundException;
+import org.fundacionjala.dashboard.ui.browser.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -88,6 +89,7 @@ public class LoginPage extends AbstractBasePage {
 
         }
         catch(WebDriverException e){
+            DriverManager.getInstance().getDriver().get(Environment.getInstance().getBaseUrl());
             homePage = loginAs(userNameValue, passwordValue);
         }
         return homePage;
