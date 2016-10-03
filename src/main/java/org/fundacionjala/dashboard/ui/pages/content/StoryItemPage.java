@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 
 /**
- * Created by brunovasquez on 9/22/2016.
+ * Class in progress.
  */
 public class StoryItemPage extends AbstractBasePage {
 
@@ -17,22 +17,19 @@ public class StoryItemPage extends AbstractBasePage {
     private WebElement save;
 
     /**
-     * The method complete the project search
-     *
-     * @param project
+     * class in progress.
+     * @param project class in progress.
      */
-    public final void autoCompleteProject(String project) {
+    public final void autoCompleteProject(final String project) {
         autoCompleteProject.sendKeys(project);
     }
 
     /**
-     * The method
-     *
-     * @return
+     * class in progress.
+     * @return class in progress.
      */
     public final StoryItemTable clickSaveConfigurationStoryItem() {
         save.click();
         return new StoryItemTable();
     }
-
 }

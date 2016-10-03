@@ -5,12 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
-import org.fundacionjala.dashboard.ui.pages.content.FavoritesPage;
 import org.fundacionjala.dashboard.ui.pages.content.MyDashboard;
-import org.fundacionjala.dashboard.ui.pages.content.SharedWithMePage;
 
 /**
- * Created by JimmyRomero on 9/23/2016.
+ * Class to manage the sidebar of Mach2.
  */
 public class SideBar extends AbstractBasePage {
 
@@ -32,26 +30,29 @@ public class SideBar extends AbstractBasePage {
     @FindBy(css = "div.main.container.pusher.owner-permission.edit-permission.view-permission.owner.dimmed")
     private WebElement mask;
 
-    public FavoritesPage clickFavoritesButton() {
-        favoritesButton.click();
-        return new FavoritesPage();
-    }
-
-    public SharedWithMePage clickSharedWithMeButton() {
-        sharedWithMeButton.click();
-        return new SharedWithMePage();
-    }
-
+    /**
+     * Method to click on dashboard button.
+     *
+     * @return The My dashboard page.
+     */
     public MyDashboard clickMyDashBoardButton() {
         myDashboardButton.click();
         return new MyDashboard();
     }
 
+    /**
+     * Method to perform a click on add group button.
+     *
+     * @return The group item button clicked.
+     */
     public GroupItem clickAddGroupButton() {
         addGroupButton.click();
         return new GroupItem(this.driver.findElement(By.cssSelector("div.groups > div:last-child")));
     }
 
+    /**
+     * Method to perform a click on add board button.
+     */
     public void clickAddBoardButton() {
         addBoardButton.click();
     }

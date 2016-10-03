@@ -8,7 +8,7 @@ import org.fundacionjala.dashboard.ui.pages.content.ConfigTableProject;
 import org.fundacionjala.dashboard.ui.pages.content.StoryItemPage;
 
 /**
- * Created by brunovasquez on 9/22/2016.
+ * Class used to manage the most used options.
  */
 public class StoryServiceForm extends AbstractBasePage {
 
@@ -18,11 +18,21 @@ public class StoryServiceForm extends AbstractBasePage {
     @FindBy(xpath = "//div[@id='mach-wizard']/div/div[3]/div/div/div[2]/div[2]/div[2]/div")
     private WebElement storyButton;
 
+    /**
+     * Method to select the 'Open project' options.
+     *
+     * @return The 'Open project' option selected.
+     */
     public final ConfigTableProject clickOpenProject() {
         projectButton.click();
         return new ConfigTableProject();
     }
 
+    /**
+     * Method to select the 'Open story' options.
+     *
+     * @return The 'Open story' option selected.
+     */
     public final StoryItemPage clickOpenStoryItem() {
         storyButton.click();
         return new StoryItemPage();

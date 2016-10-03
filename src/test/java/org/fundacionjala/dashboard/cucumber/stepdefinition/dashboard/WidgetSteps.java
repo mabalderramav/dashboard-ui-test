@@ -15,10 +15,12 @@ public class WidgetSteps {
 
     /**
      * Method to add a widget for a features.project.
+     *
+     * @param newType the widget type.
      */
     @When("^I add a (table|info|list) widget in the board$")
-    public void iAddATableWidgetInTheBoard(String type) {
-        this.type = Widget.valueOf(type.toUpperCase());
+    public void iAddATableWidgetInTheBoard(final String newType) {
+        type = Widget.valueOf(newType.toUpperCase());
         TopMenu topMenu = new TopMenu();
         BoardPage boardPage = topMenu.clickAddBoardMenu();
         WidgetPage widgetPage = boardPage.clickAddWidgetMenu();
@@ -26,9 +28,10 @@ public class WidgetSteps {
 
     /**
      * Obtain Widget type.
+     *
      * @return Widget type.
      */
-    public Widget getType(){
+    public Widget getType() {
         return type;
     }
 }
