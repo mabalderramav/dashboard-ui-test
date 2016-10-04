@@ -87,11 +87,10 @@ public class LoginPage extends AbstractBasePage {
         try {
             homePage = new HomePage();
             TopMenu topMenu = homePage.goToTopMenu();
-            if (topMenu.isUserMenuPresent() && !topMenu.isUserLogged(topMenu.getUserName())) {
+            if (!topMenu.isUserLogged(topMenu.getUserName())) {
                 LoginPage loginPage = topMenu.logout();
                 homePage = loginAs(userName, password);
             }
-
         } catch (WebDriverException e) {
             DriverManager.getInstance().getDriver().get(Environment.getInstance().getBaseUrl());
             homePage = loginAs(userName, password);

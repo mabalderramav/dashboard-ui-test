@@ -1,6 +1,10 @@
 package org.fundacionjala.dashboard.ui.pages.menu;
 
+import java.util.concurrent.TimeUnit;
+
 import org.fundacionjala.dashboard.ui.pages.LoginPage;
+import org.fundacionjala.dashboard.utils.Environment;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +17,7 @@ import org.fundacionjala.dashboard.ui.pages.content.BoardPage;
  */
 public class TopMenu extends AbstractBasePage {
 
+    public static final int DURATION = 3;
     @FindBy(css = "i[class='needsclick plus icon']")
     private WebElement menuBoard;
 
@@ -90,11 +95,16 @@ public class TopMenu extends AbstractBasePage {
      */
     public String getUserName() {
         String userLogged = "";
+
         try {
-            //      wait.until(ExpectedConditions.visibilityOf(userMenu));
+            driver.manage().timeouts().implicitlyWait(DURATION, TimeUnit.SECONDS);
+            wait.withTimeout(DURATION, TimeUnit.SECONDS);
             userLogged = this.userMenu.getText();
-        } catch (WebDriverException e) {
+        } catch (NoSuchElementException e) {
             throw new WebDriverException(e);
+        } finally {
+            driver.manage().timeouts().implicitlyWait(Environment.getInstance().getTimeout(), TimeUnit.SECONDS);
+            wait.withTimeout(Environment.getInstance().getTimeout(), TimeUnit.SECONDS);
         }
         return userLogged;
     }
