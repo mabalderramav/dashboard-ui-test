@@ -38,12 +38,12 @@ public class StorySteps {
      */
     @Then("^All information of Pivotal Tracker stories should be displayed in story table widget of Mach2$")
     public void allInformationOfPivotalTrackerprojectsShouldBeDisplayedInProjectTableWidgetOfMach() {
-        assertEquals(tableStoryValues.get("name"), resources.getResponse().jsonPath().get("name"));
+        assertEquals(tableStoryValues.get("name"), resources.getResponseList().get(0).jsonPath().get("name"));
         assertEquals(tableStoryValues.get("current_state"),
-                resources.getResponse().jsonPath().get("current_state"));
+                resources.getResponseList().get(0).jsonPath().get("current_state"));
         assertEquals(tableStoryValues.get("estimate"),
-                resources.getResponse().jsonPath().get("estimate"));
+                resources.getResponseList().get(0).jsonPath().get("estimate"));
         assertEquals(tableStoryValues.get("story_type"),
-                resources.getResponse().jsonPath().get("story_type"));
+                resources.getResponseList().get(0).jsonPath().get("story_type"));
     }
 }

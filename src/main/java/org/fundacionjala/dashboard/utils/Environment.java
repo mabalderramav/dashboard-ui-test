@@ -20,9 +20,9 @@ public final class Environment {
 
     private static final String AUTHENTICATION_BASE_URI = "authentication.baseURI";
 
-    private static final String AUTHENTICATION_USER = "authentication.user";
+    private static final String PRIMARY_AUTHENTICATION_USER = "primaryAuthentication.user";
 
-    private static final String AUTHENTICATION_PASS = "authentication.password";
+    private static final String PRIMARY_AUTHENTICATION_PASS = "primaryAuthentication.password";
 
     private static final String AUTHENTICATION_BASE_URL = "authentication.baseURL";
 
@@ -127,8 +127,8 @@ public final class Environment {
      *
      * @return String whit the name user
      */
-    public String getUser() {
-        return getEnv(AUTHENTICATION_USER);
+    public String getPrimaryUser() {
+        return getEnv(PRIMARY_AUTHENTICATION_USER);
     }
 
     /**
@@ -136,8 +136,8 @@ public final class Environment {
      *
      * @return String whit the password
      */
-    public String getPassword() {
-        return getEnv(AUTHENTICATION_PASS);
+    public String getPrimaryPassword() {
+        return getEnv(PRIMARY_AUTHENTICATION_PASS);
     }
 
     /**

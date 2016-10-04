@@ -16,9 +16,12 @@ public class WidgetSteps {
 
     /**
      * Method to add a widget for a features.project.
+     *
+     * @param typeArg   Type of widget.
+     * @param optionArg option type of widget to be selected.
      */
     @When("^I add a (table|info|list) widget in the board and I select the (Project|Story) option$")
-    public void iAddATableWidgetInTheBoard(String typeArg, String optionArg) {
+    public void iAddATableWidgetInTheBoard(final String typeArg, final String optionArg) {
         Widget type = Widget.valueOf(typeArg.toUpperCase());
         TopMenu topMenu = new TopMenu();
         BoardPage boardPage = topMenu.clickAddBoardMenu();
@@ -26,6 +29,6 @@ public class WidgetSteps {
         WizardWidget wizardWidget = widgetPage.clickWidgetType(type);
         ConfigWidget configWidget = wizardWidget.clickOpenProject();
         TypeWidget typeWidget = configWidget.clickSaveConfigurationProject(type);
-        //Map<String, String> tableProjectValues = typeWidget.getProjectType();
     }
+
 }

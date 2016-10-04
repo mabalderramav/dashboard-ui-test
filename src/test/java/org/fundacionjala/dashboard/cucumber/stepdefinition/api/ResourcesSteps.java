@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import org.fundacionjala.dashboard.api.Mapper;
 import org.fundacionjala.dashboard.api.RequestManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +15,14 @@ import java.util.Map;
  */
 public class ResourcesSteps {
 
-    private Response resp;
+    private List<Response> responseList;
+
+    /**
+     * Constructor.
+     */
+    public ResourcesSteps() {
+        responseList = new ArrayList<>();
+    }
 
     /**
      * Method to store the response.
@@ -23,7 +31,9 @@ public class ResourcesSteps {
      */
     @And("^I store as (.*)")
     public void storedAs(final String key) {
-        Mapper.addResponse(key, resp);
+        for (Response resp : responseList) {
+            Mapper.addResponse(key, resp);
+        }
     }
 
     /**
@@ -33,7 +43,7 @@ public class ResourcesSteps {
      */
     @When("^I send a GET request to (.*)$")
     public void iSendAGetRequestTo(final String endPoint) {
-        resp = RequestManager.get(Mapper.mapEndpoint(endPoint));
+        responseList.add(RequestManager.get(Mapper.mapEndpoint(endPoint)));
     }
 
     /**
@@ -44,20 +54,20 @@ public class ResourcesSteps {
      */
     @When("^I send a POST request to (.*)")
     public void iSendAPostRequestTo(final String endPoint, final Map<String, Object> jsonData) {
-        resp = RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData);
+        responseList.add(RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData));
     }
 
     /**
      * Method to validate the post request for a given list of map.
      *
-     * @param endPoint end point of the post request.
-     * @param jsonData List of data in map format.
+     * @param endPoint     end point of the post request.
+     * @param jsonDataList List of data in map format.
      */
     @When("^I send a POST request with list to (.*)")
-    public void iSendAPostRequestWithListTo(final String endPoint, final List<Map<String, Object>> jsonData) {
-
-        for(int i = 0; i< jsonData.size();i++){
-            resp = RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData.get(i));
+    public void iSendAPostRequestWithListTo(final String endPoint,
+                                            final List<Map<String, Object>> jsonDataList) {
+        for (Map<String, Object> jsonData : jsonDataList) {
+            responseList.add(RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData));
         }
     }
 
@@ -69,7 +79,7 @@ public class ResourcesSteps {
      */
     @When("^I send a PUT request to (.*)$")
     public void iSendAPutRequestTo(final String endPoint, final Map<String, Object> jsonData) {
-        resp = RequestManager.put(Mapper.mapEndpoint(endPoint), jsonData);
+        responseList.add(RequestManager.put(Mapper.mapEndpoint(endPoint), jsonData));
     }
 
     /**
@@ -79,15 +89,15 @@ public class ResourcesSteps {
      */
     @When("^I send a DELETE request to (.*)$")
     public void iSendADeleteRequestTo(final String endPoint) {
-        resp = RequestManager.delete(Mapper.mapEndpoint(endPoint));
+        responseList.add(RequestManager.delete(Mapper.mapEndpoint(endPoint)));
     }
 
     /**
-     * Get the Response.
+     * Get the Response List.
      *
-     * @return the response.
+     * @return the responseList.
      */
-    public Response getResponse() {
-        return resp;
+    public List<Response> getResponseList() {
+        return responseList;
     }
 }

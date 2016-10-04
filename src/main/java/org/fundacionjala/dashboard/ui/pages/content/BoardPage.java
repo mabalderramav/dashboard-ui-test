@@ -8,6 +8,9 @@ import org.openqa.selenium.support.FindBy;
 
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 
+/**
+ * Class to manage boards.
+ */
 public class BoardPage extends AbstractBasePage {
 
     @FindBy(css = "a.dash.tablet.computer.only.ui.add-widget.item")
@@ -19,12 +22,22 @@ public class BoardPage extends AbstractBasePage {
     @FindBy(css = "form.board-title-form input.inline-edit-text")
     private WebElement boardNameEditable;
 
+    /**
+     * Method to perform a click on add widget menu.
+     *
+     * @return The widget page.
+     */
     public WidgetPage clickAddWidgetMenu() {
         addWidget.click();
         return new WidgetPage();
     }
 
-    public void changeBoardName(String newBoardName) {
+    /**
+     * Method to change the name of the board.
+     *
+     * @param newBoardName The board with its name changed.
+     */
+    public void changeBoardName(final String newBoardName) {
         Action action = new Actions(driver)
                 .doubleClick(boardName).build();
         action.perform();

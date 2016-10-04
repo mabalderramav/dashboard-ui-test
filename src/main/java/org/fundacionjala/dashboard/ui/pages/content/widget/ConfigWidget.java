@@ -18,9 +18,10 @@ public class ConfigWidget extends AbstractBasePage {
     /**
      * Method to config the table features.project.
      *
+     * @param type type of widget.
      * @return the ProjectTableWidget object.
      */
-    public final TypeWidget clickSaveConfigurationProject(Widget type) {
+    public final TypeWidget clickSaveConfigurationProject(final Widget type) {
         TypeWidget typeWidget;
         saveButton.click();
         switch (type) {
