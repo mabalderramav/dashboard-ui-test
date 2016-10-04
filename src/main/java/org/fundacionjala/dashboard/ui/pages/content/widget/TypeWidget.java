@@ -1,5 +1,6 @@
 package org.fundacionjala.dashboard.ui.pages.content.widget;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -12,5 +13,5 @@ public interface TypeWidget {
      *
      * @return a Map with the information of the features.project type.
      */
-    Map<String, String> getProjectType();
+    List<Map<String, String>> getDataFromWidget();
 }
