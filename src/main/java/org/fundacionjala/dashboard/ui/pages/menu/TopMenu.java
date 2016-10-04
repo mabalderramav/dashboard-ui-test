@@ -1,16 +1,15 @@
 package org.fundacionjala.dashboard.ui.pages.menu;
 
-import java.util.concurrent.TimeUnit;
-
+import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.fundacionjala.dashboard.ui.pages.LoginPage;
+import org.fundacionjala.dashboard.ui.pages.content.BoardPage;
 import org.fundacionjala.dashboard.utils.Environment;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
-import org.fundacionjala.dashboard.ui.pages.content.BoardPage;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Class to manage the Top menu of Mach2.

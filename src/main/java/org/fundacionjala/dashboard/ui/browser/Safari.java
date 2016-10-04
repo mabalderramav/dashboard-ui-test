@@ -6,7 +6,7 @@ import org.openqa.selenium.safari.SafariDriver;
 /**
  * This class initialize the Safari Selenium Web Driver.
  */
-public class Safari implements IDriver {
+public class Safari implements Driver {
 
     /**
      * {@inheritDoc}

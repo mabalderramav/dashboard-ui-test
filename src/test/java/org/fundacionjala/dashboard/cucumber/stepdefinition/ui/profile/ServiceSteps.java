@@ -1,7 +1,4 @@
-package org.fundacionjala.dashboard.cucumber.stepdefinition.dashboard;
-
-import java.util.Map;
-import java.util.Set;
+package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.profile;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
@@ -11,8 +8,11 @@ import org.fundacionjala.dashboard.ui.pages.menu.ServiceFieldStep;
 import org.fundacionjala.dashboard.ui.pages.menu.Steps;
 import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
 
+import java.util.Map;
+import java.util.Set;
+
 /**
- * The class handler services.
+ * Class to manage the services steps.
  */
 public class ServiceSteps {
 
@@ -40,15 +40,12 @@ public class ServiceSteps {
      * @param serviceType String, service's type.
      * @param projectType String, project's type.
      */
-    @And("^Synchronize Mach2 whit (.*) and project (.*)$")
+    @And("^Synchronize Mach2 with (.*) and project (.*)$")
     public void synchronizeMach2AndPivotal(final String serviceType, final String projectType) {
         TopMenu topMenu = new TopMenu();
         Profile profile = topMenu.clickOnProfileMenu();
         Service service = profile.clickSetting();
         service.setDescriptionTextField(String.valueOf(System.currentTimeMillis()));
-        service.clickSaveButton();
-        service.clickOnConfigureProject(serviceType, projectType);
-        service.setDescriptionTextField("This is a test");
         service.clickSaveButton();
         topMenu.clickJalasoftIcon();
     }

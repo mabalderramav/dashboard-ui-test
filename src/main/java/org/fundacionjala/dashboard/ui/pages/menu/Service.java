@@ -1,13 +1,13 @@
 package org.fundacionjala.dashboard.ui.pages.menu;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This class is in charge to handle services.
@@ -224,7 +224,7 @@ public class Service extends AbstractBasePage {
     }
 
     /**
-     * Match the required project whit the respective button of configuration.
+     * Match the required project with the respective button of configuration.
      *
      * @param projectType Kind of project.
      * @param projectName Project name.

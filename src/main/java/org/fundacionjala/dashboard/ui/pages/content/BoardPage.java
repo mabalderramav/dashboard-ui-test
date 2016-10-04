@@ -1,5 +1,6 @@
 package org.fundacionjala.dashboard.ui.pages.content;
 
+import org.fundacionjala.dashboard.ui.pages.content.widget.WidgetPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;

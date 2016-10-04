@@ -1,18 +1,17 @@
-package org.fundacionjala.dashboard.ui.pages.menu;
-
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+package org.fundacionjala.dashboard.ui.pages.content.widget;
 
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
-import org.fundacionjala.dashboard.ui.pages.content.ConfigTableProject;
 import org.fundacionjala.dashboard.ui.pages.content.StoryItemPage;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Class used to manage the most used options.
  */
-public class StoryServiceForm extends AbstractBasePage {
+public class WizardWidget extends AbstractBasePage {
 
-    @FindBy(xpath = "//div[@id='mach-wizard']/div/div[3]/div/div/div[2]/div[1]/div[2]/div")
+    //@FindBy(xpath = "//div[@id='mach-wizard']/div/div[3]/div/div/div[2]/div[1]/div[2]/div")
+    @FindBy(xpath = "//h4[contains(text(), 'Projects')]")
     private WebElement projectButton;
 
     @FindBy(xpath = "//div[@id='mach-wizard']/div/div[3]/div/div/div[2]/div[2]/div[2]/div")
@@ -23,9 +22,9 @@ public class StoryServiceForm extends AbstractBasePage {
      *
      * @return The 'Open project' option selected.
      */
-    public final ConfigTableProject clickOpenProject() {
+    public final ConfigWidget clickOpenProject() {
         projectButton.click();
-        return new ConfigTableProject();
+        return new ConfigWidget();
     }
 
     /**

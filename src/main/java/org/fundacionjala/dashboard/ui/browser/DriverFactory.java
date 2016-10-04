@@ -21,7 +21,7 @@ public final class DriverFactory {
      * @param browser kind of driver to return.
      * @return Kind of driver Browser.
      */
-    public static IDriver getDriver(final Browser browser) {
+    public static Driver getDriver(final Browser browser) {
         switch (browser) {
             case CHROME:
                 return new Chrome();
