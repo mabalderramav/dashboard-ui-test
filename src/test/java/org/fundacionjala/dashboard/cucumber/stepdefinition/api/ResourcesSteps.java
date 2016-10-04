@@ -1,14 +1,13 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.api;
 
-import java.util.List;
-import java.util.Map;
-
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import io.restassured.response.Response;
-
 import org.fundacionjala.dashboard.api.Mapper;
 import org.fundacionjala.dashboard.api.RequestManager;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * This class is in charge to manage the steps definitions.
@@ -56,6 +55,7 @@ public class ResourcesSteps {
      */
     @When("^I send a POST request with list to (.*)")
     public void iSendAPostRequestWithListTo(final String endPoint, final List<Map<String, Object>> jsonData) {
+
         for(int i = 0; i< jsonData.size();i++){
             resp = RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData.get(i));
         }

@@ -1,7 +1,6 @@
 package org.fundacionjala.dashboard.ui.pages.content.widget;
 
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
-import org.fundacionjala.dashboard.ui.pages.menu.StoryServiceForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -16,9 +15,9 @@ public class WidgetPage extends AbstractBasePage {
      * @param type Widget type for example table, info, list.
      * @return StoryServiceForm.
      */
-    public StoryServiceForm clickWidgetType(final Widget type) {
+    public WizardWidget clickWidgetType(final Widget type) {
         WebElement specificWidget = driver.findElement(By.cssSelector("div.circular i." + type + "-type"));
         specificWidget.click();
-        return new StoryServiceForm();
+        return new WizardWidget();
     }
 }

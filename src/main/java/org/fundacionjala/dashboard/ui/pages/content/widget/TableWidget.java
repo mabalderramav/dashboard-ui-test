@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Manage Project table Widget page.
  */
-public class ProjectTableWidget extends AbstractBasePage implements ProjectTypeWidget{
+public class TableWidget extends AbstractBasePage implements TypeWidget {
     @FindBy(xpath = "//table[@class='ui celled dash table table-widget sortable']")
     private WebElement projectTable;
 

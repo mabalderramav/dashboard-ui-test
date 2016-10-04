@@ -1,16 +1,14 @@
-package org.fundacionjala.dashboard.ui.pages.menu;
-
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+package org.fundacionjala.dashboard.ui.pages.content.widget;
 
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
-import org.fundacionjala.dashboard.ui.pages.content.widget.ConfigTableProject;
 import org.fundacionjala.dashboard.ui.pages.content.StoryItemPage;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * Created by brunovasquez on 9/22/2016.
  */
-public class StoryServiceForm extends AbstractBasePage {
+public class WizardWidget extends AbstractBasePage {
 
     @FindBy(xpath = "//div[@id='mach-wizard']/div/div[3]/div/div/div[2]/div[1]/div[2]/div")
     private WebElement projectButton;
@@ -18,9 +16,9 @@ public class StoryServiceForm extends AbstractBasePage {
     @FindBy(xpath = "//div[@id='mach-wizard']/div/div[3]/div/div/div[2]/div[2]/div[2]/div")
     private WebElement storyButton;
 
-    public final ConfigTableProject clickOpenProject() {
+    public final ConfigWidget clickOpenProject() {
         projectButton.click();
-        return new ConfigTableProject();
+        return new ConfigWidget();
     }
 
     public final StoryItemPage clickOpenStoryItem() {

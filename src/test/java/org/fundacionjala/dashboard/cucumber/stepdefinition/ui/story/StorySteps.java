@@ -1,4 +1,4 @@
-package org.fundacionjala.dashboard.cucumber.stepdefinition.story;
+package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.story;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -6,7 +6,7 @@ import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
 import org.fundacionjala.dashboard.ui.pages.content.StoryItemPage;
 import org.fundacionjala.dashboard.ui.pages.content.StoryItemTable;
 import org.fundacionjala.dashboard.ui.pages.content.widget.WidgetPage;
-import org.fundacionjala.dashboard.ui.pages.menu.StoryServiceForm;
+import org.fundacionjala.dashboard.ui.pages.content.widget.WizardWidget;
 
 import java.util.Map;
 
@@ -20,15 +20,15 @@ public class StorySteps {
     private ResourcesSteps resources;
     private WidgetPage widgetPage;
     private Map<String, String> tableStoryValues;
-    private StoryServiceForm storyServiceForm;
+    private WizardWidget wizardWidget;
 
     /**
      * Method to Select the Story Items option form the UI.
      */
     @When("^I select Story Items option$")
     public void iSelectTheProjectOption() {
-        storyServiceForm = widgetPage.clickWidgetType(TABLE);
-        StoryItemPage storyItemPage = storyServiceForm.clickOpenStoryItem();
+        wizardWidget = widgetPage.clickWidgetType(TABLE);
+        StoryItemPage storyItemPage = wizardWidget.clickOpenStoryItem();
         StoryItemTable storyItemTable = storyItemPage.clickSaveConfigurationStoryItem();
         tableStoryValues = storyItemTable.getStoryTable();
     }

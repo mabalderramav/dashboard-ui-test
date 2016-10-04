@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * Interface Manage Project type Widget page.
  */
-public interface ProjectTypeWidget {
+public interface TypeWidget {
 
     /**
      * Method to get the type for projects.

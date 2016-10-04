@@ -1,4 +1,4 @@
-package org.fundacionjala.dashboard.cucumber.stepdefinition.profile;
+package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.profile;
 
 import cucumber.api.java.en.And;
 

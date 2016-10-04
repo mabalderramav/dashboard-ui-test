@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Manage Project Info Widget page.
  */
-public class ProjectInfoWidget extends AbstractBasePage implements ProjectTypeWidget {
+public class InfoWidget extends AbstractBasePage implements TypeWidget {
     @FindBy(css = "div.info-fields > div.ui.two.column.centered.grid.aligned.basic.field.segment")
     private WebElement projectInfo;
 
