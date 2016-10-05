@@ -10,7 +10,8 @@ public enum AssertParameters {
     CURRENT_VELOCITY,
     ITERATION_LENGTH,
     POINT_SCALE,
-    PROJECT_STARTED_AT;
+    PROJECT_STARTED_AT,
+    INITIAL_VELOCITY;
 
     /**
      * {@inheritDoc}
