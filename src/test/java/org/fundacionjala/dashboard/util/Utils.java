@@ -1,15 +1,15 @@
 package org.fundacionjala.dashboard.util;
 
+import io.restassured.path.json.JsonPath;
+import org.fundacionjala.dashboard.utils.DataTimeManager;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.restassured.path.json.JsonPath;
-
-import org.fundacionjala.dashboard.utils.DataTimeManager;
-
 import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.CURRENT_ITERATION;
 import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.CURRENT_VELOCITY;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.INITIAL_VELOCITY;
 import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.ITERATION_LENGTH;
 import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.NAME;
 import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.POINT_SCALE;
@@ -53,6 +53,7 @@ public final class Utils {
         strategyMap.put(CURRENT_VELOCITY.toString(), jsonPath.get("initial_velocity").toString());
         strategyMap.put(ITERATION_LENGTH.toString(), jsonPath.get("iteration_length").toString());
         strategyMap.put(POINT_SCALE.toString(), jsonPath.get("point_scale"));
+        strategyMap.put(INITIAL_VELOCITY.toString(), jsonPath.get("initial_velocity").toString());
         strategyMap.put(PROJECT_STARTED_AT.toString(),
                 DataTimeManager.parserDataTimeToFirstFormat(jsonPath.get("start_date").toString()));
 
