@@ -13,12 +13,12 @@ Feature: Project widget
     And Synchronize Mach2 with Pivotal Tracker and project AT01-PivotalTracker
 
   @deleteAllProjects  @addPivotalTrackerService
-  Scenario: Verify that the info in the Name field on a INFO in M2 is the same as on PT
-    When I add a info widget in the board and I select the Project option
-    Then Verify that all project information is the same that the project on Pivotal Tracker
+  Scenario: C66_PW-Verify that a new project is added on a INFO in M2 when it is created on PT
+    When I add a info widget with the Project option
+    Then Verify all information displayed in the widget
 
   @deleteAllProjects
-  Scenario: Verify that the all project into INFO widget is displayed in Mach2
-    When I add a info widget in the board and I select the Project option
+  Scenario: C65-C127-C128-C129-C130-C131-C132-C133_Verify all project information into INFO widget is displayed in Mach2
+    When I add a info widget with the Project option
     And I add all columns
-    Then Verify that all project information is the same that the project on Pivotal Tracker
+    Then Verify all information displayed in the widget

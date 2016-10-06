@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +14,7 @@ import java.util.Map;
 /**
  * Manage Project Info Widget page.
  */
-public class InfoWidget extends AbstractBasePage implements TypeWidget {
+public class InfoWidget extends AbstractBasePage implements TypeWidget<Map<String, String>> {
     @FindBy(css = "div.info-fields > div.ui.two.column.centered.grid.aligned.basic.field.segment")
     private WebElement projectInfo;
 
@@ -29,18 +28,16 @@ public class InfoWidget extends AbstractBasePage implements TypeWidget {
      * {@inheritDoc}
      */
     @Override
-    public List<Map<String, String>> getDataFromWidget() {
+    public Map<String, String> getDataFromWidget() {
         List<WebElement> projectInfoHeader = projectInfo.findElements(By.className("selected-name"));
         List<WebElement> projectInfoValues = projectInfo.findElements(By.className("selected-value"));
-        List<Map<String, String>> result = new ArrayList<>();
         Map<String, String> mapResult = new HashMap<>();
         for (int i = 0; i < projectInfoHeader.size(); i++) {
             String key = Utils.replaceSpaceWithUnderscore(projectInfoHeader.get(i).getText());
             String value = projectInfoValues.get(i).getText();
             mapResult.put(key, value);
         }
-        result.add(mapResult);
-        return result;
+        return mapResult;
     }
 
     /**

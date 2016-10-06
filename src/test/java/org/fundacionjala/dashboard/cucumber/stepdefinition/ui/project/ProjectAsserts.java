@@ -22,6 +22,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class ProjectAsserts {
 
+    private static final String NAME = "name";
     private ResourcesSteps resources;
     private TableWidget tableWidget;
 
@@ -42,34 +43,13 @@ public class ProjectAsserts {
     public void allInformationOfPivotalTrackerProjectsShouldBeDisplayedInProjectTableWidgetOfMach() {
         List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
         List<Response> responseList = resources.getResponseList();
-        executeAsserts(tableProjectValues, responseList);
-    }
-
-    /**
-     * Method to execute the asserts for each values of the response.
-     *
-     * @param tableProjectValues List of Map with the information of the displayed data in UI.
-     * @param responseList       List with that contain the responses.
-     */
-    private void executeAsserts(final List<Map<String, String>> tableProjectValues, final List<Response> responseList) {
-        for (int i = 0; i < responseList.size(); i++) {
-            JsonPath jsonPath = responseList.get(i).jsonPath();
-            Map<String, String> row = Utils.findElementInArray(jsonPath.get("name"), tableProjectValues);
-
-            if (!row.isEmpty()) {
-                Map<String, String> strategyMap = Utils.mapStrategyWidget(jsonPath);
-                Set<String> keys = row.keySet();
-                for (String key : keys) {
-                    assertEquals(row.get(key), strategyMap.get(key));
-                }
-            }
-        }
+        executeListAssert(tableProjectValues, responseList);
     }
 
     /**
      * Method to Assert the obtained data from the UI against the Responses.
      */
-    @Then("^I expect all displayed projects in Mach2 are the same that I sent in the request\\.$")
+    @Then("^All displayed projects should be the same that I sent in the request$")
     public void iExpectAllDisplayedProjectsInMachAreTheSameThatISentInTheRequest() {
         assertEquals(resources.getResponseList().size(), tableWidget.getDataFromWidget().size());
     }
@@ -87,11 +67,41 @@ public class ProjectAsserts {
     /**
      * Method to Assert the displayed columns in the UI.
      */
-    @Then("^Verify that all project information is the same that the project on Pivotal Tracker$")
+    @Then("^Verify all information displayed in the widget$")
     public void verifyThatTheProjectNameIsTheSameThatTheProjectOnPivotalTracker() {
         TypeWidget typeWidget = new InfoWidget();
-        List<Map<String, String>> list = typeWidget.getDataFromWidget();
-        List<Response> jsonPath = resources.getResponseList();
-        executeAsserts(list, jsonPath);
+        Map<String, String> list = (Map<String, String>) typeWidget.getDataFromWidget();
+        JsonPath jsonPath = Utils.findElementJson(list.get(NAME), resources.getResponseList());
+        executeAssert(list, jsonPath);
+    }
+
+    /**
+     * Method that given a list of data execute the assertions for each values of the response.
+     *
+     * @param widgetValues List of Map with the information of the displayed data in UI.
+     * @param responseList List with that contain the responses.
+     */
+    private void executeListAssert(final List<Map<String, String>> widgetValues, final List<Response> responseList) {
+        for (int i = 0; i < responseList.size(); i++) {
+            JsonPath jsonPath = responseList.get(i).jsonPath();
+            Map<String, String> row = Utils.findElementInArray(jsonPath.get(NAME), widgetValues);
+            if (!row.isEmpty()) {
+                executeAssert(row, jsonPath);
+            }
+        }
+    }
+
+    /**
+     * Method to execute the asserts for each values of the response.
+     *
+     * @param map      Map with the information of the displayed data in UI.
+     * @param jsonPath Json that contain the response.
+     */
+    private void executeAssert(final Map<String, String> map, final JsonPath jsonPath) {
+        Map<String, String> strategyMap = Utils.mapStrategyWidget(jsonPath);
+        Set<String> keys = map.keySet();
+        for (String key : keys) {
+            assertEquals(map.get(key), strategyMap.get(key));
+        }
     }
 }

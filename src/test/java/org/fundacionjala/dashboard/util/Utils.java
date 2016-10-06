@@ -1,6 +1,7 @@
 package org.fundacionjala.dashboard.util;
 
 import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 import org.fundacionjala.dashboard.utils.DataTimeManager;
 
 import java.util.HashMap;
@@ -34,8 +35,25 @@ public final class Utils {
      * @return a Map if the value is found.
      */
     public static Map<String, String> findElementInArray(final String value, final List<Map<String, String>> rowList) {
-        Map<String, String> result = rowList.stream().filter(e -> e.containsValue(value)).findFirst().get();
-        return result;
+        return rowList.stream()
+                .filter(e -> e.containsValue(value))
+                .findFirst()
+                .get();
+    }
+
+    /**
+     * Method to find an element into and List of Response.
+     *
+     * @param value the searched value.
+     * @param responseList the List where the the Value is searched.
+     * @return a JsonPath if the value is found.
+     */
+    public static JsonPath findElementJson(final String value, final List<Response> responseList) {
+        return responseList.stream()
+                .filter(e -> e.jsonPath().get("name").equals(value))
+                .findFirst()
+                .get()
+                .jsonPath();
     }
 
     /**

@@ -12,7 +12,7 @@ Feature: Project widget
 
   @deleteAllProjects @addPivotalTrackerService
   Scenario: T644 - Verify that ALL Projects from PT are displayed when adding the TABLE widget
-    When I add a table widget in the board and I select the Project option
-    Then I expect all displayed projects in Mach2 are the same that I sent in the request.
+    When I add a table widget with the Project option
+    Then All displayed projects should be the same that I sent in the request
     And I expect the columns size should be the by default
     And Validate project table against pivotal project
