@@ -1,22 +1,21 @@
 package org.fundacionjala.dashboard.ui.pages.content.widget;
 
+import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
+import org.fundacionjala.dashboard.utils.Utils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
-import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
-import org.fundacionjala.dashboard.utils.Utils;
-
 /**
  * Manage Project table Widget page.
  */
-public class TableWidget extends AbstractBasePage implements TypeWidget {
+public class TableWidget extends AbstractBasePage implements TypeWidget<List<Map<String, String>>> {
 
     @FindBy(xpath = "//table[@class='ui celled dash table table-widget sortable']")
     private WebElement projectTable;

@@ -20,7 +20,7 @@ public class WidgetSteps {
      * @param typeArg   Type of widget.
      * @param optionArg option type of widget to be selected.
      */
-    @When("^I add a (table|info|list) widget in the board and I select the (Project|Story) option$")
+    @When("^I add a (table|info|list) widget with the (Project|Story) option$")
     public void iAddATableWidgetInTheBoard(final String typeArg, final String optionArg) {
         Widget type = Widget.valueOf(typeArg.toUpperCase());
         TopMenu topMenu = new TopMenu();
