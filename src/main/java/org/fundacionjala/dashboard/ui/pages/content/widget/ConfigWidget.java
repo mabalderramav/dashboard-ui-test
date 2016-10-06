@@ -38,4 +38,5 @@ public class ConfigWidget extends AbstractBasePage {
         }
         return typeWidget;
     }
+
 }
