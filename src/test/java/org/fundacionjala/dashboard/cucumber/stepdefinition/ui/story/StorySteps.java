@@ -1,14 +1,14 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.story;
 
+import java.util.Map;
+
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
-import org.fundacionjala.dashboard.ui.pages.content.StoryItemPage;
+import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
 import org.fundacionjala.dashboard.ui.pages.content.StoryItemTable;
 import org.fundacionjala.dashboard.ui.pages.content.widget.WidgetPage;
 import org.fundacionjala.dashboard.ui.pages.content.widget.WizardWidget;
-
-import java.util.Map;
 
 import static org.fundacionjala.dashboard.ui.pages.content.widget.Widget.TABLE;
 import static org.junit.Assert.assertEquals;
@@ -28,7 +28,7 @@ public class StorySteps {
     @When("^I select Story Items option$")
     public void iSelectTheProjectOption() {
         wizardWidget = widgetPage.clickWidgetType(TABLE);
-        StoryItemPage storyItemPage = wizardWidget.clickOpenStoryItem();
+        ConfigureWidget storyItemPage = wizardWidget.clickOpenStoryItem();
         StoryItemTable storyItemTable = storyItemPage.clickSaveConfigurationStoryItem();
         tableStoryValues = storyItemTable.getStoryTable();
     }
