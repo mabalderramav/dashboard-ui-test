@@ -12,12 +12,12 @@ Feature: Project widget
     And I expect the status code 200
     And Synchronize Mach2 with Pivotal Tracker and project AT01-PivotalTracker
 
-  @deleteAllProjects  @addPivotalTrackerService
+  @deleteAllProjects @addPivotalTrackerService
   Scenario: C66_PW-Verify that a new project is added on a INFO in M2 when it is created on PT
     When I add a info widget with the Project option
     Then Verify all information displayed in the widget
 
-  @deleteAllProjects
+  @deleteAllProjects @addPivotalTrackerService
   Scenario: C65-C127-C128-C129-C130-C131-C132-C133_Verify all project information into INFO widget is displayed in Mach2
     When I add a info widget with the Project option
     And I add all columns

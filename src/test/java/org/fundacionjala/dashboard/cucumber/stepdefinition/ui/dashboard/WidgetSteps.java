@@ -30,5 +30,4 @@ public class WidgetSteps {
         ConfigWidget configWidget = wizardWidget.clickOpenProject();
         TypeWidget typeWidget = configWidget.clickSaveConfigurationProject(type);
     }
-
 }
