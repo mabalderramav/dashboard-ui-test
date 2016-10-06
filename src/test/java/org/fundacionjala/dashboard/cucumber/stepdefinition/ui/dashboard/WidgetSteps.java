@@ -25,11 +25,13 @@ public class WidgetSteps {
      * @param option option type of widget to be selected.
      * @param newConfigureMap is a map tha contains all the configurations.
      */
+
     @When("^I add a (table|info|list) widget in the board and "
             + "I select the (PROJECT|STORY|ITERATION|BURN|STORY_TYPE|TASK_BURN) option$")
     public void iAddAWidgetInTheBoard(
             final String type, final EnumWizardWidget option, final Map<EnumConfigure, String> newConfigureMap) {
         Widget widgetType = Widget.valueOf(type.toUpperCase());
+
         TopMenu topMenu = new TopMenu();
         BoardPage boardPage = topMenu.clickAddBoardMenu();
         WidgetPage widgetPage = boardPage.clickAddWidgetMenu();

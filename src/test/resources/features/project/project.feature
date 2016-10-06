@@ -1,12 +1,7 @@
 Feature: Project widget
 
   Background: login
-    Given I add a service
-      | SERVICENAME | Pivotal Tracker                  |
-      | TOKEN       | 51fff45c0e68ab45ed99ceabcae0057d |
-      | DESCRIPTION | AT01-PivotalTracker              |
-
-    And I send a POST request to /projects
+    Given I send a POST request to /projects
       | name                              | AT01 project-01 |
       | iteration_length                  | 1               |
       | week_start_day                    | Monday          |
@@ -16,3 +11,14 @@ Feature: Project widget
       | initial_velocity                  | 10              |
     And I expect the status code 200
     And Synchronize Mach2 with Pivotal Tracker and project AT01-PivotalTracker
+
+  @deleteAllProjects  @addPivotalTrackerService
+  Scenario: C66_PW-Verify that a new project is added on a INFO in M2 when it is created on PT
+    When I add a info widget with the Project option
+    Then Verify all information displayed in the widget
+
+  @deleteAllProjects
+  Scenario: C65-C127-C128-C129-C130-C131-C132-C133_Verify all project information into INFO widget is displayed in Mach2
+    When I add a info widget with the Project option
+    And I add all columns
+    Then Verify all information displayed in the widget

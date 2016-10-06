@@ -1,16 +1,16 @@
 package org.fundacionjala.dashboard.ui.pages.content.widget;
 
-import java.util.Map;
-
 /**
  * Interface Manage Project type Widget page.
+ *
+ * @param <T> Generic data that manage a list of map or a map.
  */
-public interface TypeWidget {
+public interface TypeWidget<T> {
 
     /**
      * Method to get the type for projects.
      *
      * @return a Map with the information of the features.project type.
      */
-    Map<String, String> getProjectType();
+    T getDataFromWidget();
 }

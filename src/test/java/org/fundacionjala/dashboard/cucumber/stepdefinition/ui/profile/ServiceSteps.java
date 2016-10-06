@@ -25,6 +25,7 @@ public class ServiceSteps {
     public void iAddAService(final Map<ServiceFieldStep, String> serviceMap) {
         TopMenu topmenu = new TopMenu();
         Profile profile = topmenu.clickOnProfileMenu();
+
         Service service = profile.clickAddServiceButton();
         Map<ServiceFieldStep, Steps> strategyMap = service.getServiceFieldStepsMap(serviceMap);
         Set<ServiceFieldStep> keys = serviceMap.keySet();
