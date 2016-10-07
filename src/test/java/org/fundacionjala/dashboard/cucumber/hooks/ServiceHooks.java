@@ -1,6 +1,7 @@
 package org.fundacionjala.dashboard.cucumber.hooks;
 
 import cucumber.api.java.Before;
+
 import org.fundacionjala.dashboard.ui.pages.HomePage;
 import org.fundacionjala.dashboard.ui.pages.menu.Profile;
 import org.fundacionjala.dashboard.ui.pages.menu.Service;
@@ -30,4 +31,16 @@ public class ServiceHooks {
         service.clickSaveButton();
         topMenu.clickJalasoftIcon();
     }
+
+    /**
+     * This method delete all services that there is registered into mach2.
+     */
+    @Before("@deleteAllServices")
+    public void deleteAllservices() {
+        HomePage homePage = new HomePage();
+        TopMenu topMenu = homePage.goToTopMenu();
+        Profile profile = topMenu.clickOnProfileMenu();
+        profile.deleteAllServices();
+    }
+
 }
