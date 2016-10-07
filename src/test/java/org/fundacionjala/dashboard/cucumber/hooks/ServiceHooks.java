@@ -1,11 +1,16 @@
 package org.fundacionjala.dashboard.cucumber.hooks;
 
 import cucumber.api.java.Before;
+import org.fundacionjala.dashboard.handler.ServiceHandler;
 import org.fundacionjala.dashboard.ui.pages.HomePage;
 import org.fundacionjala.dashboard.ui.pages.menu.Profile;
 import org.fundacionjala.dashboard.ui.pages.menu.Service;
+import org.fundacionjala.dashboard.ui.pages.menu.ServiceFieldStep;
 import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
 import org.fundacionjala.dashboard.utils.Environment;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -22,12 +27,18 @@ public class ServiceHooks {
     public void addPivotalService() {
         HomePage homePage = new HomePage();
         TopMenu topMenu = homePage.goToTopMenu();
-        Profile profile = topMenu.clickOnProfileMenu();
-        Service service = profile.clickAddServiceButton();
-        service.selectServiceDropdown(PIVOTAL_TRACKER_SERVICE_NAME);
-        service.setDescriptionTextField(DESCRIPTION);
-        service.setTokenTextField(Environment.getInstance().getToken());
-        service.clickSaveButton();
-        topMenu.clickJalasoftIcon();
+        Map<ServiceFieldStep, String> serviceMapByDefault = new HashMap<>();
+        serviceMapByDefault.put(ServiceFieldStep.TOKEN, Environment.getInstance().getToken());
+        ServiceHandler serviceHandler = ServiceHandler.getInstance();
+        if(!serviceHandler.exist(serviceMapByDefault)){
+            serviceHandler.addService(serviceMapByDefault);
+            Profile profile = topMenu.clickOnProfileMenu();
+            Service service = profile.clickAddServiceButton();
+            service.selectServiceDropdown(PIVOTAL_TRACKER_SERVICE_NAME);
+            service.setDescriptionTextField(DESCRIPTION);
+            service.setTokenTextField(Environment.getInstance().getToken());
+            service.clickSaveButton();
+            topMenu.clickJalasoftIcon();
+        }
     }
 }

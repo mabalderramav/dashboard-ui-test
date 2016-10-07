@@ -1,11 +1,10 @@
 package org.fundacionjala.dashboard.cucumber.hooks;
 
+import cucumber.api.java.Before;
+import org.fundacionjala.dashboard.api.RequestManager;
+
 import java.util.List;
 import java.util.Map;
-
-import cucumber.api.java.Before;
-
-import org.fundacionjala.dashboard.api.RequestManager;
 
 import static org.fundacionjala.dashboard.api.RequestManager.delete;
 
