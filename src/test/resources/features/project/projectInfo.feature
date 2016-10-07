@@ -16,13 +16,13 @@ Feature: Project info widget
   @deleteAllProjects @addPivotalTrackerService
   Scenario: C66
   Verify that a new project is added on a INFO in M2 when it is created on PT
-    When I add a info widget in the board and I select the PROJECT option
+    When I add a info widget with the PROJECT option
     Then Verify all information displayed in the widget
 
   @deleteAllProjects
   Scenario: C65-C127-C128-C129-C130-C131-C132-C133
   Verify all project information into INFO widget is displayed in Mach2
     #description
-    When I add a info widget in the board and I select the PROJECT option
+    When I add a info widget with the PROJECT option
     And I add all columns
     Then Verify all information displayed in the widget
