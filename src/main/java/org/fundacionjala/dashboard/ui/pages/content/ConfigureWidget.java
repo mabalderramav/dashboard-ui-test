@@ -1,15 +1,15 @@
 package org.fundacionjala.dashboard.ui.pages.content;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.fundacionjala.dashboard.ui.pages.content.widget.EnumConfigure;
 import org.fundacionjala.dashboard.ui.pages.menu.Steps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Class widget configurations.

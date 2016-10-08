@@ -4,6 +4,7 @@ import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.HashMap;
 import java.util.List;
@@ -62,6 +63,7 @@ public class Service extends AbstractBasePage {
      * @param serviceName String thats the name of the service.
      */
     public void selectServiceDropdown(final String serviceName) {
+        wait.until(ExpectedConditions.visibilityOf(saveButton));
         dropDownListOfServices.click();
         driver.findElement(By.xpath("//div[@class='menu transition visible']/div[text()='" + serviceName + "']"))
                 .click();
@@ -83,6 +85,7 @@ public class Service extends AbstractBasePage {
      * @param description String that's the description.
      */
     public void setDescriptionTextField(final String description) {
+        wait.until(ExpectedConditions.visibilityOf(saveButton));
         descriptionTextField.clear();
         descriptionTextField.sendKeys(description);
     }

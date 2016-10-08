@@ -11,12 +11,12 @@ Feature: Project info widget
       | number_of_done_iterations_to_show | 12              |
       | initial_velocity                  | 10              |
     And I expect the status code 200
-    And Synchronize Mach2 with Pivotal Tracker and project AT01-PivotalTracker #improve
+    And Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
 
-  @deleteAllProjects @addPivotalTrackerService
-  Scenario: C66
-  Verify that a new project is added on a INFO in M2 when it is created on PT
+  @deleteAllProjects @deleteAllBoards @deleteAllServices @addPivotalTrackerService
+  Scenario: C66Verify that a new project is added on a INFO in M2 when it is created on PT
     When I add a info widget with the PROJECT option
+      |   |   |
     Then Verify all information displayed in the widget
 
   @deleteAllProjects
@@ -24,5 +24,6 @@ Feature: Project info widget
   Verify all project information into INFO widget is displayed in Mach2
     #description
     When I add a info widget with the PROJECT option
+      |  |  |
     And I add all columns
     Then Verify all information displayed in the widget

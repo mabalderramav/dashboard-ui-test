@@ -1,9 +1,9 @@
-package org.fundacionjala.dashboard.cucumber.stepdefinition.ui;
+package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project;
 
 /**
  * Enum to define the values to be assert.
  */
-public enum AssertParameters {
+public enum AssertTable {
     NAME,
     CURRENT_ITERATION,
     WEEK_START_DAY,

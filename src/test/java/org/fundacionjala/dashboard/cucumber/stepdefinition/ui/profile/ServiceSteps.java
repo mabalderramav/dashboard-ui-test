@@ -2,7 +2,6 @@ package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.profile;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
-import org.fundacionjala.dashboard.handler.ServiceHandler;
 import org.fundacionjala.dashboard.ui.pages.menu.Profile;
 import org.fundacionjala.dashboard.ui.pages.menu.Service;
 import org.fundacionjala.dashboard.ui.pages.menu.ServiceFieldStep;
@@ -26,16 +25,11 @@ public class ServiceSteps {
     public void iAddAService(final Map<ServiceFieldStep, String> serviceMap) {
         TopMenu topmenu = new TopMenu();
         Profile profile = topmenu.clickOnProfileMenu();
-        ServiceHandler serviceHandler = ServiceHandler.getInstance();
-        if(!serviceHandler.exist(serviceMap)){
-            serviceHandler.addService(serviceMap);
-            Service service = profile.clickAddServiceButton();
-            Map<ServiceFieldStep, Steps> strategyMap = service.getServiceFieldStepsMap(serviceMap);
-            Set<ServiceFieldStep> keys = serviceMap.keySet();
-            for (ServiceFieldStep key : keys) {
-                strategyMap.get(key).executeStep();
-            }
-            service.clickSaveButton();
+        Service service = profile.clickAddServiceButton();
+        Map<ServiceFieldStep, Steps> strategyMap = service.getServiceFieldStepsMap(serviceMap);
+        Set<ServiceFieldStep> keys = serviceMap.keySet();
+        for (ServiceFieldStep key : keys) {
+            strategyMap.get(key).executeStep();
         }
     }
 
@@ -45,7 +39,8 @@ public class ServiceSteps {
      * @param serviceType String, service's type.
      * @param projectType String, project's type.
      */
-    @And("^Synchronize Mach2 with (.*) and project (.*)$")
+    //Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
+    @And("^Synchronize Mach2 with (.*) description (.*)$")
     public void synchronizeMach2AndPivotal(final String serviceType, final String projectType) {
         TopMenu topMenu = new TopMenu();
         Profile profile = topMenu.clickOnProfileMenu();

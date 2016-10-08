@@ -8,14 +8,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.CURRENT_ITERATION;
-import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.CURRENT_VELOCITY;
-import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.INITIAL_VELOCITY;
-import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.ITERATION_LENGTH;
-import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.NAME;
-import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.POINT_SCALE;
-import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.PROJECT_STARTED_AT;
-import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertParameters.WEEK_START_DAY;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project.AssertTable.CURRENT_ITERATION;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project.AssertTable.CURRENT_VELOCITY;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project.AssertTable.INITIAL_VELOCITY;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project.AssertTable.ITERATION_LENGTH;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project.AssertTable.NAME;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project.AssertTable.POINT_SCALE;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project.AssertTable.PROJECT_STARTED_AT;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project.AssertTable.WEEK_START_DAY;
 
 /**
  * Class to help with operations.

@@ -1,12 +1,11 @@
 package org.fundacionjala.dashboard.ui.pages;
 
 import org.fundacionjala.dashboard.ui.browser.DriverManager;
+import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
+import org.fundacionjala.dashboard.utils.Environment;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
-import org.fundacionjala.dashboard.utils.Environment;
 
 /**
  * This class set  the user name and password in the main page and login.

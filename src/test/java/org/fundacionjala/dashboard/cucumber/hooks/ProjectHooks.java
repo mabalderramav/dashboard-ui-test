@@ -20,7 +20,7 @@ public class ProjectHooks {
     /**
      * Method to delete all projects that meets with the condition.
      */
-    @Before("@deleteAllProjects")
+    @Before(value = "@deleteAllProjects", order = 1)
     public final void deleteAllProject() {
         List<Map<String, ?>> projects = RequestManager.get(PROJECTS_ENDPOINT).jsonPath().get();
         for (Map<String, ?> object : projects) {
