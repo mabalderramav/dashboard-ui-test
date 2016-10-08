@@ -3,11 +3,14 @@ package org.fundacionjala.dashboard.ui.pages.menu;
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.fundacionjala.dashboard.ui.pages.LoginPage;
 import org.fundacionjala.dashboard.ui.pages.content.BoardPage;
+import org.fundacionjala.dashboard.ui.pages.sidebar.SideBar;
 import org.fundacionjala.dashboard.utils.Environment;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,13 +20,14 @@ import java.util.concurrent.TimeUnit;
 public class TopMenu extends AbstractBasePage {
 
     public static final int DURATION = 3;
-    @FindBy(css = "i[class='needsclick plus icon']")
+
+    @FindBy(css = "a.dash.tablet.computer.only.ui.needsclick.dropdown.item")
     private WebElement menuBoard;
 
     @FindBy(css = "div.menu.transition.visible > div[data-action='add-board']")
     private WebElement addBoard;
 
-    @FindBy(css = "span.dash.tablet.computer.only.needsclick.user.name")
+    @FindBy(css = "div.ui.needsclick.user.dropdown.item")
     private WebElement userMenu;
 
     @FindBy(css = "div.menu.transition.visible > a[class=\"item\"][href=\"/logout\"]")
@@ -32,13 +36,20 @@ public class TopMenu extends AbstractBasePage {
     @FindBy(css = "div.menu.transition.visible > a[class=\"item\"][href=\"/profile\"]")
     private WebElement profileButton;
 
+    @FindBy(css = "div.menu.transition.visible > a[class=\"item active selected\"][href=\"/profile\"]")
+    private WebElement profileSelectedButton;
+
     @FindBy(css = "a.brand.item")
     private WebElement jalasoftIcon;
+
+    @FindBy(xpath = "//a[@data-action='show-main-menu']")
+    private WebElement generalMenu;
 
     /**
      * This method clicks the Board button.
      */
     public void clickMenuBoard() {
+        wait.until(ExpectedConditions.elementToBeClickable(menuBoard));
         menuBoard.click();
     }
 
@@ -46,6 +57,7 @@ public class TopMenu extends AbstractBasePage {
      * This method clicks the user menu.
      */
     public void clickUserMenu() {
+        wait.until(ExpectedConditions.elementToBeClickable(userMenu));
         userMenu.click();
     }
 
@@ -54,8 +66,6 @@ public class TopMenu extends AbstractBasePage {
      */
     public void clickOnLogOut() {
         logOutButton.click();
-        driver.navigate().back();
-        driver.navigate().back();
     }
 
     /**
@@ -65,7 +75,12 @@ public class TopMenu extends AbstractBasePage {
      */
     public Profile clickOnProfileMenu() {
         clickUserMenu();
-        profileButton.click();
+        if (driver.findElements(
+                By.cssSelector("div.menu.transition.visible > a[class=\"item\"][href=\"/profile\"]")).size() > 0) {
+            profileButton.click();
+        } else {
+            profileSelectedButton.click();
+        }
         return new Profile();
     }
 
@@ -84,6 +99,7 @@ public class TopMenu extends AbstractBasePage {
      * Method to perform a click on Jalasoft Icon.
      */
     public void clickJalasoftIcon() {
+        wait.until(ExpectedConditions.elementToBeClickable(jalasoftIcon));
         jalasoftIcon.click();
     }
 
@@ -136,5 +152,15 @@ public class TopMenu extends AbstractBasePage {
         this.clickUserMenu();
         logOutButton.click();
         return new LoginPage();
+    }
+
+    /**
+     * Method to perform a click on Profile menu.
+     *
+     * @return The general menu.
+     */
+    public SideBar clickGeneralMenu() {
+        generalMenu.click();
+        return new SideBar();
     }
 }

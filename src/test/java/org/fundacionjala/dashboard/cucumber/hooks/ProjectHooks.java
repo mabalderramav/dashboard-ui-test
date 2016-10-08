@@ -1,11 +1,10 @@
 package org.fundacionjala.dashboard.cucumber.hooks;
 
+import cucumber.api.java.Before;
+import org.fundacionjala.dashboard.api.RequestManager;
+
 import java.util.List;
 import java.util.Map;
-
-import cucumber.api.java.Before;
-
-import org.fundacionjala.dashboard.api.RequestManager;
 
 import static org.fundacionjala.dashboard.api.RequestManager.delete;
 
@@ -21,7 +20,7 @@ public class ProjectHooks {
     /**
      * Method to delete all projects that meets with the condition.
      */
-    @Before("@deleteAllProjects")
+    @Before(value = "@deleteAllProjects", order = 1)
     public final void deleteAllProject() {
         List<Map<String, ?>> projects = RequestManager.get(PROJECTS_ENDPOINT).jsonPath().get();
         for (Map<String, ?> object : projects) {

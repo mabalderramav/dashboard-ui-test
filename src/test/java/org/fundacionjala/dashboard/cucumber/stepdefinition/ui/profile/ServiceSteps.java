@@ -25,14 +25,12 @@ public class ServiceSteps {
     public void iAddAService(final Map<ServiceFieldStep, String> serviceMap) {
         TopMenu topmenu = new TopMenu();
         Profile profile = topmenu.clickOnProfileMenu();
-
         Service service = profile.clickAddServiceButton();
         Map<ServiceFieldStep, Steps> strategyMap = service.getServiceFieldStepsMap(serviceMap);
         Set<ServiceFieldStep> keys = serviceMap.keySet();
         for (ServiceFieldStep key : keys) {
             strategyMap.get(key).executeStep();
         }
-        service.clickSaveButton();
     }
 
     /**
@@ -41,7 +39,8 @@ public class ServiceSteps {
      * @param serviceType String, service's type.
      * @param projectType String, project's type.
      */
-    @And("^Synchronize Mach2 with (.*) and project (.*)$")
+    //Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
+    @And("^Synchronize Mach2 with (.*) description (.*)$")
     public void synchronizeMach2AndPivotal(final String serviceType, final String projectType) {
         TopMenu topMenu = new TopMenu();
         Profile profile = topMenu.clickOnProfileMenu();

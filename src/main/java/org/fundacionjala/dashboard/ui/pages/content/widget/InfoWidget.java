@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.HashMap;
 import java.util.List;
@@ -46,8 +47,10 @@ public class InfoWidget extends AbstractBasePage implements TypeWidget<Map<Strin
     public void clickAddButton() {
         final int positionX = 50;
         final int positionY = 100;
+        wait.until(ExpectedConditions.elementToBeClickable(widget));
         Actions action = new Actions(driver);
         action.moveToElement(widget, positionX, positionY).click().build().perform();
+        wait.until(ExpectedConditions.elementToBeClickable(addButton));
         addButton.click();
     }
 
@@ -57,6 +60,7 @@ public class InfoWidget extends AbstractBasePage implements TypeWidget<Map<Strin
      * @return true if exist the element.
      */
     public boolean existAddButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(widget));
         return driver.findElements(
                 By.cssSelector("button.ui.tiny.circular.basic.icon.option.info.button")).size() != 0;
     }

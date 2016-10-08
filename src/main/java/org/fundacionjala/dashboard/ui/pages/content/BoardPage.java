@@ -1,12 +1,12 @@
 package org.fundacionjala.dashboard.ui.pages.content;
 
+import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.fundacionjala.dashboard.ui.pages.content.widget.WidgetPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-
-import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Class to manage boards.
@@ -28,6 +28,7 @@ public class BoardPage extends AbstractBasePage {
      * @return The widget page.
      */
     public WidgetPage clickAddWidgetMenu() {
+        wait.until(ExpectedConditions.elementToBeClickable(addWidget));
         addWidget.click();
         return new WidgetPage();
     }

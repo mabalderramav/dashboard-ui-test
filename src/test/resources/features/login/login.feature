@@ -5,4 +5,3 @@ Feature: Login
       | userName | Aldo.Balderrama@fundacion-jala.org |
       | password | 04Noviembre                        |
     Then I will have a user logged
-

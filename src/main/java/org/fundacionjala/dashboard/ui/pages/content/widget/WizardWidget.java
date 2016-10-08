@@ -1,13 +1,14 @@
 package org.fundacionjala.dashboard.ui.pages.content.widget;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
 import org.fundacionjala.dashboard.ui.pages.menu.Steps;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Class used to manage the most used options.
@@ -37,6 +38,7 @@ public class WizardWidget extends AbstractBasePage {
      * Method to select the 'Open project' options.
      */
     public void clickOpenProject() {
+        wait.until(ExpectedConditions.visibilityOf(projectButton));
         projectButton.click();
     }
 
@@ -46,6 +48,7 @@ public class WizardWidget extends AbstractBasePage {
      * @return The 'Open story' option selected.
      */
     public ConfigureWidget clickOpenStoryItem() {
+        wait.until(ExpectedConditions.visibilityOf(storyButton));
         storyButton.click();
         return new ConfigureWidget();
     }
@@ -56,6 +59,7 @@ public class WizardWidget extends AbstractBasePage {
      * @return the configuration page.
      */
     private ConfigureWidget clickOpenTaskBurnItem() {
+        wait.until(ExpectedConditions.visibilityOf(burnTaskButton));
         burnTaskButton.click();
         return new ConfigureWidget();
     }
@@ -66,6 +70,7 @@ public class WizardWidget extends AbstractBasePage {
      * @return the configuration page.
      */
     private ConfigureWidget clickOpenStoryTypeItem() {
+        wait.until(ExpectedConditions.visibilityOf(storyTypeButton));
         storyTypeButton.click();
         return new ConfigureWidget();
     }
@@ -76,6 +81,7 @@ public class WizardWidget extends AbstractBasePage {
      * @return the configuration page.
      */
     private ConfigureWidget clickOpenBurnItem() {
+        wait.until(ExpectedConditions.visibilityOf(burnButton));
         burnButton.click();
         return new ConfigureWidget();
     }
@@ -86,6 +92,7 @@ public class WizardWidget extends AbstractBasePage {
      * @return the configuration page.
      */
     private ConfigureWidget clickOpenIteration() {
+        wait.until(ExpectedConditions.visibilityOf(iterationButton));
         iterationButton.click();
         return new ConfigureWidget();
     }
