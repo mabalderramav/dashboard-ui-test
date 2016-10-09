@@ -58,6 +58,7 @@ task executeFeatures() {
                         '--plugin', 'rerun:build/rerun.txt',
                         '--glue', 'org.fundacionjala.dashboard', 'src/test/resources/features']
                 jvmArgs = ["-Dtoken=" + token]
+                jvmArgs = ["-Dproxy=" + proxy]
             }
         } catch (Exception e) {
             //In order to avoid FAILURE: Build failed with an exception.
