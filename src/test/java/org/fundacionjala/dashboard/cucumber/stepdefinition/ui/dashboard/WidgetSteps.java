@@ -1,5 +1,6 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.dashboard;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import org.fundacionjala.dashboard.ui.pages.content.BoardPage;
 import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
@@ -31,7 +32,6 @@ public class WidgetSteps {
             final String type, final EnumWizardWidget option, final Map<EnumConfigure, String> newConfigureMap) {
         Widget widgetType = Widget.valueOf(type.toUpperCase());
 
-        /*Sacar esto y re usar board.*/
         TopMenu topMenu = new TopMenu();
         BoardPage boardPage = topMenu.clickAddBoardMenu();
         WidgetPage widgetPage = boardPage.clickAddWidgetMenu();
@@ -39,7 +39,7 @@ public class WidgetSteps {
         // Makes click in the widget type tha could be table, info or list.
         WizardWidget wizardWidget = widgetPage.clickWidgetType(widgetType);
 
-       // Execute the click on the service list option according to the sent.
+        // Execute the click on the service list option according to the sent.
         Map<EnumWizardWidget, Steps> strategyWidgetOption = wizardWidget.widgetStrategyOption();
         strategyWidgetOption.get(option).executeStep();
 
@@ -47,7 +47,17 @@ public class WidgetSteps {
         ConfigureWidget configureWidget = new ConfigureWidget();
         if (!newConfigureMap.isEmpty() && !newConfigureMap.containsKey(null)) {
             configureWidget.setConfiguration(newConfigureMap);
+        } else {
+            configureWidget.clickSave();
         }
-        configureWidget.clickSave();
+    }
+
+    /**
+     * Method to click on the save button.
+     */
+    @And("^I click Save button$")
+    public void iClickSaveButton() {
+        new ConfigureWidget().clickSaveConfigurationStoryItem();
+
     }
 }

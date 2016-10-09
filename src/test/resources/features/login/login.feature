@@ -2,6 +2,6 @@ Feature: Login
 
   Scenario: Login to Mach23
     When I perform a login as
-      | userName | Aldo.Balderrama@fundacion-jala.org |
-      | password | 04Noviembre                        |
+      | userName | Alvaro.Daza@fundacion-jala.org |
+      | password | P@ssw0rd                       |
     Then I will have a user logged

@@ -17,6 +17,11 @@ import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project.Ass
 import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project.AssertTable.PROJECT_STARTED_AT;
 import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project.AssertTable.WEEK_START_DAY;
 
+
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.story.StoryParameters.OWNERS;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.story.StoryParameters.POINTS;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.story.StoryParameters.STATE;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.story.StoryParameters.TYPE;
 /**
  * Class to help with operations.
  */
@@ -74,6 +79,25 @@ public final class Utils {
         strategyMap.put(INITIAL_VELOCITY.toString(), jsonPath.get("initial_velocity").toString());
         strategyMap.put(PROJECT_STARTED_AT.toString(),
                 DataTimeManager.parserDataTimeToFirstFormat(jsonPath.get("start_date").toString()));
+
+        return strategyMap;
+    }
+
+    /**
+     * Method to map the strategy fo make the assertions for story.
+     *
+     * @param jsonPath the response values
+     * @return the Map with the information to be validated.
+     */
+    public static Map<String, String> mapStrategyWidgetStory(final JsonPath jsonPath) {
+        Map<String, String> strategyMap = new HashMap<>();
+
+        strategyMap.put(NAME.toString(), jsonPath.get("name"));
+
+        strategyMap.put(STATE.toString(), jsonPath.get("current_state").toString());
+        strategyMap.put(POINTS.toString(), jsonPath.get("estimate").toString());
+        strategyMap.put(TYPE.toString(), jsonPath.get("story_type").toString());
+        strategyMap.put(OWNERS.toString(), " ");
 
         return strategyMap;
     }
