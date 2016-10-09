@@ -5,9 +5,12 @@ import org.fundacionjala.dashboard.ui.pages.content.widget.EnumConfigure;
 import org.fundacionjala.dashboard.ui.pages.menu.Steps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -55,6 +58,11 @@ public class ConfigureWidget extends AbstractBasePage {
     @FindBy(css = "div[data-key='StoryType'] input.search")
     private WebElement storyTypeSelector;
 
+    @FindBy(css = "div.wizard-modal.ui.top.attached.modal.tiny.transition.visible.active > "
+            + "div.ui.clearing.secondary.basic.segment.wizard-modal-content")
+    private WebElement popupWizard;
+
+
     /**
      * Sends a name project to a dropdown selector.
      *
@@ -83,7 +91,8 @@ public class ConfigureWidget extends AbstractBasePage {
      * @return the result of the configurations.
      */
     public final StoryItemTable clickSaveConfigurationStoryItem() {
-        save.click();
+        wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+        saveButton.click();
         return new StoryItemTable();
     }
 
@@ -91,6 +100,7 @@ public class ConfigureWidget extends AbstractBasePage {
      * Makes click to open the advanced configuration.
      */
     public final void clickAdvancesDroopDown() {
+        wait.until(ExpectedConditions.elementToBeClickable(advancesDroopDown));
         advancesDroopDown.click();
     }
 
@@ -98,6 +108,7 @@ public class ConfigureWidget extends AbstractBasePage {
      * Changes the state to include and Iteration to doesn't include.
      */
     public final void clickIncludeIterationButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(includeIterationButton));
         includeIterationButton.click();
     }
 
@@ -107,6 +118,7 @@ public class ConfigureWidget extends AbstractBasePage {
      * @param toIteration is a string to iteration number to select.
      */
     public void selectToIteration(final String toIteration) {
+        wait.until(ExpectedConditions.elementToBeClickable(autoCompleteToIteration));
         autoCompleteToIteration.sendKeys(toIteration);
     }
 
@@ -116,6 +128,7 @@ public class ConfigureWidget extends AbstractBasePage {
      * @param numberLastIteration is a string to iteration number to select.
      */
     public void fillNumberLastIterationTextField(final String numberLastIteration) {
+        wait.until(ExpectedConditions.elementToBeClickable(numberLastIterationTextField));
         numberLastIterationTextField.clear();
         numberLastIterationTextField.sendKeys(numberLastIteration);
     }
@@ -126,6 +139,7 @@ public class ConfigureWidget extends AbstractBasePage {
      * @param labels is a string to use for filter.
      */
     public void writeALabel(final String labels) {
+        wait.until(ExpectedConditions.elementToBeClickable(autoCompleteLabel));
         autoCompleteLabel.sendKeys(labels);
     }
 
@@ -135,6 +149,7 @@ public class ConfigureWidget extends AbstractBasePage {
      * @param owner is a string of the owner name.
      */
     public void selectOwner(final String owner) {
+        wait.until(ExpectedConditions.elementToBeClickable(autoCompleteOwner));
         autoCompleteOwner.sendKeys(owner);
 
     }
@@ -145,6 +160,7 @@ public class ConfigureWidget extends AbstractBasePage {
      * @param iterations is a string of the iteration name.
      */
     private void selectVelocityIterations(final String iterations) {
+        wait.until(ExpectedConditions.elementToBeClickable(velocityIterations));
         velocityIterations.sendKeys(iterations);
     }
 
@@ -154,6 +170,7 @@ public class ConfigureWidget extends AbstractBasePage {
      * @param typeAverage is a string that represents the average quantity.
      */
     private void selectAverageMethodCalculation(final String typeAverage) {
+        wait.until(ExpectedConditions.elementToBeClickable(averageMethodCalculation));
         averageMethodCalculation.sendKeys(typeAverage);
     }
 
@@ -163,6 +180,7 @@ public class ConfigureWidget extends AbstractBasePage {
      * @param storyType Is a string that represents the story type.
      */
     private void selectStoryType(final String storyType) {
+        wait.until(ExpectedConditions.elementToBeClickable(storyTypeSelector));
         storyTypeSelector.sendKeys(storyType);
     }
 
@@ -184,7 +202,17 @@ public class ConfigureWidget extends AbstractBasePage {
      * Makes click on the form save button.
      */
     public final void clickSave() {
+        wait.until(ExpectedConditions.elementToBeClickable(saveButton));
         saveButton.click();
+    }
+
+    /**
+     * Click to iteration dropdown selector.
+     */
+    public final void clickIteration() {
+        wait.until(ExpectedConditions.elementToBeClickable(
+                driver.findElement(By.cssSelector("div[data-key='Iteration'] div i"))));
+        driver.findElement(By.cssSelector("div[data-key='Iteration'] div i")).click();
     }
 
     /**
@@ -224,5 +252,38 @@ public class ConfigureWidget extends AbstractBasePage {
         return strategyMap;
     }
 
+    /**
+     * this method do a click on the drop down list.
+     *
+     * @return list.
+     */
+    public List<WebElement> clickProjectDropdownField() {
+        autoCompleteProject.click();
+        List<WebElement> allProjectElements = driver.findElements(By.cssSelector("div[data-key='Project'] "
+                + "div.ui.dropdown div.menu div"));
+        return allProjectElements;
+    }
 
+    /**
+     * method get the size of the story iteration.
+     *
+     * @return integer whit the quantity.
+     */
+    public Integer getStoryIterationSize() {
+        List<WebElement> storyIterationSize = driver.findElements(By.cssSelector(
+                "div[class=\"menu transition visible\"] > div[class=\"item\"]"));
+        return storyIterationSize.size();
+    }
+
+    /**
+     * method makes a click out of the wizard widget.
+     */
+    public void clickOut() {
+        final int positionX = -100;
+        final int positionY = 100;
+        wait.until(ExpectedConditions.elementToBeClickable(popupWizard));
+        Actions action = new Actions(driver);
+        action.moveToElement(popupWizard, positionX, positionY).click().build().perform();
+
+    }
 }
