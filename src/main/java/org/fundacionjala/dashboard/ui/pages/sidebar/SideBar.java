@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.fundacionjala.dashboard.ui.pages.content.MyDashboard;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 /**
  * Class to manage the sidebar of Mach2.
@@ -36,6 +37,7 @@ public class SideBar extends AbstractBasePage {
      * @return The My dashboard page.
      */
     public MyDashboard clickMyDashBoardButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(myDashboardButton));
         myDashboardButton.click();
         return new MyDashboard();
     }

@@ -1,3 +1,4 @@
+@deleteAllServices @addPivotalTrackerService
 Feature: Project info widget
 
   Background: #improve
@@ -13,8 +14,10 @@ Feature: Project info widget
     And I expect the status code 200
     And Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
 
-  @deleteAllProjects @deleteAllBoards @deleteAllServices @addPivotalTrackerService
-  Scenario: C66 Verify that a new project is added on a INFO in M2 when it is created on PT
+
+  @deleteAllProjects @deleteAllBoards
+  Scenario: C66
+  Verify that a new project is added on a INFO in M2 when it is created on PT
     When I add a info widget with the PROJECT option
       |   |   |
     Then Verify all information displayed in the widget
