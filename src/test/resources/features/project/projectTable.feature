@@ -1,3 +1,4 @@
+@deleteAllServices @addPivotalTrackerService
 Feature: Project table widget
 
   Background: Create a Project in pivotal and synchronize with Mach2
@@ -9,7 +10,7 @@ Feature: Project table widget
     And I expect the status code 200
     And Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
 
-  @deleteAllProjects @deleteAllBoards @deleteAllServices @addPivotalTrackerService
+  @deleteAllProjects @deleteAllBoards
   Scenario: C13-C29-C30-C31-C32-C33-C34-C35
   Verify that ALL Projects from PT are displayed when adding the TABLE widget
     When I add a table widget with the PROJECT option

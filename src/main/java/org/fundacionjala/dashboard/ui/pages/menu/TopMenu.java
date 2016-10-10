@@ -160,6 +160,7 @@ public class TopMenu extends AbstractBasePage {
      * @return The general menu.
      */
     public SideBar clickGeneralMenu() {
+        wait.until(ExpectedConditions.elementToBeClickable(generalMenu));
         generalMenu.click();
         return new SideBar();
     }
