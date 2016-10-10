@@ -53,8 +53,8 @@ public class StoryAsserts {
         obj = (JSONArray) new JSONParser().parse(resources.getResponseList()
                 .get(resources.getResponseList().size() - 1).jsonPath().prettify());
         listProjects = new ConfigureWidget().clickProjectDropdownField();
-        assertEquals(listProjects.size(), obj.size());
         new ConfigureWidget().clickOut();
+        assertEquals(listProjects.size(), obj.size());
     }
 
     /**
@@ -67,8 +67,8 @@ public class StoryAsserts {
         ConfigureWidget configureWidget = new ConfigureWidget();
         configureWidget.clickIteration();
         JsonPath jsonPath = Utils.findElementJson(projectName, resources.getResponseList());
-        TestCase.assertEquals(configureWidget.getStoryIterationSize(), jsonPath.get(CURRENT_ITERATION_NUMBER));
         new ConfigureWidget().clickOut();
+        TestCase.assertEquals(configureWidget.getStoryIterationSize(), jsonPath.get(CURRENT_ITERATION_NUMBER));
     }
 
     /**

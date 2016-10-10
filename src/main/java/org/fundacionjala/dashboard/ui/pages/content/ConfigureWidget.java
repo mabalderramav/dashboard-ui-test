@@ -258,6 +258,7 @@ public class ConfigureWidget extends AbstractBasePage {
      * @return list.
      */
     public List<WebElement> clickProjectDropdownField() {
+        wait.until(ExpectedConditions.elementToBeClickable(autoCompleteProject));
         autoCompleteProject.click();
         List<WebElement> allProjectElements = driver.findElements(By.cssSelector("div[data-key='Project'] "
                 + "div.ui.dropdown div.menu div"));
@@ -284,6 +285,5 @@ public class ConfigureWidget extends AbstractBasePage {
         wait.until(ExpectedConditions.elementToBeClickable(popupWizard));
         Actions action = new Actions(driver);
         action.moveToElement(popupWizard, positionX, positionY).click().build().perform();
-
     }
 }
