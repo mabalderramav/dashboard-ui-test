@@ -53,5 +53,18 @@ public class TableWidget extends AbstractBasePage implements TypeWidget<List<Map
     public int countDisplayedColumns() {
         return projectTable.findElements(By.tagName("th")).size();
     }
+
+    /**
+     * this method change the parameters to Lower case.
+     * @param tableStoriesValues list of table values.
+     * @return list.
+     */
+    public List<Map<String, String>> getConvertLowerCase(final List<Map<String, String>> tableStoriesValues) {
+        for (Map<String, String> tableData : tableStoriesValues) {
+            tableData.put("type", tableData.get("type").toLowerCase());
+            tableData.put("state", tableData.get("state").toLowerCase());
+        }
+        return tableStoriesValues;
+    }
 }
 

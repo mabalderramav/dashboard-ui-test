@@ -19,7 +19,7 @@ Feature: Project info widget
       |   |   |
     Then Verify all information displayed in the widget
 
-  @deleteAllProjects
+  @deleteAllProjects @deleteAllBoards
   Scenario: C65-C127-C128-C129-C130-C131-C132-C133
   Verify all project information into INFO widget is displayed in Mach2
   The listed test cases Ids are executed into this scenario, this escenario cover all of them.
