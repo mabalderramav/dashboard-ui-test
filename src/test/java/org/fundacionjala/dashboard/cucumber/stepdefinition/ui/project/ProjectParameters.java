@@ -3,7 +3,7 @@ package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.project;
 /**
  * Enum to define the values to be assert.
  */
-public enum AssertTable {
+public enum ProjectParameters {
     NAME,
     CURRENT_ITERATION,
     WEEK_START_DAY,

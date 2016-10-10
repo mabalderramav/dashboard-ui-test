@@ -12,7 +12,8 @@ Feature: Project table widget
 
   @deleteAllProjects @deleteAllBoards
   Scenario: C13-C29-C30-C31-C32-C33-C34-C35
-  Verify that ALL Projects from PT are displayed when adding the TABLE widget
+    Verify that ALL Projects from PT are displayed when adding the TABLE widget
+    The listed test cases Ids are executed into this scenario, this escenario cover all of them.
     When I add a table widget with the PROJECT option
       |  |  |
     Then All displayed projects should be the same that I sent in the request
