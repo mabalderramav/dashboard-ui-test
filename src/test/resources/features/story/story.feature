@@ -10,8 +10,6 @@ Feature: Story Item Test
       | start_date                        | 2016-08-29      |
       | number_of_done_iterations_to_show | 12              |
       | initial_velocity                  | 10              |
-
-    And I expect the status code 200
     And I store as Project1
     And I send a POST request with list to /projects/[Project1.id]/stories
       | name            | current_state | estimate | story_type |
@@ -19,21 +17,20 @@ Feature: Story Item Test
       | AT - 01 story02 | started       | 3        | feature    |
       | AT - 01 story03 | started       | 3        | feature    |
 
-    And I expect the status code 200
     And Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
 
   @deleteAllProjects @deleteAllBoards
   Scenario: C146_Verify all project information display in the dropdown option
     When I add a table widget with the STORY option
       | PROJECTS  | AT01 project-01 |
-      | ITERATION | IT 2 |
+      | ITERATION | IT 2            |
     And I send a GET request to /projects
     Then Verify the projects quantity
 
   @deleteAllProjects @deleteAllBoards
   Scenario: C152_Verify that the iteration count showed to 'iteration' drop down list on M2 is the same as on PT
     When I add a table widget with the STORY option
-      | PROJECTS  | AT01 project-01 |
+      | PROJECTS | AT01 project-01 |
     Then Verify the iterations quantity AT01 project-01
 
 
