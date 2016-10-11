@@ -5,6 +5,7 @@ package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.story;
  */
 public enum StoryParameters {
 
+    NAME,
     STATE,
     POINTS,
     TYPE,
