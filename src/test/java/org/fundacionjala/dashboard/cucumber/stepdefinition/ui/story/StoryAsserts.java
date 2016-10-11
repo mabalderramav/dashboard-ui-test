@@ -1,7 +1,9 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.story;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import cucumber.api.java.en.Then;
 import io.restassured.path.json.JsonPath;
@@ -12,8 +14,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebElement;
 
-import org.fundacionjala.dashboard.cucumber.common.GlobalAsserts;
 import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
+import org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertTable;
 import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
 import org.fundacionjala.dashboard.ui.pages.content.widget.TableWidget;
 import org.fundacionjala.dashboard.util.Utils;
@@ -67,12 +69,13 @@ public class StoryAsserts {
         ConfigureWidget configureWidget = new ConfigureWidget();
         configureWidget.clickIteration();
         JsonPath jsonPath = Utils.findElementJson(projectName, resources.getResponseList());
-        new ConfigureWidget().clickOut();
         TestCase.assertEquals(configureWidget.getStoryIterationSize(), jsonPath.get(CURRENT_ITERATION_NUMBER));
+        new ConfigureWidget().clickOut();
     }
 
     /**
      * method to validate  all data of the story table whit pivotal tracker.
+     *
      * @param kind kind of Response it could be story or project.
      */
     @Then("^Validate (story|project) table against pivotal story$")
@@ -80,6 +83,55 @@ public class StoryAsserts {
         List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
         List<Response> responseList = resources.getResponseList();
         List<Map<String, String>> tableProjectValuesLowers = tableWidget.getConvertLowerCase(tableProjectValues);
-        GlobalAsserts.executeListAssert(tableProjectValuesLowers, Utils.filterResponseByKind(responseList, kind));
+        executeListAssert(tableProjectValuesLowers, Utils.filterResponseByKind(responseList, kind));
+    }
+
+    /**
+     * Method that given a list of data execute the assertions for each values of the response.
+     *
+     * @param widgetValues List of Map with the information of the displayed data in UI.
+     * @param responseList List with that contain the responses.
+     */
+    private void executeListAssert(final List<Map<String, String>> widgetValues,
+                                   final List<Response> responseList) {
+        for (int i = 0; i < responseList.size(); i++) {
+            JsonPath jsonPath = responseList.get(i).jsonPath();
+            Map<String, String> row = Utils.findElementInArray(jsonPath.get(NAME), widgetValues);
+            if (!row.isEmpty()) {
+                executeAssert(row, jsonPath);
+            }
+        }
+    }
+
+    /**
+     * Method to execute the asserts for each values of the response.
+     *
+     * @param map      Map with the information of the displayed data in UI.
+     * @param jsonPath Json that contain the response.
+     */
+    private void executeAssert(final Map<String, String> map, final JsonPath jsonPath) {
+        Map<String, AssertTable> strategyMap = mapStrategyStoryWidget(jsonPath);
+        Set<String> keys = map.keySet();
+        for (String key : keys) {
+            assertEquals(map.get(key), strategyMap.get(key).executeAssertion());
+        }
+    }
+
+
+    /**
+     * Method to map the strategy fo make the assertions for story.
+     *
+     * @param jsonPath the response values
+     * @return the Map with the information to be validated.
+     */
+    private Map<String, AssertTable> mapStrategyStoryWidget(final JsonPath jsonPath) {
+        Map<String, AssertTable> strategyMap = new HashMap<>();
+        strategyMap.put(StoryParameters.NAME.toString(), () -> jsonPath.get("name"));
+        strategyMap.put(StoryParameters.STATE.toString(), () -> jsonPath.get("current_state").toString());
+        strategyMap.put(StoryParameters.POINTS.toString(), () -> jsonPath.get("estimate").toString());
+        strategyMap.put(StoryParameters.TYPE.toString(), () -> jsonPath.get("story_type").toString());
+        strategyMap.put(StoryParameters.OWNERS.toString(), () -> " ");
+
+        return strategyMap;
     }
 }

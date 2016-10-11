@@ -1,18 +1,21 @@
 package org.fundacionjala.dashboard.ui.pages.content;
 
-import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
-import org.fundacionjala.dashboard.ui.pages.content.widget.EnumConfigure;
-import org.fundacionjala.dashboard.ui.pages.menu.Steps;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
+import org.fundacionjala.dashboard.ui.pages.content.widget.EnumConfigure;
+import org.fundacionjala.dashboard.ui.pages.menu.Steps;
 
 /**
  * Class widget configurations.
@@ -34,14 +37,11 @@ public class ConfigureWidget extends AbstractBasePage {
     @FindBy(css = "div[data-key='Owner'] div.ui input.search")
     private WebElement autoCompleteOwner;
 
-    @FindBy(xpath = "//button[@data-action='save-wizard-config']")
+    @FindBy(css = "button[data-action='save-wizard-config']")
     private WebElement saveButton;
 
     @FindBy(css = "a.link[data-id='advanced-config'] > b")
     private WebElement advancesDroopDown;
-
-    @FindBy(xpath = "//button[@data-action='save-wizard-config']")
-    private WebElement save;
 
     @FindBy(css = "div.column div.ui.toggle.checkbox")
     private WebElement includeIterationButton;
@@ -70,8 +70,7 @@ public class ConfigureWidget extends AbstractBasePage {
      */
     public final void autoCompleteProject(final String project) {
         autoCompleteProject.sendKeys(project);
-        driver.findElement(By.cssSelector("div[data-key='Project'] div i")).click();
-        driver.findElement(By.cssSelector("div[data-key='Project'] div i")).click();
+        autoCompleteProject.sendKeys(Keys.ENTER);
     }
 
     /**
@@ -80,9 +79,12 @@ public class ConfigureWidget extends AbstractBasePage {
      * @param iteration is a string iteration number to select.
      */
     public final void autoCompleteIteration(final String iteration) {
-        autoCompleteIteration.sendKeys(iteration);
-        driver.findElement(By.cssSelector("div[data-key='Iteration'] div i")).click();
-        driver.findElement(By.cssSelector("div[data-key='Iteration'] div i")).click();
+        clickIteration();
+        driver.findElements(By.cssSelector(
+                "div.menu.transition.visible  div.item"))
+                .stream()
+                .filter(webElement -> webElement.getText().equals(iteration))
+                .findFirst().get().click();
     }
 
     /**
@@ -210,9 +212,8 @@ public class ConfigureWidget extends AbstractBasePage {
      * Click to iteration dropdown selector.
      */
     public final void clickIteration() {
-        wait.until(ExpectedConditions.elementToBeClickable(
-                driver.findElement(By.cssSelector("div[data-key='Iteration'] div i"))));
-        driver.findElement(By.cssSelector("div[data-key='Iteration'] div i")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(autoCompleteIteration));
+        autoCompleteIteration.click();
     }
 
     /**
@@ -272,7 +273,10 @@ public class ConfigureWidget extends AbstractBasePage {
      */
     public Integer getStoryIterationSize() {
         List<WebElement> storyIterationSize = driver.findElements(By.cssSelector(
-                "div[class=\"menu transition visible\"] > div[class=\"item\"]"));
+                "div.menu.transition.visible  div.item"))
+                .stream()
+                .filter(webElement -> webElement.getText().contains("IT"))
+                .collect(Collectors.toList());
         return storyIterationSize.size();
     }
 

@@ -10,5 +10,5 @@ public interface AssertTable {
      *
      * @return the data for assertion.
      */
-    String executeAssert();
+    String executeAssertion();
 }
