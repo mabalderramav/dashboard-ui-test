@@ -21,6 +21,7 @@ import org.fundacionjala.dashboard.ui.pages.content.widget.TableWidget;
 import org.fundacionjala.dashboard.util.Utils;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Class to manage Step definition  for table widget of Story features.
@@ -84,6 +85,12 @@ public class StoryAsserts {
         List<Response> responseList = resources.getResponseList();
         List<Map<String, String>> tableProjectValuesLowers = tableWidget.getConvertLowerCase(tableProjectValues);
         executeListAssert(tableProjectValuesLowers, Utils.filterResponseByKind(responseList, kind));
+    }
+
+    @Then("^I expect an empty table (project|story) widget$")
+    public void iExpectAnEmptyTableProjectWidget() {
+        List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
+        assertTrue(tableProjectValues.isEmpty());
     }
 
     /**

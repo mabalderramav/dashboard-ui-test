@@ -18,7 +18,6 @@ import org.fundacionjala.dashboard.util.Utils;
 import org.fundacionjala.dashboard.utils.DataTimeManager;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 
 /**
@@ -81,10 +80,17 @@ public class ProjectAsserts {
     /**
      * Method to validate content table is empty.
      */
-    @Then("^I expect an empty table project widget$")
-    public void iExpectAnEmptyTableProjectWidget() {
+//    @Then("^I expect an empty table project|story widget$")
+//    public void iExpectAnEmptyTableProjectWidget() {
+//        List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
+//        assertTrue(tableProjectValues.isEmpty());
+//    }
+    @Then ("^Validate project table against last response pivotal project$")
+    public void validateLastResponseFromPivotal(){
         List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
-        assertNull(tableProjectValues);
+        Response responseList = resources.getResponseList().get(resources.getResponseList().size()-1);
+        Map<String, String> row = Utils.findElementInArray(responseList.jsonPath().get(NAME), tableProjectValues);
+        executeAssert(row, responseList.jsonPath());
     }
 
     /**
