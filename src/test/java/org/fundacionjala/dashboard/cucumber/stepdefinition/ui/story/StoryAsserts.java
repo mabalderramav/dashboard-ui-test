@@ -87,6 +87,9 @@ public class StoryAsserts {
         executeListAssert(tableProjectValuesLowers, Utils.filterResponseByKind(responseList, kind));
     }
 
+    /**
+     * Method to validate if a table or story widget is empty.
+     */
     @Then("^I expect an empty table (project|story) widget$")
     public void iExpectAnEmptyTableProjectWidget() {
         List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
