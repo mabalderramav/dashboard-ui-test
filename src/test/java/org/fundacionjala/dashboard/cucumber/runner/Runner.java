@@ -25,8 +25,11 @@ import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
                 "org.fundacionjala.dashboard.cucumber"
         }
 )
-public class Runner {
+public class Runner extends AbstractBasePage {
 
+    /**
+     * Method to Close the driver after the execution.
+     */
     @AfterClass
     public static void tearDown() {
         AbstractBasePage.driver.quit();

@@ -30,7 +30,8 @@ public class BoardPage extends AbstractBasePage {
      * @return The widget page.
      */
     public WidgetPage clickAddWidgetMenu() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a.dash.tablet.computer.only.ui.add-widget.item")));
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector("a.dash.tablet.computer.only.ui.add-widget.item")));
         wait.until(ExpectedConditions.elementToBeClickable(addWidget));
         addWidget.click();
         return new WidgetPage();
