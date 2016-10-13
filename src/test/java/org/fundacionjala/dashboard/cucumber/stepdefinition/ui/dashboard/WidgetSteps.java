@@ -47,8 +47,6 @@ public class WidgetSteps {
         ConfigureWidget configureWidget = new ConfigureWidget();
         if (!newConfigureMap.isEmpty() && !newConfigureMap.containsKey(null)) {
             configureWidget.setConfiguration(newConfigureMap);
-        } else {
-            configureWidget.clickSave();
         }
     }
 
