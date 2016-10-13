@@ -27,10 +27,9 @@ Feature: Story Item Test
     Then Verify the projects quantity
     And Verify all information displayed in the project dropdown field
 
-#
-#  @deleteAllProjects @deleteAllBoards
-#  Scenario: C152_Verify that the iteration count showed to 'iteration' drop down list on M2 is the same as on PT
-#    When I add a table widget with the STORY option
-#      | PROJECTS | AT01 project-01 |
-#    Then Verify the iterations quantity AT01 project-01
+  @deleteAllProjects @deleteAllBoards
+  Scenario: C152_Verify that the iteration count showed to 'iteration' drop down list on M2 is the same as on PT
+    When I add a table widget with the STORY option
+      | PROJECTS | AT01 project-01 |
+    Then Verify the iterations quantity AT01 project-01
 
