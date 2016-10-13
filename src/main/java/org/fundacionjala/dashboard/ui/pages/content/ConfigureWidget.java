@@ -80,6 +80,7 @@ public class ConfigureWidget extends AbstractBasePage {
      */
     public final void autoCompleteIteration(final String iteration) {
         clickIteration();
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("div.menu.transition.visible  div.item")));
         driver.findElements(By.cssSelector(
                 "div.menu.transition.visible  div.item"))
                 .stream()
@@ -163,11 +164,11 @@ public class ConfigureWidget extends AbstractBasePage {
     /**
      * Sends a iteration name to a selector.
      *
-     * @param iterations is a string of the iteration name.
+     * @param iteration is a string of the iteration name.
      */
-    private void selectVelocityIterations(final String iterations) {
+    private void selectVelocityIterations(final String iteration) {
         wait.until(ExpectedConditions.elementToBeClickable(velocityIterations));
-        velocityIterations.sendKeys(iterations);
+        velocityIterations.sendKeys(iteration);
     }
 
     /**
