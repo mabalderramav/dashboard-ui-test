@@ -80,7 +80,8 @@ public class ConfigureWidget extends AbstractBasePage {
      */
     public final void autoCompleteIteration(final String iteration) {
         clickIteration();
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("div.menu.transition.visible  div.item")));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+                By.cssSelector("div.menu.transition.visible  div.item")));
         driver.findElements(By.cssSelector(
                 "div.menu.transition.visible  div.item"))
                 .stream()
