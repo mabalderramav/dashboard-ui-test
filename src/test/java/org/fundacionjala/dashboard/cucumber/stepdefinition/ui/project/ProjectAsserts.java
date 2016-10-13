@@ -18,7 +18,7 @@ import org.fundacionjala.dashboard.util.Utils;
 import org.fundacionjala.dashboard.utils.DataTimeManager;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertTrue;
 
 /**
  * Class to manage Step definition  for table widget of features.project.
@@ -86,6 +86,15 @@ public class ProjectAsserts {
         Response responseList = resources.getResponseList().get(resources.getResponseList().size() - 1);
         Map<String, String> row = Utils.findElementInArray(responseList.jsonPath().get(NAME), tableProjectValues);
         executeAssert(row, responseList.jsonPath());
+    }
+
+    /**
+     * Method to validate if a table widget is empty.
+     */
+    @Then("^I expect an empty table project widget$")
+    public void iExpectAnEmptyTableProjectWidget() {
+        List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
+        assertTrue(tableProjectValues.isEmpty());
     }
 
     /**

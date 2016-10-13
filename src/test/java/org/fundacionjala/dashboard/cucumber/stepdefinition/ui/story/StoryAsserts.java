@@ -8,7 +8,6 @@ import java.util.Set;
 import cucumber.api.java.en.Then;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import junit.framework.TestCase;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -28,11 +27,11 @@ import static org.junit.Assert.assertTrue;
  */
 public class StoryAsserts {
     private static final String CURRENT_ITERATION_NUMBER = "current_iteration_number";
-
+    private static final String NAME = "name";
+    public static final int TIME_TO_WAIT = 5000;
     private ResourcesSteps resources;
     private List<WebElement> listProjects;
     private JSONArray obj;
-    private static final String NAME = "name";
     private TableWidget tableWidget;
 
     /**
@@ -70,7 +69,7 @@ public class StoryAsserts {
         ConfigureWidget configureWidget = new ConfigureWidget();
         configureWidget.clickIteration();
         JsonPath jsonPath = Utils.findElementJson(projectName, resources.getResponseList());
-        TestCase.assertEquals(configureWidget.getStoryIterationSize(), jsonPath.get(CURRENT_ITERATION_NUMBER));
+        assertEquals(configureWidget.getStoryIterationSize(), jsonPath.get(CURRENT_ITERATION_NUMBER));
         new ConfigureWidget().clickOut();
     }
 
@@ -90,10 +89,15 @@ public class StoryAsserts {
     /**
      * Method to validate if a table or story widget is empty.
      */
-    @Then("^I expect an empty table (project|story) widget$")
-    public void iExpectAnEmptyTableProjectWidget() {
-        List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
-        assertTrue(tableProjectValues.isEmpty());
+    @Then("^I expect an empty table story widget$")
+    public void iExpectAnEmptyTableStoryWidget() {
+        try {
+            Thread.sleep(TIME_TO_WAIT);
+            List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
+            assertTrue(tableProjectValues.isEmpty());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
