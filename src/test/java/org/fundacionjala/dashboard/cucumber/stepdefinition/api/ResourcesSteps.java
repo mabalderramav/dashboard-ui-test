@@ -12,7 +12,6 @@ import org.fundacionjala.dashboard.api.Mapper;
 import org.fundacionjala.dashboard.api.RequestManager;
 
 import static org.junit.Assert.assertEquals;
-
 /**
  * This class is in charge to manage the steps definitions.
  */

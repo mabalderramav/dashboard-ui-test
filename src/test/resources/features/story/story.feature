@@ -33,5 +33,3 @@ Feature: Story Item Test
       | PROJECTS | AT01 project-01 |
     Then Verify the iterations quantity AT01 project-01
 
-
-

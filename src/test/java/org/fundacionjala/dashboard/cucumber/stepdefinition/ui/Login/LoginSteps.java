@@ -1,14 +1,16 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.Login;
 
+import java.util.Map;
+
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+
 import org.fundacionjala.dashboard.ui.pages.HomePage;
 import org.fundacionjala.dashboard.ui.pages.LoginPage;
 import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
 
-import java.util.Map;
-
 import static org.junit.Assert.assertTrue;
+
 
 /**
  * Class to manage the step definition for Login to Mach2 page.

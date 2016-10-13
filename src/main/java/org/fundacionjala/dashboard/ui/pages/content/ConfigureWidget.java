@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -94,18 +93,13 @@ public class ConfigureWidget extends AbstractBasePage {
      * @return the result of the configurations.
      */
     public final StoryItemTable clickSaveConfigurationStoryItem() {
-        try {
-            wait.until(ExpectedConditions.elementToBeClickable(saveButton));
-            wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
-                    By.cssSelector("div[data-key='Iteration'] div.ui div.text")));
-            saveButton.click();
-            return new StoryItemTable();
-        } catch (WebDriverException e) {
-            return clickSaveConfigurationStoryItem();
-        }
-//        wait.until(ExpectedConditions.elementToBeClickable(saveButton));
-//        saveButton.click();
-//        return new StoryItemTable();
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector("div[data-key='Iteration'] div.ui div.text")));
+        wait.until(ExpectedConditions.attributeToBeNotEmpty(
+                driver.findElement(By.cssSelector("div[data-key='Iteration'] div.ui input[type='hidden']")), "value"));
+        wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+        saveButton.click();
+        return new StoryItemTable();
     }
 
     /**

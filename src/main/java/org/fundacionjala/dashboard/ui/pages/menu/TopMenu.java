@@ -1,10 +1,7 @@
 package org.fundacionjala.dashboard.ui.pages.menu;
 
-import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
-import org.fundacionjala.dashboard.ui.pages.LoginPage;
-import org.fundacionjala.dashboard.ui.pages.content.BoardPage;
-import org.fundacionjala.dashboard.ui.pages.sidebar.SideBar;
-import org.fundacionjala.dashboard.utils.Environment;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
@@ -12,7 +9,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.concurrent.TimeUnit;
+import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
+import org.fundacionjala.dashboard.ui.pages.LoginPage;
+import org.fundacionjala.dashboard.ui.pages.content.BoardPage;
+import org.fundacionjala.dashboard.ui.pages.sidebar.SideBar;
+import org.fundacionjala.dashboard.utils.Environment;
 
 /**
  * Class to manage the Top menu of Mach2.
@@ -57,8 +58,8 @@ public class TopMenu extends AbstractBasePage {
      * This method clicks the user menu.
      */
     public void clickUserMenu() {
-        wait.until(ExpectedConditions.elementToBeClickable(userMenu));
-        userMenu.click();
+            wait.until(ExpectedConditions.elementToBeClickable(userMenu));
+            userMenu.click();
     }
 
     /**
