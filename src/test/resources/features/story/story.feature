@@ -14,7 +14,7 @@ Feature: Story Item Test
     And I send a POST request with list to /projects/[Project1.id]/stories
       | name            | current_state | estimate | story_type |
       | AT - 01 story01 | started       | 2        | feature    |
-      | AT - 01 story02 | started       | 3        | feature    |
+      | AT - 01 story02 | started       |          | bug        |
       | AT - 01 story03 | started       | 3        | feature    |
 
     And Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
