@@ -14,7 +14,7 @@ Feature: Delete project - Table Widget
     And Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
     And I add a table widget with the PROJECT option
       |  |  |
-    And I click Save button
+    And I click project Save button
 
   @deleteAllBoards
   Scenario: Verify a deleted project on PT, is not showed in the table widget on M2

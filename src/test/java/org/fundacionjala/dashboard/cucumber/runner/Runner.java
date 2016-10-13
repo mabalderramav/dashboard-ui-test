@@ -2,7 +2,10 @@ package org.fundacionjala.dashboard.cucumber.runner;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+import org.junit.AfterClass;
 import org.junit.runner.RunWith;
+
+import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 
 /**
  * Class to execute all feature tests.
@@ -23,4 +26,9 @@ import org.junit.runner.RunWith;
         }
 )
 public class Runner {
+
+    @AfterClass
+    public static void tearDown() {
+        AbstractBasePage.driver.quit();
+    }
 }

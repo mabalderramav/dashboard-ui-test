@@ -1,7 +1,10 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.dashboard;
 
+import java.util.Map;
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
+
 import org.fundacionjala.dashboard.ui.pages.content.BoardPage;
 import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
 import org.fundacionjala.dashboard.ui.pages.content.widget.EnumConfigure;
@@ -12,12 +15,12 @@ import org.fundacionjala.dashboard.ui.pages.content.widget.WizardWidget;
 import org.fundacionjala.dashboard.ui.pages.menu.Steps;
 import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
 
-import java.util.Map;
-
 /**
  * Class to manage Step definition  for table widget of features.project.
  */
 public class WidgetSteps {
+
+    public static final String PROJECT_OPT = "project";
 
     /**
      * Method to add a widget for a features.project.
@@ -52,10 +55,15 @@ public class WidgetSteps {
 
     /**
      * Method to click on the save button.
+     *
+     * @param configurationOption Identify where the save button is pressed
      */
-    @And("^I click Save button$")
-    public void iClickSaveButton() {
-        new ConfigureWidget().clickSaveConfigurationStoryItem();
-
+    @And("^I click (project|story) Save button$")
+    public void iClickSaveButton(final String configurationOption) {
+        if (configurationOption.equals(PROJECT_OPT)) {
+            new ConfigureWidget().clickSave();
+        } else {
+            new ConfigureWidget().clickSaveConfigurationStoryItem();
+        }
     }
 }

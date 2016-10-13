@@ -1,24 +1,25 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.story;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import cucumber.api.java.en.Then;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
-import org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertTable;
-import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
-import org.fundacionjala.dashboard.ui.pages.content.widget.TableWidget;
-import org.fundacionjala.dashboard.util.Utils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebElement;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
+import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
+import org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertTable;
+import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
+import org.fundacionjala.dashboard.ui.pages.content.widget.TableWidget;
+import org.fundacionjala.dashboard.util.Utils;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -142,7 +143,6 @@ public class StoryAsserts {
             assertEquals(map.get(key), strategyMap.get(key).executeAssertion());
         }
     }
-
 
     /**
      * Method to map the strategy fo make the assertions for story.

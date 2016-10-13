@@ -12,7 +12,7 @@ import org.fundacionjala.dashboard.utils.Environment;
  */
 public abstract class AbstractBasePage {
 
-    protected WebDriver driver;
+    public static WebDriver driver;
 
     protected WebDriverWait wait;
 

@@ -18,7 +18,7 @@ Feature: Project info widget
   Verify that a new project is added on a INFO in M2 when it is created on PT
     When I add a info widget with the PROJECT option
       |   |   |
-    And I click Save button
+    And I click project Save button
     Then Verify all information displayed in the widget
 
   @deleteAllProjects @deleteAllBoards
@@ -27,6 +27,6 @@ Feature: Project info widget
   The listed test cases Ids are executed into this scenario, this scenario cover all of them.
     When I add a info widget with the PROJECT option
       |  |  |
-    And I click Save button
+    And I click project Save button
     And I add all columns
     Then Verify all information displayed in the widget

@@ -62,6 +62,10 @@ public class ConfigureWidget extends AbstractBasePage {
             + "div.ui.clearing.secondary.basic.segment.wizard-modal-content")
     private WebElement popupWizard;
 
+    @FindBy(css = "div.menu.transition.visible  div.item")
+    private WebElement itemsDropDownList;
+
+    private By element = By.cssSelector("div.menu.transition.visible  div.item");
 
     /**
      * Sends a name project to a dropdown selector.
@@ -80,10 +84,8 @@ public class ConfigureWidget extends AbstractBasePage {
      */
     public final void autoCompleteIteration(final String iteration) {
         clickIteration();
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
-                By.cssSelector("div.menu.transition.visible  div.item")));
-        driver.findElements(By.cssSelector(
-                "div.menu.transition.visible  div.item"))
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(element));
+        driver.findElements(element)
                 .stream()
                 .filter(webElement -> webElement.getText().equals(iteration))
                 .findFirst().get().click();
@@ -95,8 +97,8 @@ public class ConfigureWidget extends AbstractBasePage {
      * @return the result of the configurations.
      */
     public final StoryItemTable clickSaveConfigurationStoryItem() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(
-                By.cssSelector("div[data-key='Iteration'] div.ui div.text")));
+//        wait.until(ExpectedConditions.presenceOfElementLocated(
+//                By.cssSelector("div[data-key='Iteration'] div.ui div.text")));
         wait.until(ExpectedConditions.attributeToBeNotEmpty(
                 driver.findElement(By.cssSelector("div[data-key='Iteration'] div.ui input[type='hidden']")), "value"));
         wait.until(ExpectedConditions.elementToBeClickable(saveButton));

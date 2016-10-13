@@ -20,10 +20,10 @@ Feature: Story table Test
 
     And Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
 
-  @deleteAllProjects @deleteAllBoards
+  @deleteAllProjects @deleteAllBoards @acceptance
   Scenario: C147-C148-C149-C150-C151_Verify all story information into TABLE widget is displayed in Mach2
     When I add a table widget with the STORY option
       | PROJECTS  | AT01 project-01 |
       | ITERATION | IT 7            |
-    And I click Save button
+    And I click story Save button
     Then Validate story table against pivotal story
