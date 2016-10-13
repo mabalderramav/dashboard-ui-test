@@ -2,7 +2,6 @@ package org.fundacionjala.dashboard.ui.pages.menu;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -34,7 +33,7 @@ public class TopMenu extends AbstractBasePage {
     @FindBy(css = "div.menu.transition.visible > a[class=\"item\"][href=\"/logout\"]")
     private WebElement logOutButton;
 
-    @FindBy(css = "div.menu.transition.visible > a[class=\"item\"][href=\"/profile\"]")
+    @FindBy(css = "div.menu.transition.visible > a[href=\"/profile\"]")
     private WebElement profileButton;
 
     @FindBy(css = "div.menu.transition.visible > a[class=\"item active selected\"][href=\"/profile\"]")
@@ -76,12 +75,7 @@ public class TopMenu extends AbstractBasePage {
      */
     public Profile clickOnProfileMenu() {
         clickUserMenu();
-        if (driver.findElements(
-                By.cssSelector("div.menu.transition.visible > a[class=\"item\"][href=\"/profile\"]")).size() > 0) {
-            profileButton.click();
-        } else {
-            profileSelectedButton.click();
-        }
+        profileButton.click();
         return new Profile();
     }
 
