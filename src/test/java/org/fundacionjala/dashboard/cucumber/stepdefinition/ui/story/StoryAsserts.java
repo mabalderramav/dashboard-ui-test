@@ -28,9 +28,9 @@ import static org.junit.Assert.assertTrue;
  * Class to manage Step definition  for table widget of Story features.
  */
 public class StoryAsserts {
+    public static final int TIME_TO_WAIT = 5000;
     private static final String CURRENT_ITERATION_NUMBER = "current_iteration_number";
     private static final String NAME = "name";
-    public static final int TIME_TO_WAIT = 5000;
     private ResourcesSteps resources;
     private List<WebElement> listProjects;
     private JSONArray obj;
@@ -150,18 +150,18 @@ public class StoryAsserts {
      * @param jsonPath the response values
      * @return the Map with the information to be validated.
      */
-    private Map<String, AssertTable> mapStrategyStoryWidget(final JsonPath jsonPath){
+    private Map<String, AssertTable> mapStrategyStoryWidget(final JsonPath jsonPath) {
         Map<String, AssertTable> strategyMap = new HashMap<>();
 
         Map<String, Object> jsonAdd = jsonPath.get();
 
-        if(!jsonAdd.containsKey("estimate")){
+        if (!jsonAdd.containsKey("estimate")) {
             jsonAdd.put("estimate", " ");
         }
 
         strategyMap.put(StoryParameters.NAME.toString(), () -> jsonPath.get("name"));
         strategyMap.put(StoryParameters.STATE.toString(), () -> jsonPath.get("current_state").toString());
-       strategyMap.put(StoryParameters.POINTS.toString(), () -> jsonAdd.get("estimate").toString());
+        strategyMap.put(StoryParameters.POINTS.toString(), () -> jsonAdd.get("estimate").toString());
         strategyMap.put(StoryParameters.TYPE.toString(), () -> jsonPath.get("story_type").toString());
         strategyMap.put(StoryParameters.OWNERS.toString(), () -> " ");
 
