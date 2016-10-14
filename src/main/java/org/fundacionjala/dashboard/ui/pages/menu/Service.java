@@ -1,14 +1,15 @@
 package org.fundacionjala.dashboard.ui.pages.menu;
 
-import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
+import org.fundacionjala.dashboard.ui.pages.Steps;
 
 /**
  * This class is in charge to handle services.
@@ -233,14 +234,12 @@ public class Service extends AbstractBasePage {
      * @param projectName Project name.
      */
     public void clickOnConfigureProject(final String projectType, final String projectName) {
-        List<WebElement> servicesList = columnServices.findElements(By.className("column"));
-
-        for (WebElement x : servicesList) {
-            if (x.findElement(By.cssSelector("div.sub.header.truncated.text")).getText().equals(projectType)
-                    && x.findElement(By.cssSelector("h4.ui.header  > [class=\"truncated text\"]"))
+        columnServices.findElements(By.className("column")).forEach(webElement -> {
+            if (webElement.findElement(By.cssSelector("div.sub.header.truncated.text")).getText().equals(projectType)
+                    && webElement.findElement(By.cssSelector("h4.ui.header  > [class=\"truncated text\"]"))
                     .getText().equals(projectName)) {
-                x.findElement(By.cssSelector("i.setting.link.icon")).click();
+                webElement.findElement(By.cssSelector("i.setting.link.icon")).click();
             }
-        }
+        });
     }
 }

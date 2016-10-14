@@ -1,10 +1,12 @@
 package org.fundacionjala.dashboard.ui.pages.content.widget;
 
-import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 
 /**
  * This is WidgetPage class.
@@ -25,10 +27,9 @@ public class WidgetPage extends AbstractBasePage {
         try {
             wait.until(ExpectedConditions.elementToBeClickable(specificWidget));
             specificWidget.click();
-        } catch (Exception e) {
+        } catch (WebDriverException e) {
             wait.until(ExpectedConditions.elementToBeClickable(specificWidget));
             specificWidget.click();
-            System.out.println("hola sip " + e.getMessage());
         }
         return new WizardWidget();
     }

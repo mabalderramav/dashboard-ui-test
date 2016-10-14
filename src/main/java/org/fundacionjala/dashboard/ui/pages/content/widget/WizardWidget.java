@@ -1,14 +1,15 @@
 package org.fundacionjala.dashboard.ui.pages.content.widget;
 
-import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
-import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
-import org.fundacionjala.dashboard.ui.pages.menu.Steps;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
+import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
+import org.fundacionjala.dashboard.ui.pages.Steps;
 
 /**
  * Class used to manage the most used options.
@@ -38,7 +39,7 @@ public class WizardWidget extends AbstractBasePage {
      * Method to select the 'Open project' options.
      */
     public void clickOpenProject() {
-        wait.until(ExpectedConditions.visibilityOf(projectButton));
+        wait.until(ExpectedConditions.elementToBeClickable(projectButton));
         projectButton.click();
     }
 
@@ -48,7 +49,7 @@ public class WizardWidget extends AbstractBasePage {
      * @return The 'Open story' option selected.
      */
     public ConfigureWidget clickOpenStoryItem() {
-        wait.until(ExpectedConditions.visibilityOf(storyButton));
+        wait.until(ExpectedConditions.elementToBeClickable(storyButton));
         storyButton.click();
         return new ConfigureWidget();
     }
@@ -59,7 +60,7 @@ public class WizardWidget extends AbstractBasePage {
      * @return the configuration page.
      */
     private ConfigureWidget clickOpenTaskBurnItem() {
-        wait.until(ExpectedConditions.visibilityOf(burnTaskButton));
+        wait.until(ExpectedConditions.elementToBeClickable(burnTaskButton));
         burnTaskButton.click();
         return new ConfigureWidget();
     }
@@ -70,7 +71,7 @@ public class WizardWidget extends AbstractBasePage {
      * @return the configuration page.
      */
     private ConfigureWidget clickOpenStoryTypeItem() {
-        wait.until(ExpectedConditions.visibilityOf(storyTypeButton));
+        wait.until(ExpectedConditions.elementToBeClickable(storyTypeButton));
         storyTypeButton.click();
         return new ConfigureWidget();
     }
@@ -81,7 +82,7 @@ public class WizardWidget extends AbstractBasePage {
      * @return the configuration page.
      */
     private ConfigureWidget clickOpenBurnItem() {
-        wait.until(ExpectedConditions.visibilityOf(burnButton));
+        wait.until(ExpectedConditions.elementToBeClickable(burnButton));
         burnButton.click();
         return new ConfigureWidget();
     }
@@ -92,7 +93,7 @@ public class WizardWidget extends AbstractBasePage {
      * @return the configuration page.
      */
     private ConfigureWidget clickOpenIteration() {
-        wait.until(ExpectedConditions.visibilityOf(iterationButton));
+        wait.until(ExpectedConditions.elementToBeClickable(iterationButton));
         iterationButton.click();
         return new ConfigureWidget();
     }

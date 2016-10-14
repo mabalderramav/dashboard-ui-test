@@ -1,9 +1,10 @@
 package org.fundacionjala.dashboard.ui.pages.content.widget;
 
-import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 
 /**
  * Class to config the table widget.
@@ -19,7 +20,7 @@ public class ConfigWidget extends AbstractBasePage {
      * Method to config the table features.project.
      *
      * @param type type of widget.
-     * @return the ProjectTableWidget object.
+     * @return {@link TypeWidget}.
      */
     public final TypeWidget clickSaveConfigurationProject(final Widget type) {
         TypeWidget typeWidget;

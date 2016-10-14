@@ -14,14 +14,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
+import org.fundacionjala.dashboard.ui.pages.Steps;
 import org.fundacionjala.dashboard.ui.pages.content.widget.EnumConfigure;
-import org.fundacionjala.dashboard.ui.pages.menu.Steps;
 
 /**
  * Class widget configurations.
  */
 public class ConfigureWidget extends AbstractBasePage {
 
+    public static final int WAIT_TIME = 2000;
     @FindBy(css = "div[data-key='Project'] div.ui.dropdown input.search")
     private WebElement autoCompleteProject;
 
@@ -72,7 +73,7 @@ public class ConfigureWidget extends AbstractBasePage {
      *
      * @param project is a string project name to select.
      */
-    public final void autoCompleteProject(final String project) {
+    public void autoCompleteProject(final String project) {
         autoCompleteProject.sendKeys(project);
         autoCompleteProject.sendKeys(Keys.ENTER);
     }
@@ -82,8 +83,13 @@ public class ConfigureWidget extends AbstractBasePage {
      *
      * @param iteration is a string iteration number to select.
      */
-    public final void autoCompleteIteration(final String iteration) {
+    public void autoCompleteIteration(final String iteration) {
         clickIteration();
+        try {
+            Thread.sleep(WAIT_TIME);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(element));
         driver.findElements(element)
                 .stream()
@@ -96,9 +102,9 @@ public class ConfigureWidget extends AbstractBasePage {
      *
      * @return the result of the configurations.
      */
-    public final StoryItemTable clickSaveConfigurationStoryItem() {
-//        wait.until(ExpectedConditions.presenceOfElementLocated(
-//                By.cssSelector("div[data-key='Iteration'] div.ui div.text")));
+    public StoryItemTable clickSaveConfigurationStoryItem() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.cssSelector("div[data-key='Iteration'] div.ui div.text")));
         wait.until(ExpectedConditions.attributeToBeNotEmpty(
                 driver.findElement(By.cssSelector("div[data-key='Iteration'] div.ui input[type='hidden']")), "value"));
         wait.until(ExpectedConditions.elementToBeClickable(saveButton));
@@ -109,7 +115,7 @@ public class ConfigureWidget extends AbstractBasePage {
     /**
      * Makes click to open the advanced configuration.
      */
-    public final void clickAdvancesDroopDown() {
+    public void clickAdvancesDroopDown() {
         wait.until(ExpectedConditions.elementToBeClickable(advancesDroopDown));
         advancesDroopDown.click();
     }
@@ -117,7 +123,7 @@ public class ConfigureWidget extends AbstractBasePage {
     /**
      * Changes the state to include and Iteration to doesn't include.
      */
-    public final void clickIncludeIterationButton() {
+    public void clickIncludeIterationButton() {
         wait.until(ExpectedConditions.elementToBeClickable(includeIterationButton));
         includeIterationButton.click();
     }
@@ -211,7 +217,7 @@ public class ConfigureWidget extends AbstractBasePage {
     /**
      * Makes click on the form save button.
      */
-    public final void clickSave() {
+    public void clickSave() {
         wait.until(ExpectedConditions.elementToBeClickable(saveButton));
         saveButton.click();
     }
@@ -219,46 +225,9 @@ public class ConfigureWidget extends AbstractBasePage {
     /**
      * Click to iteration dropdown selector.
      */
-    public final void clickIteration() {
+    public void clickIteration() {
         wait.until(ExpectedConditions.elementToBeClickable(autoCompleteIteration));
         autoCompleteIteration.click();
-    }
-
-    /**
-     * Create an strategy steps configuration options filling a map with
-     * all the existing configurations.
-     *
-     * @param configureMap is a map that contains all the configurations.
-     * @return the configure map with strategies.
-     */
-    private Map<EnumConfigure, Steps> strategyConfigureOption(final Map<EnumConfigure, String> configureMap) {
-
-        Map<EnumConfigure, Steps> strategyMap = new HashMap<>();
-        strategyMap.put(EnumConfigure.PROJECTS,
-                () -> autoCompleteProject(configureMap.get(EnumConfigure.PROJECTS)));
-        strategyMap.put(EnumConfigure.ITERATION,
-                () -> autoCompleteIteration(configureMap.get(EnumConfigure.ITERATION)));
-        strategyMap.put(EnumConfigure.ADVANCES,
-                this::clickAdvancesDroopDown);
-        strategyMap.put(EnumConfigure.TO_ITERATION,
-                () -> selectToIteration(configureMap.get(EnumConfigure.TO_ITERATION)));
-        strategyMap.put(EnumConfigure.LABEL,
-                () -> writeALabel(configureMap.get(EnumConfigure.LABEL)));
-        strategyMap.put(EnumConfigure.OWNER,
-                () -> selectOwner(configureMap.get(EnumConfigure.OWNER)));
-        strategyMap.put(EnumConfigure.INCLUDE_CURRENT_ITERATION,
-                this::clickIncludeIterationButton);
-        strategyMap.put(EnumConfigure.SHOW_WEEKENDS,
-                this::clickIncludeIterationButton);
-        strategyMap.put(EnumConfigure.NUMBER_LAST_ITERATION,
-                () -> fillNumberLastIterationTextField(configureMap.get(EnumConfigure.NUMBER_LAST_ITERATION)));
-        strategyMap.put(EnumConfigure.VELOCITY_ITERATIONS,
-                () -> selectVelocityIterations(configureMap.get(EnumConfigure.VELOCITY_ITERATIONS)));
-        strategyMap.put(EnumConfigure.AVERAGE_CALCULATION_METHOD,
-                () -> selectAverageMethodCalculation(configureMap.get(EnumConfigure.AVERAGE_CALCULATION_METHOD)));
-        strategyMap.put(EnumConfigure.STORY_TYPE,
-                () -> selectStoryType(configureMap.get(EnumConfigure.STORY_TYPE)));
-        return strategyMap;
     }
 
     /**
@@ -297,5 +266,42 @@ public class ConfigureWidget extends AbstractBasePage {
         wait.until(ExpectedConditions.elementToBeClickable(popupWizard));
         Actions action = new Actions(driver);
         action.moveToElement(popupWizard, positionX, positionY).click().build().perform();
+    }
+
+    /**
+     * Create an strategy steps configuration options filling a map with
+     * all the existing configurations.
+     *
+     * @param configureMap is a map that contains all the configurations.
+     * @return the configure map with strategies.
+     */
+    private Map<EnumConfigure, Steps> strategyConfigureOption(final Map<EnumConfigure, String> configureMap) {
+
+        Map<EnumConfigure, Steps> strategyMap = new HashMap<>();
+        strategyMap.put(EnumConfigure.PROJECTS,
+                () -> autoCompleteProject(configureMap.get(EnumConfigure.PROJECTS)));
+        strategyMap.put(EnumConfigure.ITERATION,
+                () -> autoCompleteIteration(configureMap.get(EnumConfigure.ITERATION)));
+        strategyMap.put(EnumConfigure.ADVANCES,
+                this::clickAdvancesDroopDown);
+        strategyMap.put(EnumConfigure.TO_ITERATION,
+                () -> selectToIteration(configureMap.get(EnumConfigure.TO_ITERATION)));
+        strategyMap.put(EnumConfigure.LABEL,
+                () -> writeALabel(configureMap.get(EnumConfigure.LABEL)));
+        strategyMap.put(EnumConfigure.OWNER,
+                () -> selectOwner(configureMap.get(EnumConfigure.OWNER)));
+        strategyMap.put(EnumConfigure.INCLUDE_CURRENT_ITERATION,
+                this::clickIncludeIterationButton);
+        strategyMap.put(EnumConfigure.SHOW_WEEKENDS,
+                this::clickIncludeIterationButton);
+        strategyMap.put(EnumConfigure.NUMBER_LAST_ITERATION,
+                () -> fillNumberLastIterationTextField(configureMap.get(EnumConfigure.NUMBER_LAST_ITERATION)));
+        strategyMap.put(EnumConfigure.VELOCITY_ITERATIONS,
+                () -> selectVelocityIterations(configureMap.get(EnumConfigure.VELOCITY_ITERATIONS)));
+        strategyMap.put(EnumConfigure.AVERAGE_CALCULATION_METHOD,
+                () -> selectAverageMethodCalculation(configureMap.get(EnumConfigure.AVERAGE_CALCULATION_METHOD)));
+        strategyMap.put(EnumConfigure.STORY_TYPE,
+                () -> selectStoryType(configureMap.get(EnumConfigure.STORY_TYPE)));
+        return strategyMap;
     }
 }

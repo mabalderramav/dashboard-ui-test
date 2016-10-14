@@ -12,7 +12,7 @@ import org.fundacionjala.dashboard.ui.pages.content.widget.EnumWizardWidget;
 import org.fundacionjala.dashboard.ui.pages.content.widget.Widget;
 import org.fundacionjala.dashboard.ui.pages.content.widget.WidgetPage;
 import org.fundacionjala.dashboard.ui.pages.content.widget.WizardWidget;
-import org.fundacionjala.dashboard.ui.pages.menu.Steps;
+import org.fundacionjala.dashboard.ui.pages.Steps;
 import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
 
 /**
@@ -48,7 +48,7 @@ public class WidgetSteps {
 
         // Execute the configurations if the table configuration is sent.
         ConfigureWidget configureWidget = new ConfigureWidget();
-        if (!newConfigureMap.isEmpty() && !newConfigureMap.containsKey(null)) {
+        if (newConfigureMap != null && !newConfigureMap.isEmpty() && !newConfigureMap.containsKey(null)) {
             configureWidget.setConfiguration(newConfigureMap);
         }
     }

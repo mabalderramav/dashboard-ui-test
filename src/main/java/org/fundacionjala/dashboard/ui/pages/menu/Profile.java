@@ -1,11 +1,10 @@
 package org.fundacionjala.dashboard.ui.pages.menu;
 
-import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
+import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
 
 /**
  * Class to view the user profile.
@@ -59,10 +58,9 @@ public class Profile extends AbstractBasePage {
      * This method delete all services.
      */
     public void deleteAllServices() {
-        List<WebElement> serviceList = serviceSection.findElements(By.className("column"));
-        for (WebElement webElement : serviceList) {
+       serviceSection.findElements(By.className("column")).forEach(webElement -> {
             webElement.findElement(By.cssSelector("i.remove.link.icon")).click();
             clickOKAlertMessage();
-        }
+        });
     }
 }

@@ -1,4 +1,4 @@
-package org.fundacionjala.dashboard.ui.pages.menu;
+package org.fundacionjala.dashboard.ui.pages;
 
 /**
  * The interface execute steps.
