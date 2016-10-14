@@ -105,8 +105,8 @@ public class ProjectAsserts {
      */
     private void executeListAssert(final List<Map<String, String>> widgetValues,
                                    final List<Response> responseList) {
-        for (int i = 0; i < responseList.size(); i++) {
-            JsonPath jsonPath = responseList.get(i).jsonPath();
+        for (Response response : responseList) {
+            JsonPath jsonPath = response.jsonPath();
             Map<String, String> row = Utils.findElementInArray(jsonPath.get(NAME), widgetValues);
             if (!row.isEmpty()) {
                 executeAssert(row, jsonPath);

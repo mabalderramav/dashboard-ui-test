@@ -5,7 +5,7 @@ import cucumber.api.java.en.When;
 import org.fundacionjala.dashboard.ui.pages.menu.Profile;
 import org.fundacionjala.dashboard.ui.pages.menu.Service;
 import org.fundacionjala.dashboard.ui.pages.menu.ServiceFieldStep;
-import org.fundacionjala.dashboard.ui.pages.menu.Steps;
+import org.fundacionjala.dashboard.ui.pages.Steps;
 import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
 
 import java.util.Map;

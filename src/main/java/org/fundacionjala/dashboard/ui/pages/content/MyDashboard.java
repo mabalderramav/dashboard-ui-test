@@ -1,7 +1,5 @@
 package org.fundacionjala.dashboard.ui.pages.content;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
@@ -44,11 +42,10 @@ public class MyDashboard extends AbstractBasePage {
      */
     public void deleteAllBoards() {
         wait.until(ExpectedConditions.visibilityOf(boardsList));
-        List<WebElement> allFormChildElements = boardsList.findElements(By.tagName("a"));
-        for (WebElement element : allFormChildElements) {
+        boardsList.findElements(By.tagName("a")).forEach(element -> {
             BoardOption boardOption = rightClickBoardCard(element);
             boardOption.deleteBoardMach();
-        }
+        });
     }
 
     /**
