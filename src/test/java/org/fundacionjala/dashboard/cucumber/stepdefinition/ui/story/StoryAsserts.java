@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import cucumber.api.java.en.Then;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -21,13 +23,13 @@ import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
 import org.fundacionjala.dashboard.ui.pages.content.widget.TableWidget;
 import org.fundacionjala.dashboard.util.Utils;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.fundacionjala.dashboard.cucumber.hooks.AssertionHooks.getAssertion;
 
 /**
  * Class to manage Step definition  for table widget of Story features.
  */
 public class StoryAsserts {
+    private static final Logger LOGGER = LogManager.getLogger(StoryAsserts.class);
     public static final int TIME_TO_WAIT = 5000;
     private static final String CURRENT_ITERATION_NUMBER = "current_iteration_number";
     private static final String NAME = "name";
@@ -57,7 +59,7 @@ public class StoryAsserts {
         obj = (JSONArray) new JSONParser().parse(resources.getResponseList()
                 .get(resources.getResponseList().size() - 1).jsonPath().prettify());
         listProjects = new ConfigureWidget().clickProjectDropdownField();
-        assertEquals(listProjects.size(), obj.size());
+        getAssertion().assertEquals(listProjects.size(), obj.size());
     }
 
     /**
@@ -67,7 +69,8 @@ public class StoryAsserts {
     @Then("^Verify all information displayed in the project dropdown field$")
     public void verifyAllInformationDisplayedInTheProjectDropdownField() {
         List<String> newListProjects = listProjects.stream().map(WebElement::getText).collect(Collectors.toList());
-        obj.forEach(element -> assertEquals(newListProjects.contains(((JSONObject) element).get("name")), true)
+        obj.forEach(element -> getAssertion().assertEquals(
+                newListProjects.contains(((JSONObject) element).get("name")), true)
         );
         new ConfigureWidget().clickOut();
     }
@@ -82,7 +85,7 @@ public class StoryAsserts {
         ConfigureWidget configureWidget = new ConfigureWidget();
         configureWidget.clickIteration();
         JsonPath jsonPath = Utils.findElementJson(projectName, resources.getResponseList());
-        assertEquals(configureWidget.getStoryIterationSize(), jsonPath.get(CURRENT_ITERATION_NUMBER));
+        getAssertion().assertEquals(configureWidget.getStoryIterationSize(), jsonPath.get(CURRENT_ITERATION_NUMBER));
         new ConfigureWidget().clickOut();
     }
 
@@ -100,6 +103,7 @@ public class StoryAsserts {
             List<Map<String, String>> tableProjectValuesLowers = tableWidget.getConvertLowerCase(tableProjectValues);
             executeListAssert(tableProjectValuesLowers, Utils.filterResponseByKind(responseList, kind));
         } catch (InterruptedException e) {
+            LOGGER.error("An interrupt occurred while the thread was sleeping.");
             e.printStackTrace();
         }
     }
@@ -112,8 +116,9 @@ public class StoryAsserts {
         try {
             Thread.sleep(TIME_TO_WAIT);
             List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
-            assertTrue(tableProjectValues.isEmpty());
+            getAssertion().assertTrue(tableProjectValues.isEmpty());
         } catch (InterruptedException e) {
+            LOGGER.error("An interrupt occurred while the thread was sleeping.");
             e.printStackTrace();
         }
     }
@@ -145,7 +150,7 @@ public class StoryAsserts {
         Map<String, AssertTable> strategyMap = mapStrategyStoryWidget(jsonPath);
         Set<String> keys = map.keySet();
         for (String key : keys) {
-            assertEquals(map.get(key), strategyMap.get(key).executeAssertion());
+            getAssertion().assertEquals(map.get(key), strategyMap.get(key).executeAssertion());
         }
     }
 

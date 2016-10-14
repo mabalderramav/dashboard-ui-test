@@ -43,7 +43,7 @@ public class ServiceHooks {
      * This method delete all services that there is registered into mach2.
      */
     @Before(value = "@deleteAllServices", order = EXECUTION_ORDER_THREE)
-    public void deleteAllservices() {
+    public void deleteAllServices() {
         HomePage homePage = new HomePage();
         TopMenu topMenu = homePage.goToTopMenu();
         Profile profile = topMenu.clickOnProfileMenu();

@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.fundacionjala.dashboard.cucumber.hooks.AssertionHooks.getAssertion;
 
 /**
  * This class is in charge to manage the steps definitions.
@@ -52,7 +52,7 @@ public class ResourcesSteps {
     @When("^I send a GET request to (.*)$")
     public void iSendAGetRequestTo(final String endPoint) {
         Response get = RequestManager.get(Mapper.mapEndpoint(endPoint));
-        assertEquals(STATUS_200, get.getStatusCode());
+        getAssertion().assertEquals(STATUS_200, get.getStatusCode());
         responseList.add(get);
     }
 
@@ -65,7 +65,7 @@ public class ResourcesSteps {
     @When("^I send a POST request to (.*)")
     public void iSendAPostRequestTo(final String endPoint, final Map<String, Object> jsonData) {
         Response post = RequestManager.post(Mapper.mapEndpoint(endPoint), jsonData);
-        assertEquals(STATUS_200, post.getStatusCode());
+        getAssertion().assertEquals(STATUS_200, post.getStatusCode());
         responseList.add(post);
     }
 
@@ -88,7 +88,7 @@ public class ResourcesSteps {
                 }
             });
             Response post = RequestManager.post(Mapper.mapEndpoint(endPoint), newJsonData);
-            assertEquals(STATUS_200, post.getStatusCode());
+            getAssertion().assertEquals(STATUS_200, post.getStatusCode());
             responseList.add(post);
         });
     }
@@ -102,7 +102,7 @@ public class ResourcesSteps {
     @When("^I send a PUT request to (.*)$")
     public void iSendAPutRequestTo(final String endPoint, final Map<String, Object> jsonData) {
         Response put = RequestManager.put(Mapper.mapEndpoint(endPoint), jsonData);
-        assertEquals(STATUS_200, put.getStatusCode());
+        getAssertion().assertEquals(STATUS_200, put.getStatusCode());
         responseList.add(put);
     }
 
@@ -114,7 +114,7 @@ public class ResourcesSteps {
     @When("^I send a DELETE request to (.*)$")
     public void iSendADeleteRequestTo(final String endPoint) {
         Response delete = RequestManager.delete(Mapper.mapEndpoint(endPoint));
-        assertEquals(STATUS_204, delete.getStatusCode());
+        getAssertion().assertEquals(STATUS_204, delete.getStatusCode());
         responseList.add(delete);
     }
 
