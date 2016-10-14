@@ -1,7 +1,9 @@
 package org.fundacionjala.dashboard.util;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import io.restassured.path.json.JsonPath;
@@ -25,10 +27,10 @@ public final class Utils {
      * @return a Map if the value is found.
      */
     public static Map<String, String> findElementInArray(final String value, final List<Map<String, String>> rowList) {
-        return rowList.stream()
+        Optional<Map<String, String>> element = rowList.stream()
                 .filter(e -> e.containsValue(value))
-                .findFirst()
-                .get();
+                .findFirst();
+        return element.isPresent() ? element.get() : new HashMap<>();
     }
 
     /**
