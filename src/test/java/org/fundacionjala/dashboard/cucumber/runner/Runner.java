@@ -5,7 +5,7 @@ import cucumber.api.junit.Cucumber;
 import org.junit.AfterClass;
 import org.junit.runner.RunWith;
 
-import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
+import org.fundacionjala.dashboard.ui.browser.DriverManager;
 
 /**
  * Class to execute all feature tests.
@@ -25,13 +25,20 @@ import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
                 "org.fundacionjala.dashboard.cucumber"
         }
 )
-public class Runner extends AbstractBasePage {
+public final class Runner {
+
+    /**
+     * Private constructor.
+     */
+    private Runner() {
+
+    }
 
     /**
      * Method to Close the driver after the execution.
      */
     @AfterClass
     public static void tearDown() {
-        AbstractBasePage.driver.quit();
+        DriverManager.getInstance().getDriver().quit();
     }
 }
