@@ -9,7 +9,7 @@ import org.fundacionjala.dashboard.ui.pages.HomePage;
 import org.fundacionjala.dashboard.ui.pages.LoginPage;
 import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
 
-import static org.junit.Assert.assertTrue;
+import static org.fundacionjala.dashboard.cucumber.hooks.AssertionHooks.getAssertion;
 
 
 /**
@@ -37,6 +37,6 @@ public class LoginSteps {
     @Then("^I will have a user logged$")
     public void iWillBeInTheHomepage() {
         topMenu = homePage.goToTopMenu();
-        assertTrue(topMenu.isUserMenuPresent());
+        getAssertion().assertTrue(topMenu.isUserMenuPresent());
     }
 }

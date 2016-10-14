@@ -19,7 +19,7 @@ public class LoginPage extends AbstractBasePage {
     private WebElement passwordTextField;
 
     @FindBy(css = "button.ui.right.floated.blue.submit.button")
-    private WebElement nextSigninButton;
+    private WebElement nextSigningButton;
 
     /**
      * This method set the username in the text field.
@@ -47,7 +47,7 @@ public class LoginPage extends AbstractBasePage {
      * @return The home page.
      */
     public HomePage clickNextButton() {
-        nextSigninButton.click();
+        nextSigningButton.click();
         return new HomePage();
     }
 
@@ -87,7 +87,7 @@ public class LoginPage extends AbstractBasePage {
             homePage = new HomePage();
             TopMenu topMenu = homePage.goToTopMenu();
             if (!topMenu.isUserLogged(topMenu.getUserName())) {
-                LoginPage loginPage = topMenu.logout();
+                topMenu.logout();
                 homePage = loginAs(userName, password);
             }
         } catch (WebDriverException e) {

@@ -280,8 +280,9 @@ public class ConfigureWidget extends AbstractBasePage {
      * @return integer whit the quantity.
      */
     public Integer getStoryIterationSize() {
-        List<WebElement> storyIterationSize = driver.findElements(By.cssSelector(
-                "div.menu.transition.visible  div.item"))
+        By locator = By.cssSelector("div.menu.transition.visible div.item");
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+        List<WebElement> storyIterationSize = driver.findElements(locator)
                 .stream()
                 .filter(webElement -> webElement.getText().contains("IT"))
                 .collect(Collectors.toList());

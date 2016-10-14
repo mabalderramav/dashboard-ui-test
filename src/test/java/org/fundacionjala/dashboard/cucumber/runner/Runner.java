@@ -1,16 +1,14 @@
 package org.fundacionjala.dashboard.cucumber.runner;
 
 import cucumber.api.CucumberOptions;
-import cucumber.api.junit.Cucumber;
-import org.junit.AfterClass;
-import org.junit.runner.RunWith;
 
+import cucumber.api.testng.AbstractTestNGCucumberTests;
 import org.fundacionjala.dashboard.ui.browser.DriverManager;
+import org.testng.annotations.AfterClass;
 
 /**
  * Class to execute all feature tests.
  */
-@RunWith(Cucumber.class)
 @CucumberOptions(
         monochrome = true,
         format = {"pretty",
@@ -25,7 +23,7 @@ import org.fundacionjala.dashboard.ui.browser.DriverManager;
                 "org.fundacionjala.dashboard.cucumber"
         }
 )
-public final class Runner {
+public final class Runner extends AbstractTestNGCucumberTests {
 
     /**
      * Private constructor.

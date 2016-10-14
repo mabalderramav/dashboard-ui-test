@@ -17,8 +17,7 @@ import org.fundacionjala.dashboard.ui.pages.content.widget.TypeWidget;
 import org.fundacionjala.dashboard.util.Utils;
 import org.fundacionjala.dashboard.utils.DataTimeManager;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.fundacionjala.dashboard.cucumber.hooks.AssertionHooks.getAssertion;
 
 /**
  * Class to manage Step definition  for table widget of features.project.
@@ -54,7 +53,7 @@ public class ProjectAsserts {
      */
     @Then("^All displayed projects should be the same that I sent in the request$")
     public void iExpectAllDisplayedProjectsInMachAreTheSameThatISentInTheRequest() {
-        assertEquals(resources.getResponseList().size(), tableWidget.getDataFromWidget().size());
+        getAssertion().assertEquals(resources.getResponseList().size(), tableWidget.getDataFromWidget().size());
     }
 
     /**
@@ -63,7 +62,7 @@ public class ProjectAsserts {
     @Then("^I expect the columns size should be the by default$")
     public void iExpectTheColumnsSizeShouldBe() {
         final int columnsByDefault = ProjectParameters.values().length;
-        assertEquals(columnsByDefault, tableWidget.countDisplayedColumns());
+        getAssertion().assertEquals(columnsByDefault, tableWidget.countDisplayedColumns());
     }
 
     /**
@@ -94,7 +93,7 @@ public class ProjectAsserts {
     @Then("^I expect an empty table project widget$")
     public void iExpectAnEmptyTableProjectWidget() {
         List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
-        assertTrue(tableProjectValues.isEmpty());
+        getAssertion().assertTrue(tableProjectValues.isEmpty());
     }
 
     /**
@@ -125,7 +124,7 @@ public class ProjectAsserts {
         Set<String> keys = map.keySet();
         for (String key : keys) {
             String expected = strategyMap.get(key).executeAssertion();
-            assertEquals(map.get(key), expected);
+            getAssertion().assertEquals(map.get(key), expected);
         }
     }
 

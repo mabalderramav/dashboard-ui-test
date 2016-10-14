@@ -1,10 +1,10 @@
 package org.fundacionjala.dashboard.unittest;
 
-import org.junit.Test;
+import static org.fundacionjala.dashboard.cucumber.hooks.AssertionHooks.getAssertion;
 
 import org.fundacionjala.dashboard.utils.DataTimeManager;
+import org.testng.annotations.Test;
 
-import static org.junit.Assert.assertEquals;
 
 /**
  * Created by ErickaViraca on 9/22/2016.
@@ -21,7 +21,7 @@ public class DataTimeManagerTest {
     @Test
     public final void testDataTime() {
         expectedValue = "2016-08-23";
-        assertEquals(expectedValue, DataTimeManager.getDataTimeForCreateAProject());
+        getAssertion().assertEquals(expectedValue, DataTimeManager.getDataTimeForCreateAProject());
     }
 
     /**
@@ -30,7 +30,7 @@ public class DataTimeManagerTest {
     @Test
     public final void testParserDataTimeToFirstFormat() {
         expectedValue = "May 30, 2016";
-        assertEquals(expectedValue, DataTimeManager.parserDataTimeToFirstFormat(dataTimeFirstFormat));
+        getAssertion().assertEquals(expectedValue, DataTimeManager.parserDataTimeToFirstFormat(dataTimeFirstFormat));
     }
 
     /**
@@ -39,7 +39,7 @@ public class DataTimeManagerTest {
     @Test
     public final void testParserDataTimeToSecondFormat() {
         expectedValue = "Sep 13, 2016";
-        assertEquals(expectedValue, DataTimeManager.parserDataTimeToSecondFormat(dataTimeSecondFormat));
+        getAssertion().assertEquals(expectedValue, DataTimeManager.parserDataTimeToSecondFormat(dataTimeSecondFormat));
     }
 
 }

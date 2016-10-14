@@ -2,6 +2,8 @@ package org.fundacionjala.dashboard.ui.pages.menu;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -20,6 +22,8 @@ import org.fundacionjala.dashboard.utils.Environment;
 public class TopMenu extends AbstractBasePage {
 
     public static final int DURATION = 3;
+
+    private static final Logger LOGGER = LogManager.getLogger(TopMenu.class);
 
     @FindBy(css = "a.dash.tablet.computer.only.ui.needsclick.dropdown.item")
     private WebElement menuBoard;
@@ -57,8 +61,8 @@ public class TopMenu extends AbstractBasePage {
      * This method clicks the user menu.
      */
     public void clickUserMenu() {
-            wait.until(ExpectedConditions.elementToBeClickable(userMenu));
-            userMenu.click();
+        wait.until(ExpectedConditions.elementToBeClickable(userMenu));
+        userMenu.click();
     }
 
     /**
@@ -111,6 +115,7 @@ public class TopMenu extends AbstractBasePage {
             wait.withTimeout(DURATION, TimeUnit.SECONDS);
             userLogged = this.userMenu.getText();
         } catch (NoSuchElementException e) {
+            LOGGER.error("Couldn't find the user name on top menu");
             throw new WebDriverException(e);
         } finally {
             driver.manage().timeouts().implicitlyWait(Environment.getInstance().getTimeout(), TimeUnit.SECONDS);
