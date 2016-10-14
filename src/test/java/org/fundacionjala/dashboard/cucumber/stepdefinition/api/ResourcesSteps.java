@@ -5,6 +5,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import io.restassured.response.Response;
 
+import org.apache.commons.lang3.StringUtils;
 import org.fundacionjala.dashboard.api.Mapper;
 import org.fundacionjala.dashboard.api.RequestManager;
 
@@ -82,7 +83,7 @@ public class ResourcesSteps {
             Map<String, Object> newJsonData = new LinkedHashMap<>(jsonData);
 
             jsonData.forEach((key, value) -> {
-                if (value.equals("")) {
+                if (StringUtils.isEmpty(String.valueOf(value))) {
                     newJsonData.remove(key, value);
                 }
             });

@@ -93,10 +93,15 @@ public class StoryAsserts {
      */
     @Then("^Validate (story|project) table against pivotal story$")
     public void allInformationOfPivotalTrackerStoryShouldBeDisplayedInStoryTableWidgetOfMach(final String kind) {
-        List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
-        List<Response> responseList = resources.getResponseList();
-        List<Map<String, String>> tableProjectValuesLowers = tableWidget.getConvertLowerCase(tableProjectValues);
-        executeListAssert(tableProjectValuesLowers, Utils.filterResponseByKind(responseList, kind));
+        try {
+            Thread.sleep(TIME_TO_WAIT);
+            List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
+            List<Response> responseList = resources.getResponseList();
+            List<Map<String, String>> tableProjectValuesLowers = tableWidget.getConvertLowerCase(tableProjectValues);
+            executeListAssert(tableProjectValuesLowers, Utils.filterResponseByKind(responseList, kind));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
