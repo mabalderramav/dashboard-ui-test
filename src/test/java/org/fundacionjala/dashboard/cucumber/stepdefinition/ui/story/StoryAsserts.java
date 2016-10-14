@@ -59,6 +59,7 @@ public class StoryAsserts {
         obj = (JSONArray) new JSONParser().parse(resources.getResponseList()
                 .get(resources.getResponseList().size() - 1).jsonPath().prettify());
         listProjects = new ConfigureWidget().clickProjectDropdownField();
+
         getAssertion().assertEquals(listProjects.size(), obj.size());
     }
 
@@ -85,6 +86,8 @@ public class StoryAsserts {
         ConfigureWidget configureWidget = new ConfigureWidget();
         configureWidget.clickIteration();
         JsonPath jsonPath = Utils.findElementJson(projectName, resources.getResponseList());
+        LOGGER.info("Iterations quantity displayed in match2: " + configureWidget.getStoryIterationSize());
+        LOGGER.info("Iterations quantity displayed in pivotal response: " + jsonPath.get(CURRENT_ITERATION_NUMBER));
         getAssertion().assertEquals(configureWidget.getStoryIterationSize(), jsonPath.get(CURRENT_ITERATION_NUMBER));
         new ConfigureWidget().clickOut();
     }
@@ -116,6 +119,7 @@ public class StoryAsserts {
         try {
             Thread.sleep(TIME_TO_WAIT);
             List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
+            LOGGER.info("Story quantity values on table widget: " + tableProjectValues.size());
             getAssertion().assertTrue(tableProjectValues.isEmpty());
         } catch (InterruptedException e) {
             LOGGER.error("An interrupt occurred while the thread was sleeping.");
@@ -150,6 +154,8 @@ public class StoryAsserts {
         Map<String, AssertTable> strategyMap = mapStrategyStoryWidget(jsonPath);
         Set<String> keys = map.keySet();
         for (String key : keys) {
+            LOGGER.info("Current element value from match2: " + map.get(key));
+            LOGGER.info("Current element value from json response: " + strategyMap.get(key).executeAssertion());
             getAssertion().assertEquals(map.get(key), strategyMap.get(key).executeAssertion());
         }
     }

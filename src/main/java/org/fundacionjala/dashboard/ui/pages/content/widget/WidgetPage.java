@@ -1,5 +1,7 @@
 package org.fundacionjala.dashboard.ui.pages.content.widget;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
@@ -12,6 +14,7 @@ import org.fundacionjala.dashboard.ui.pages.AbstractBasePage;
  * This is WidgetPage class.
  */
 public class WidgetPage extends AbstractBasePage {
+    private static final Logger LOGGER = LogManager.getLogger(WidgetPage.class);
 
     @FindBy(css = "div.widgets.list")
     private WebElement widgetList;
@@ -28,8 +31,8 @@ public class WidgetPage extends AbstractBasePage {
             wait.until(ExpectedConditions.elementToBeClickable(specificWidget));
             specificWidget.click();
         } catch (WebDriverException e) {
-            wait.until(ExpectedConditions.elementToBeClickable(specificWidget));
-            specificWidget.click();
+            LOGGER.info("Waiting for widget element to be clickable");
+            clickWidgetType(type);
         }
         return new WizardWidget();
     }

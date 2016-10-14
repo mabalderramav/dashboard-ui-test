@@ -1,4 +1,6 @@
-@deleteAllServices @addPivotalTrackerService @softAssert
+#TestCase: Verify that all projects from Pivotal Tracker are listed on the DropDown menu on a new UserStory widget.Feature:
+
+@deleteAllServices @addPivotalTrackerService
 Feature: Story Item Test
 
   Background: Preconditions For Story Config
@@ -14,7 +16,7 @@ Feature: Story Item Test
     And I send a POST request with list to /projects/[Project1.id]/stories
       | name            | current_state | estimate | story_type |
       | AT - 01 story01 | started       | 2        | feature    |
-      | AT - 01 story02 | started       |          | bug        |
+      | AT - 01 story02 | started       | 3        | feature    |
       | AT - 01 story03 | started       | 3        | feature    |
 
     And Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
@@ -26,11 +28,3 @@ Feature: Story Item Test
     And I send a GET request to /projects
     Then Verify the projects quantity
     And Verify all information displayed in the project dropdown field
-
-  @deleteAllProjects @deleteAllBoards
-  Scenario: C152_Verify that the iteration count showed to 'iteration' drop down list on M2 is the same as on PT
-    When I add a table widget with the STORY option
-      | PROJECTS | AT01 project-01 |
-    Then Verify the iterations quantity AT01 project-01
-    And Consolidate all soft assert results
-

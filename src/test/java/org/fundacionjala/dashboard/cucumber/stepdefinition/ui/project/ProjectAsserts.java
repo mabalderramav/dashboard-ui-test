@@ -9,6 +9,8 @@ import cucumber.api.java.en.Then;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
 import org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertTable;
 import org.fundacionjala.dashboard.ui.pages.content.widget.InfoWidget;
@@ -18,12 +20,13 @@ import org.fundacionjala.dashboard.util.Utils;
 import org.fundacionjala.dashboard.utils.DataTimeManager;
 
 import static org.fundacionjala.dashboard.cucumber.hooks.AssertionHooks.getAssertion;
+import static org.fundacionjala.dashboard.cucumber.stepdefinition.ui.story.StoryAsserts.TIME_TO_WAIT;
 
 /**
  * Class to manage Step definition  for table widget of features.project.
  */
 public class ProjectAsserts {
-
+    private static final Logger LOGGER = LogManager.getLogger(ProjectAsserts.class);
     private static final String NAME = "name";
     private ResourcesSteps resources;
     private TableWidget tableWidget;
@@ -53,6 +56,8 @@ public class ProjectAsserts {
      */
     @Then("^All displayed projects should be the same that I sent in the request$")
     public void iExpectAllDisplayedProjectsInMachAreTheSameThatISentInTheRequest() {
+        LOGGER.info("Project quantity displayed in match2: " + tableWidget.getDataFromWidget().size());
+        LOGGER.info("Project quantity displayed in pivotal tracker: " + resources.getResponseList().size());
         getAssertion().assertEquals(resources.getResponseList().size(), tableWidget.getDataFromWidget().size());
     }
 
@@ -62,6 +67,8 @@ public class ProjectAsserts {
     @Then("^I expect the columns size should be the by default$")
     public void iExpectTheColumnsSizeShouldBe() {
         final int columnsByDefault = ProjectParameters.values().length;
+        LOGGER.info("Column size displayed in table widget match2: " + tableWidget.countDisplayedColumns());
+        LOGGER.info("Column size sent by parameters: " + columnsByDefault);
         getAssertion().assertEquals(columnsByDefault, tableWidget.countDisplayedColumns());
     }
 
@@ -81,10 +88,16 @@ public class ProjectAsserts {
      */
     @Then("^Validate project table against last response pivotal project$")
     public void validateLastResponseFromPivotal() {
-        List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
-        Response responseList = resources.getResponseList().get(resources.getResponseList().size() - 1);
-        Map<String, String> row = Utils.findElementInArray(responseList.jsonPath().get(NAME), tableProjectValues);
-        executeAssert(row, responseList.jsonPath());
+        try {
+            Thread.sleep(TIME_TO_WAIT);
+            List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
+            Response responseList = resources.getResponseList().get(resources.getResponseList().size() - 1);
+            Map<String, String> row = Utils.findElementInArray(responseList.jsonPath().get(NAME), tableProjectValues);
+            executeAssert(row, responseList.jsonPath());
+        } catch (InterruptedException e) {
+            LOGGER.error("An interrupt occurred while the thread was sleeping.");
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -93,6 +106,7 @@ public class ProjectAsserts {
     @Then("^I expect an empty table project widget$")
     public void iExpectAnEmptyTableProjectWidget() {
         List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
+        LOGGER.info("Project table widget data quantity: " + tableProjectValues.size());
         getAssertion().assertTrue(tableProjectValues.isEmpty());
     }
 
@@ -124,6 +138,8 @@ public class ProjectAsserts {
         Set<String> keys = map.keySet();
         for (String key : keys) {
             String expected = strategyMap.get(key).executeAssertion();
+            LOGGER.info("Current element value from match2: " + map.get(key));
+            LOGGER.info("Current element value from json response: " + expected);
             getAssertion().assertEquals(map.get(key), expected);
         }
     }
