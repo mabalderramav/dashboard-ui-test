@@ -15,7 +15,7 @@ Feature: Project table widget
     The listed test cases Ids are executed into this scenario, this scenario cover all of them.
     When I add a table widget with the PROJECT option
       |  |  |
-    And I click Save button
+    And I click project Save button
     Then All displayed projects should be the same that I sent in the request
     And I expect the columns size should be the by default
     And Validate project table against pivotal project
