@@ -30,7 +30,11 @@ public final class Utils {
         Optional<Map<String, String>> element = rowList.stream()
                 .filter(e -> e.containsValue(value))
                 .findFirst();
-        return element.isPresent() ? element.get() : new HashMap<>();
+        if (element.isPresent()) {
+            return element.get();
+        } else {
+            return new HashMap<>();
+        }
     }
 
     /**
