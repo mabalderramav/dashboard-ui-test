@@ -1,4 +1,4 @@
-@deleteAllProjects @deleteAllServices @addPivotalTrackerService
+@deleteAllProjects @deleteAllServices @addPivotalTrackerService @softAssert
 Feature: Delete project - Table Widget
 
   Background: create Project in pivotal tracker and synchronise with Mach2
@@ -28,3 +28,4 @@ Feature: Delete project - Table Widget
       | point_scale | 0,1,2,3,5,8 |
     And Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
     Then Validate project table against last response pivotal project
+    And Consolidate all soft assert results

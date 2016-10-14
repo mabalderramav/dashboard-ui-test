@@ -99,6 +99,7 @@ public class Service extends AbstractBasePage {
     public Profile clickSaveButton() {
         saveButton.click();
         driver.navigate().refresh();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("i.green")));
         return new Profile();
     }
 

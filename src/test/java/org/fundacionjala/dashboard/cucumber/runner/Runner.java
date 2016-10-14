@@ -36,7 +36,7 @@ public final class Runner extends AbstractTestNGCucumberTests {
      * Method to Close the driver after the execution.
      */
     @AfterClass
-    public static void tearDown() {
+    public void tearDown() {
         DriverManager.getInstance().getDriver().quit();
     }
 }
