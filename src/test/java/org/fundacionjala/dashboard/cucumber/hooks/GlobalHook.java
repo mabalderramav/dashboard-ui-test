@@ -12,18 +12,14 @@ import org.openqa.selenium.TakesScreenshot;
 public class GlobalHook {
     /**
      * Takes a screenshot after the scenario failed.
-     * @param scenario
+     *
+     * @param scenario The current scenario.
      */
-    @After(order = 10)
-    public void tearDown(Scenario scenario) {
+    @After
+    public void tearDown(final Scenario scenario) {
         if (scenario.isFailed()) {
             final byte[] screenshot = ((TakesScreenshot) DriverManager.getInstance().getDriver())
                     .getScreenshotAs(OutputType.BYTES);
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             scenario.embed(screenshot, "image/png");
         }
     }
