@@ -25,8 +25,10 @@ public final class DriverFactory {
         switch (browser) {
             case CHROME:
                 return new Chrome();
-            case SAFARI:
-                return new Safari();
+            case BROWSERSTACK:
+                return new BrowserStack();
+            case SAUCELABS:
+                return new SauceLabs();
             default:
                 throw new WebDriverException(BROWSER_NOT_FOUND_MSG);
         }

@@ -5,5 +5,6 @@ package org.fundacionjala.dashboard.ui.browser;
  */
 public enum Browser {
     CHROME,
-    SAFARI
+    BROWSERSTACK,
+    SAUCELABS
 }

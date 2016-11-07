@@ -67,6 +67,17 @@ task executeFeatures() {
                 jvmArgs = ["-Dcucumber.options=" + cucumberOptions]
                 jvmArgs = ["-Dtoken=" + token]
                 jvmArgs = ["-Dproxy=" + proxy]
+                jvmArgs = ["-Dhost=" + host]
+                jvmArgs = ["-Dport=" + port]
+                jvmArgs = ["-Duser=" + user]
+                jvmArgs = ["-Dpassword=" + password]
+                jvmArgs = ["-DremoteUserName=" + remoteUserName]
+                jvmArgs = ["-DremoteKey=" + remoteKey]
+                jvmArgs = ["-DremoteBrowser=" + remoteBrowser]
+                jvmArgs = ["-DremoteBrowserVersion=" + remoteBrowserVersion]
+                jvmArgs = ["-DremotePlatformVersion=" + remotePlatformVersion]
+                jvmArgs = ["-DremotePlatform=" + remotePlatform]
+                jvmArgs = ["-DremoteResolution=" + remoteResolution]
             }
         } catch (Exception e) {
             //In order to avoid FAILURE: Build failed with an exception.

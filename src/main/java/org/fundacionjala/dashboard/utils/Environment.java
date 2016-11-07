@@ -1,19 +1,20 @@
 package org.fundacionjala.dashboard.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 /**
  * This class is in charge to set the default  parameters to
  * establishes the connection with pivotal tracker.
  */
 public final class Environment {
+
 
     private static final Logger LOGGER = LogManager.getLogger(Environment.class);
 
@@ -25,15 +26,26 @@ public final class Environment {
 
     private static final String AUTHENTICATION_BASE_URI = "authentication.baseURI";
 
-    private static final String PRIMARY_AUTHENTICATION_USER = "primaryAuthentication.user";
+    private static final String PRIMARY_AUTHENTICATION_USER = "user";
 
-    private static final String PRIMARY_AUTHENTICATION_PASS = "primaryAuthentication.password";
+    private static final String PRIMARY_AUTHENTICATION_PASS = "password";
 
     private static final String AUTHENTICATION_BASE_URL = "authentication.baseURL";
 
-    private static final String AUTHENTICATION_BROWSER = "authentication.browser";
+    private static final String AUTHENTICATION_BROWSER = "browser";
 
     private static final String TIMEOUT = "timeout";
+
+    private static final String REMOTE_USER_NAME = "remoteUserName";
+
+    private static final String REMOTE_KEY = "remoteKey";
+    private static final String HOST = "host";
+    private static final String PORT = "port";
+    private static final String REMOTE_BROWSER = "remoteBrowser";
+    private static final String REMOTE_BROWSER_VERSION = "remoteBrowserVersion";
+    private static final String REMOTE_PLATFORM = "remotePlatform";
+    private static final String REMOTE_PLATFORM_VERSION = "remotePlatformVersion";
+    private static final String REMOTE_RESOLUTION = "remoteResolution";
 
     private static Environment environment;
 
@@ -150,5 +162,86 @@ public final class Environment {
      */
     public String getBaseUrl() {
         return getEnv(AUTHENTICATION_BASE_URL);
+    }
+
+    /**
+     * Get the remote user name.
+     *
+     * @return String user name .
+     */
+    public String getRemoteUserName() {
+        return getEnv(REMOTE_USER_NAME);
+    }
+
+    /**
+     * Get the remote key.
+     *
+     * @return String key.
+     */
+    public String getRemoteKey() {
+        return getEnv(REMOTE_KEY);
+    }
+
+    /**
+     * Get the proxy host.
+     *
+     * @return String proxy host.
+     */
+    public String getHost() {
+        return getEnv(HOST);
+    }
+
+    /**
+     * Get the proxy port.
+     *
+     * @return String proxy port.
+     */
+    public String getPort() {
+        return getEnv(PORT);
+    }
+
+    /**
+     * Get the remote browser.
+     *
+     * @return String remote browser.
+     */
+    public String getRemoteBrowser() {
+        return getEnv(REMOTE_BROWSER);
+    }
+
+    /**
+     * Get the remote browser version.
+     *
+     * @return String remote browser version.
+     */
+    public String getRemoteBrowserVersion() {
+        return getEnv(REMOTE_BROWSER_VERSION);
+    }
+
+    /**
+     * Get the remote platform.
+     *
+     * @return String remote platform.
+     */
+    public String getRemotePlatform() {
+        return getEnv(REMOTE_PLATFORM);
+    }
+
+    /**
+     * Get the remote platform version.
+     *
+     * @return String remote platform version.
+     */
+    public String getRemotePlatformVersion() {
+        return getEnv(REMOTE_PLATFORM_VERSION);
+    }
+
+    /**
+     * Get the remote resolution.
+     *
+     * @return String remote resolution.
+     */
+    public String getRemoteResolution() {
+        return getEnv(REMOTE_RESOLUTION);
     }
 }
