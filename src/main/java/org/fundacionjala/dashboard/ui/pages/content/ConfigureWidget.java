@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.fundacionjala.dashboard.ui.pages.content.widget.TableWidget;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -102,14 +103,14 @@ public class ConfigureWidget extends AbstractBasePage {
      *
      * @return the result of the configurations.
      */
-    public StoryItemTable clickSaveConfigurationStoryItem() {
+    public TableWidget clickSaveConfigurationStoryItem() {
         wait.until(ExpectedConditions.presenceOfElementLocated(
                 By.cssSelector("div[data-key='Iteration'] div.ui div.text")));
         wait.until(ExpectedConditions.attributeToBeNotEmpty(
                 driver.findElement(By.cssSelector("div[data-key='Iteration'] div.ui input[type='hidden']")), "value"));
         wait.until(ExpectedConditions.elementToBeClickable(saveButton));
         saveButton.click();
-        return new StoryItemTable();
+        return new TableWidget();
     }
 
     /**
@@ -207,11 +208,8 @@ public class ConfigureWidget extends AbstractBasePage {
      */
     public void setConfiguration(final Map<EnumConfigure, String> configureMap) {
         Map<EnumConfigure, Steps> strategyOption = strategyConfigureOption(configureMap);
-
         Set<EnumConfigure> keys = configureMap.keySet();
-        for (EnumConfigure key : keys) {
-            strategyOption.get(key).executeStep();
-        }
+        keys.forEach(key->strategyOption.get(key).executeStep());
     }
 
     /**
@@ -238,9 +236,8 @@ public class ConfigureWidget extends AbstractBasePage {
     public List<WebElement> clickProjectDropdownField() {
         wait.until(ExpectedConditions.elementToBeClickable(autoCompleteProject));
         autoCompleteProject.click();
-        List<WebElement> allProjectElements = driver.findElements(By.cssSelector("div[data-key='Project'] "
+        return driver.findElements(By.cssSelector("div[data-key='Project'] "
                 + "div.ui.dropdown div.menu div"));
-        return allProjectElements;
     }
 
     /**

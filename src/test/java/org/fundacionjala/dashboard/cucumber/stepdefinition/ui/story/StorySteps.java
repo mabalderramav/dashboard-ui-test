@@ -4,7 +4,6 @@ import cucumber.api.java.en.When;
 
 import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
 import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
-import org.fundacionjala.dashboard.ui.pages.content.StoryItemTable;
 import org.fundacionjala.dashboard.ui.pages.content.widget.WidgetPage;
 import org.fundacionjala.dashboard.ui.pages.content.widget.WizardWidget;
 
@@ -27,7 +26,7 @@ public class StorySteps {
     public void iSelectTheProjectOption() {
         wizardWidget = widgetPage.clickWidgetType(TABLE);
         ConfigureWidget storyItemPage = wizardWidget.clickOpenStoryItem();
-        StoryItemTable storyItemTable = storyItemPage.clickSaveConfigurationStoryItem();
+        storyItemPage.clickSaveConfigurationStoryItem();
     }
 
     /**
@@ -36,6 +35,6 @@ public class StorySteps {
     @When("^I deploy the iteration dropdown field$")
     public void iDeployTheIterationDropdownField() {
         wizardWidget = widgetPage.clickWidgetType(TABLE);
-        ConfigureWidget storyItemPage = wizardWidget.clickOpenStoryItem();
+        wizardWidget.clickOpenStoryItem();
     }
 }
