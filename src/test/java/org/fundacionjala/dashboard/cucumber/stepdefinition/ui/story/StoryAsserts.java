@@ -1,27 +1,26 @@
 package org.fundacionjala.dashboard.cucumber.stepdefinition.ui.story;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import cucumber.api.java.en.Then;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
+import org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertTable;
+import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
+import org.fundacionjala.dashboard.ui.pages.content.widget.TableWidget;
+import org.fundacionjala.dashboard.util.Utils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.openqa.selenium.WebElement;
 
-import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
-import org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertTable;
-import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
-import org.fundacionjala.dashboard.ui.pages.content.widget.TableWidget;
-import org.fundacionjala.dashboard.util.Utils;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.fundacionjala.dashboard.cucumber.hooks.AssertionHooks.getAssertion;
 
@@ -135,11 +134,12 @@ public class StoryAsserts {
      */
     private void executeListAssert(final List<Map<String, String>> widgetValues,
                                    final List<Response> responseList) {
-        responseList.forEach( response -> {
+        responseList.forEach(response -> {
             Map<String, String> row = Utils.findElementInArray(response.jsonPath().get(NAME), widgetValues);
-            if(!row.isEmpty()){
-            executeAssert(row, response.jsonPath());
-        }});
+            if (!row.isEmpty()) {
+                executeAssert(row, response.jsonPath());
+            }
+        });
     }
 
     /**
