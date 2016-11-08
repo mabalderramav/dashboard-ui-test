@@ -71,6 +71,7 @@ task executeFeatures() {
                 jvmArgs = ["-Dport=" + port]
                 jvmArgs = ["-Duser=" + user]
                 jvmArgs = ["-Dpassword=" + password]
+                jvmArgs = ["-Dbrowser=" + browser]
                 jvmArgs = ["-DremoteUserName=" + remoteUserName]
                 jvmArgs = ["-DremoteKey=" + remoteKey]
                 jvmArgs = ["-DremoteBrowser=" + remoteBrowser]

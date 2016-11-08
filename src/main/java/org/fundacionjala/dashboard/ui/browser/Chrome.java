@@ -7,8 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * This class initialize the Chrome Selenium Web Driver.
  */
 final class Chrome implements Driver {
-
-    private static final String WEB_DRIVER_PATH = "webdrivers/chromedriver.exe";
+    
+    private static final String WEB_DRIVER_PATH = "webdrivers/chromedriver2.25.exe";
 
     private static final String WEB_DRIVER_KEY = "webdriver.chrome.driver";
 
