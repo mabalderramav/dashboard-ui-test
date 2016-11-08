@@ -7,7 +7,6 @@ Feature: Story table Test
       | iteration_length                  | 1               |
       | week_start_day                    | Monday          |
       | point_scale                       | 0,1,2,3         |
-      | start_date                        | 2016-08-29      |
       | number_of_done_iterations_to_show | 12              |
       | initial_velocity                  | 10              |
 
@@ -24,6 +23,6 @@ Feature: Story table Test
   Scenario: C147-C148-C149-C150-C151_Verify all story information into TABLE widget is displayed in Mach2
     When I add a table widget with the STORY option
       | PROJECTS  | AT01 project-01 |
-      | ITERATION | IT 7            |
+      | ITERATION | IT 1            |
     And I click story Save button
     Then Validate story table against pivotal story

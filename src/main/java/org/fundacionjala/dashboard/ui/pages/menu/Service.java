@@ -16,7 +16,7 @@ import org.fundacionjala.dashboard.ui.pages.Steps;
  */
 public class Service extends AbstractBasePage {
 
-    @FindBy(css = "div.ui.selection.dropdown")
+    @FindBy(css = "div.ui.selection.dropdown i")
     private WebElement dropDownListOfServices;
 
     @FindBy(css = "input[name='token']")
@@ -65,6 +65,7 @@ public class Service extends AbstractBasePage {
      */
     public void selectServiceDropdown(final String serviceName) {
         wait.until(ExpectedConditions.visibilityOf(saveButton));
+        wait.until(ExpectedConditions.visibilityOf(dropDownListOfServices));
         dropDownListOfServices.click();
         driver.findElement(By.xpath("//div[@class='menu transition visible']/div[text()='" + serviceName + "']"))
                 .click();
@@ -87,6 +88,7 @@ public class Service extends AbstractBasePage {
      */
     public void setDescriptionTextField(final String description) {
         wait.until(ExpectedConditions.visibilityOf(saveButton));
+        wait.until(ExpectedConditions.visibilityOf(descriptionTextField));
         descriptionTextField.clear();
         descriptionTextField.sendKeys(description);
     }

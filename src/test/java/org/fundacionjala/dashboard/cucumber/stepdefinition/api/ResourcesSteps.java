@@ -21,7 +21,7 @@ import static org.fundacionjala.dashboard.cucumber.hooks.AssertionHooks.getAsser
  */
 public class ResourcesSteps {
 
-    public static final int STATUS_200 = 200;
+    private static final int STATUS_200 = 200;
     private static final int STATUS_204 = 204;
     private List<Response> responseList;
 

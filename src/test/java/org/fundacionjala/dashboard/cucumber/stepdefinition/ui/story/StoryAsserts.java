@@ -135,13 +135,11 @@ public class StoryAsserts {
      */
     private void executeListAssert(final List<Map<String, String>> widgetValues,
                                    final List<Response> responseList) {
-        for (int i = 0; i < responseList.size(); i++) {
-            JsonPath jsonPath = responseList.get(i).jsonPath();
-            Map<String, String> row = Utils.findElementInArray(jsonPath.get(NAME), widgetValues);
-            if (!row.isEmpty()) {
-                executeAssert(row, jsonPath);
-            }
-        }
+        responseList.forEach( response -> {
+            Map<String, String> row = Utils.findElementInArray(response.jsonPath().get(NAME), widgetValues);
+            if(!row.isEmpty()){
+            executeAssert(row, response.jsonPath());
+        }});
     }
 
     /**
