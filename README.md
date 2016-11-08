@@ -47,15 +47,15 @@ To set the configuration of this framework is required the following:
           - remotePlatformVersion= Is the OS version. (e.g. 8.1)
           - remoteResolution= Is the resolution of the screen. (e.g. 1920x1080)
    - After executing those steps the frame should be executed (In progress).
-   - To execute by command line you can use the following: use proxy param if it is necessary.
-       *
-       ```javascript
-            gradle clean check executeFeatures -Ptoken=TOKEN
-            -Pproxy=PROXY -Phost=HOST -Pport=PORT -Puser=MACH2 USER -Ppassword=MACH2 PASSWORD
-            -PremoteUserName=REMOTE USERNAME -PremoteKey=REMOTE KEY -Pbrowser=BROWSER(COULD BE REMOTE AS BROWSERSTACK OR SAUCELABS)
-            -PremoteBrowser=REMOTE BROWSER -PremoteBrowserVersion=REMOTE BROWSER VERSION
-            -PremotePlatformVersion=OS VERSION -PremotePlatform=OS -PremoteResolution=RESOLUTION
-          ```
+   - To execute by command line you can use the following: use proxy param if it is necessary and remote variables too.
+      *
+           ```java
+                gradle clean check executeFeatures -Ptoken=TOKEN
+                -Pproxy=PROXY -Phost=HOST -Pport=PORT -Puser=MACH2 USER -Ppassword=MACH2 PASSWORD
+                -PremoteUserName=REMOTE USERNAME -PremoteKey=REMOTE KEY -Pbrowser=BROWSER(COULD BE REMOTE AS BROWSERSTACK OR SAUCELABS)
+                -PremoteBrowser=REMOTE BROWSER -PremoteBrowserVersion=REMOTE BROWSER VERSION
+                -PremotePlatformVersion=OS VERSION -PremotePlatform=OS -PremoteResolution=RESOLUTION
+           ```
 
 CONTACTS
 --------
