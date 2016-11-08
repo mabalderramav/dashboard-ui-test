@@ -31,7 +31,7 @@ public class TopMenu extends AbstractBasePage {
     @FindBy(css = "div.menu.transition.visible > div[data-action='add-board']")
     private WebElement addBoard;
 
-    @FindBy(css = "div.ui.needsclick.user.dropdown.item")
+    @FindBy(css = "div.ui.needsclick.user.dropdown.item span")
     private WebElement userMenu;
 
     @FindBy(css = "div.menu.transition.visible > a[class=\"item\"][href=\"/logout\"]")
