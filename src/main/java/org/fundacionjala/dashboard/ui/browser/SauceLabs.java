@@ -50,6 +50,7 @@ final class SauceLabs implements Driver {
         caps.setCapability(PLATFORM, String.format("%s %s", ENVIRONMENT.getRemotePlatform(),
                 ENVIRONMENT.getRemotePlatformVersion()));
         caps.setCapability(RESOLUTION, ENVIRONMENT.getRemoteResolution());
+        caps.setCapability("tunnelIdentifier", "test");
         RemoteWebDriver remoteWebDriver = null;
         try {
             remoteWebDriver = new RemoteWebDriver(new URL(url), caps);
