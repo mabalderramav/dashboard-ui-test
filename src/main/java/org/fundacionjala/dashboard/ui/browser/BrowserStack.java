@@ -1,7 +1,5 @@
 package org.fundacionjala.dashboard.ui.browser;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 /**
@@ -27,6 +25,9 @@ final class BrowserStack extends RemoteService {
 
     private static final String OS_VERSION = "os_version";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DesiredCapabilities setCapability() {
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -40,6 +41,9 @@ final class BrowserStack extends RemoteService {
         return caps;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getUrl() {
         return URL;

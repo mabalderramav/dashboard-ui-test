@@ -209,7 +209,7 @@ public class ConfigureWidget extends AbstractBasePage {
     public void setConfiguration(final Map<EnumConfigure, String> configureMap) {
         Map<EnumConfigure, Steps> strategyOption = strategyConfigureOption(configureMap);
         Set<EnumConfigure> keys = configureMap.keySet();
-        keys.forEach(key->strategyOption.get(key).executeStep());
+        keys.forEach(key -> strategyOption.get(key).executeStep());
     }
 
     /**

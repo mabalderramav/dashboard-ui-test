@@ -11,7 +11,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by AngelaValdez on 11/9/2016.
+ *
+ * This class support the remote connection to run execution.
  */
 public abstract class RemoteService implements Driver {
     protected static final Logger LOGGER = LogManager.getLogger(RemoteService.class);
@@ -24,10 +25,21 @@ public abstract class RemoteService implements Driver {
 
     protected static final String RESOLUTION = "screenResolution";
 
+    /**
+     * Configures the variables to execute remotely.
+     * @return {@link DesiredCapabilities}
+     */
     public abstract DesiredCapabilities setCapability();
 
+    /**
+     * Obtains the url of the remote executor.
+     * @return the url in string format.
+     */
     public abstract String getUrl();
 
+    /**
+     * {@inheritDoc}
+     */
     public WebDriver initDriver() {
         String url = String.format(getUrl(), ENVIRONMENT.getRemoteUserName(),
                 ENVIRONMENT.getRemoteKey());

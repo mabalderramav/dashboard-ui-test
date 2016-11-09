@@ -1,7 +1,5 @@
 package org.fundacionjala.dashboard.ui.browser;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 /**
@@ -17,6 +15,9 @@ final class SauceLabs extends RemoteService {
 
     private static final String PLATFORM = "platform";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DesiredCapabilities setCapability() {
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -28,6 +29,9 @@ final class SauceLabs extends RemoteService {
         return caps;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getUrl() {
         return URL;
