@@ -20,7 +20,7 @@ import org.fundacionjala.dashboard.ui.pages.menu.TopMenu;
  */
 public class WidgetSteps {
 
-    public static final String PROJECT_OPT = "project";
+    private static final String PROJECT_OPT = "project";
 
     /**
      * Method to add a widget for a features.project.

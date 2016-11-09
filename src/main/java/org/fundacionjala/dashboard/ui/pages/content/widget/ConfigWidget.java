@@ -32,8 +32,6 @@ public class ConfigWidget extends AbstractBasePage {
             case INFO:
                 typeWidget = new InfoWidget();
                 break;
-            case LIST:
-                throw new WebDriverException(TYPE_NOT_FOUND_MSG);
             default:
                 throw new WebDriverException(TYPE_NOT_FOUND_MSG);
         }

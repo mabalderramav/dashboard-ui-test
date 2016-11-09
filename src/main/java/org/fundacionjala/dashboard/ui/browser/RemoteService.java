@@ -52,6 +52,7 @@ public abstract class RemoteService implements Driver {
             remoteWebDriver = new RemoteWebDriver(new URL(url), setCapability());
         } catch (MalformedURLException e) {
             LOGGER.warn(e.getMessage(), e);
+            throw new RuntimeException();
         }
         return remoteWebDriver;
     }

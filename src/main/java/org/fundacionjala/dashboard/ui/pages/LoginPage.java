@@ -67,7 +67,7 @@ public class LoginPage extends AbstractBasePage {
      * @param password Password used to perform a login to Mach2 application.
      * @return The login to Mach2 application.
      */
-    public static HomePage loginAs(final String userName, final String password) {
+    private static HomePage loginAs(final String userName, final String password) {
         LoginPage loginPage = new LoginPage();
         loginPage.setUsernameTextField(userName);
         loginPage.setPasswordTextField(password);

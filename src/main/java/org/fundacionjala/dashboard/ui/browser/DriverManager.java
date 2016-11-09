@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 
 import org.fundacionjala.dashboard.utils.Environment;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * this class is to provide basic methods for manage the Selenium driver,
@@ -18,6 +19,8 @@ public final class DriverManager {
 
     private WebDriver driver;
 
+    private WebDriverWait wait;
+
     /**
      * This method is in charge to initialize the DriverManager.
      */
@@ -29,6 +32,7 @@ public final class DriverManager {
         driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
         driver.get(baseUrl);
         driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Environment.getInstance().getTimeout());
     }
 
     /**
@@ -46,9 +50,18 @@ public final class DriverManager {
     /**
      * Get the webDriver specification.
      *
-     * @return webDriver Specification.
+     * @return {@link WebDriver}.
      */
     public WebDriver getDriver() {
         return driver;
+    }
+
+    /**
+     * Get the wait specification.
+     *
+     * @return {@link WebDriverWait}.
+     */
+    public WebDriverWait getWait() {
+        return wait;
     }
 }
