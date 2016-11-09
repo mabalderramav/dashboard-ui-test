@@ -17,7 +17,6 @@ public class BoardsHooks {
         SideBar sideBar = new TopMenu().clickGeneralMenu();
         MyDashboard myDashboard = sideBar.clickMyDashBoardButton();
         myDashboard.deleteAllBoards();
-        myDashboard.clickInTheRigthSideOfPage();
-
+        myDashboard.clickInTheRightSideOfPage();
     }
 }

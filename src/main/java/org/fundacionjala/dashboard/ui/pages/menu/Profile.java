@@ -58,7 +58,7 @@ public class Profile extends AbstractBasePage {
      * This method delete all services.
      */
     public void deleteAllServices() {
-       serviceSection.findElements(By.className("column")).forEach(webElement -> {
+        serviceSection.findElements(By.className("column")).forEach(webElement -> {
             webElement.findElement(By.cssSelector("i.remove.link.icon")).click();
             clickOKAlertMessage();
         });

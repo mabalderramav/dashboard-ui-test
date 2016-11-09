@@ -8,5 +8,5 @@ public interface Steps {
     /**
      * The method execute the steps.
      */
-    void  executeStep();
+    void executeStep();
 }
