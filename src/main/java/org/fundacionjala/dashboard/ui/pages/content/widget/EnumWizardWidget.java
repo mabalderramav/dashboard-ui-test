@@ -11,13 +11,4 @@ public enum EnumWizardWidget {
     STORY_TYPE,
     TASK_BURN;
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public String toString() {
-        return name().toLowerCase();
-    }
-
-
 }
