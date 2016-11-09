@@ -21,7 +21,7 @@ public abstract class AbstractBasePage {
      */
     public AbstractBasePage() {
         driver = DriverManager.getInstance().getDriver();
-        wait = new WebDriverWait(driver, Environment.getInstance().getTimeout());
+        wait = DriverManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
 

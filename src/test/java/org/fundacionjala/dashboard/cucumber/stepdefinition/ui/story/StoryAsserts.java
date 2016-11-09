@@ -119,7 +119,7 @@ public class StoryAsserts {
             Thread.sleep(TIME_TO_WAIT);
             List<Map<String, String>> tableProjectValues = tableWidget.getDataFromWidget();
             LOGGER.info("Story quantity values on table widget: " + tableProjectValues.size());
-            getAssertion().assertTrue(tableProjectValues.isEmpty());
+            getAssertion().assertTrue(tableProjectValues.isEmpty(),"Table should be empty");
         } catch (InterruptedException e) {
             LOGGER.error("An interrupt occurred while the thread was sleeping.");
             e.printStackTrace();

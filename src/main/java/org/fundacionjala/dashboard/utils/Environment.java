@@ -61,8 +61,10 @@ public final class Environment {
             properties.load(fileReader);
         } catch (FileNotFoundException e) {
             LOGGER.warn("The properties file couldn't be found", e);
+            throw new ExceptionInInitializerError(e);
         } catch (IOException e) {
             LOGGER.warn("A problem of type", e);
+            throw new ExceptionInInitializerError(e);
         }
     }
 
