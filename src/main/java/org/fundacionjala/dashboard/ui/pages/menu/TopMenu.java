@@ -1,6 +1,7 @@
 package org.fundacionjala.dashboard.ui.pages.menu;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -61,8 +62,14 @@ public class TopMenu extends AbstractBasePage {
      * This method clicks the user menu.
      */
     public void clickUserMenu() {
-        wait.until(ExpectedConditions.elementToBeClickable(userMenu));
-        userMenu.click();
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(userMenu));
+            userMenu.click();
+        }
+        catch (WebDriverException e){
+            LOGGER.warn("The userMenu is delaying to much in loading");
+            clickUserMenu();
+        }
     }
 
     /**

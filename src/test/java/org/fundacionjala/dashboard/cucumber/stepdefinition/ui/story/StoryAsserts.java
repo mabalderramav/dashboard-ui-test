@@ -94,7 +94,7 @@ public class StoryAsserts {
     /**
      * method to validate  all data of the story table whit pivotal tracker.
      *
-     * @param kind kind of Response it could be story or project.
+     * @param kind kind of Response, it could be story or project.
      */
     @Then("^Validate (story|project) table against pivotal story$")
     public void allInformationOfPivotalTrackerStoryShouldBeDisplayedInStoryTableWidgetOfMach(final String kind) {
