@@ -31,6 +31,8 @@ final class SauceLabs implements Driver {
 
     private static final String RESOLUTION = "screenResolution";
 
+    private static final String TUNNEL_IDENTIFIER = "tunnelIdentifier";
+
     /**
      * {@inheritDoc}
      */
@@ -47,10 +49,14 @@ final class SauceLabs implements Driver {
         }
         caps.setCapability(BROWSER, ENVIRONMENT.getRemoteBrowser());
         caps.setCapability(BROWSER_VERSION, ENVIRONMENT.getRemoteBrowserVersion());
-        caps.setCapability(PLATFORM, String.format("%s %s", ENVIRONMENT.getRemotePlatform(),
+        caps.setCapability(PLATFORM, String.format("%s %s",
+                ENVIRONMENT.getRemotePlatform(),
                 ENVIRONMENT.getRemotePlatformVersion()));
         caps.setCapability(RESOLUTION, ENVIRONMENT.getRemoteResolution());
-        caps.setCapability("tunnelIdentifier", "test");
+        String tunnelId = System.getenv("TUNNEL_IDENTIFIER");
+        if (tunnelId != null) {
+            caps.setCapability(TUNNEL_IDENTIFIER, tunnelId);
+        }
         RemoteWebDriver remoteWebDriver = null;
         try {
             remoteWebDriver = new RemoteWebDriver(new URL(url), caps);
