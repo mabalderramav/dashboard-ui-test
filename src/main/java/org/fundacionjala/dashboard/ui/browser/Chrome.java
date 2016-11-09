@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 /**
  * This class initialize the Chrome Selenium Web Driver.
  */
-public class Chrome implements Driver {
+final class Chrome implements Driver {
 
     private static final String WEB_DRIVER_PATH = "webdrivers/chromedriver2.25.exe";
 
@@ -16,7 +16,7 @@ public class Chrome implements Driver {
      * {@inheritDoc}
      */
     @Override
-    public final WebDriver initDriver() {
+    public WebDriver initDriver() {
         System.setProperty(WEB_DRIVER_KEY, WEB_DRIVER_PATH);
         return new ChromeDriver();
     }

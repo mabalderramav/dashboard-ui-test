@@ -15,6 +15,8 @@ final class SauceLabs extends RemoteService {
 
     private static final String PLATFORM = "platform";
 
+    private static final String TUNNEL_IDENTIFIER = "tunnelIdentifier";
+
     /**
      * {@inheritDoc}
      */
@@ -23,9 +25,15 @@ final class SauceLabs extends RemoteService {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability(BROWSER, ENVIRONMENT.getRemoteBrowser());
         caps.setCapability(BROWSER_VERSION, ENVIRONMENT.getRemoteBrowserVersion());
-        caps.setCapability(PLATFORM, String.format("%s %s", ENVIRONMENT.getRemotePlatform(),
+        caps.setCapability(PLATFORM, String.format("%s %s",
+                ENVIRONMENT.getRemotePlatform(),
                 ENVIRONMENT.getRemotePlatformVersion()));
         caps.setCapability(RESOLUTION, ENVIRONMENT.getRemoteResolution());
+
+        String tunnelId = System.getenv("TUNNEL_IDENTIFIER");
+        if (tunnelId != null) {
+            caps.setCapability(TUNNEL_IDENTIFIER, tunnelId);
+        }
         return caps;
     }
 
