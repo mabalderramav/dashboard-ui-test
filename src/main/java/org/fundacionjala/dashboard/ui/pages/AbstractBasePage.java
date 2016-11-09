@@ -5,7 +5,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import org.fundacionjala.dashboard.ui.browser.DriverManager;
-import org.fundacionjala.dashboard.utils.Environment;
 
 /**
  * This base page abstract class.
