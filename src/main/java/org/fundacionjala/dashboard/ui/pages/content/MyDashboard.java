@@ -60,5 +60,6 @@ public class MyDashboard extends AbstractBasePage {
         wait.until(ExpectedConditions.elementToBeClickable(mainContainer));
         Actions action = new Actions(driver);
         action.moveToElement(mainContainer, positionX, positionY).click().build().perform();
+        driver.navigate().refresh();
     }
 }
