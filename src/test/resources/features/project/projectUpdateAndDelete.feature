@@ -12,8 +12,7 @@ Feature: Delete project - Table Widget
       | initial_velocity                  | 10              |
     And I store as Project1
     And Synchronize Mach2 with Pivotal Tracker description AT01-PivotalTracker
-    And I add a table widget with the PROJECT option
-      |  |  |
+    And I add a table widget with the PROJECT option without configuration
     And I click project Save button
 
   @deleteAllBoards

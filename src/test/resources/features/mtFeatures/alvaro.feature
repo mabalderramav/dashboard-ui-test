@@ -17,10 +17,10 @@ Feature: StoryItems Table and Info Test
   Scenario: Verify that all Iterations from a Project are displayed in the StoryItems TABLE widget wizard
     When I add a table widget with the STORY option
       | PROJECTS | testito |
-    Then Verify the iterations quantity testito
+    Then Verify the iterations quantity [Project1.name]
 
   @deleteAllProjects @deleteAllBoards
   Scenario: Verify that all Iterations from a Project are displayed in the StoryItems INFO widget wizard
     When I add a info widget with the STORY option
       | PROJECTS | testito |
-    Then Verify the iterations quantity testito
+    Then Verify the iterations quantity [Project1.name]

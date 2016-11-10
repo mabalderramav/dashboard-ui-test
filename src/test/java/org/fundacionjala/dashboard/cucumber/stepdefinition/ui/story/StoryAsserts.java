@@ -5,6 +5,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.fundacionjala.dashboard.api.Mapper;
 import org.fundacionjala.dashboard.cucumber.stepdefinition.api.ResourcesSteps;
 import org.fundacionjala.dashboard.cucumber.stepdefinition.ui.AssertTable;
 import org.fundacionjala.dashboard.ui.pages.content.ConfigureWidget;
@@ -82,9 +83,10 @@ public class StoryAsserts {
      */
     @Then("^Verify the iterations quantity (.*)$")
     public void verifyTheIterationsQuantity(final String projectName) {
+        String newProjectName = Mapper.mapEndpoint(projectName);
         ConfigureWidget configureWidget = new ConfigureWidget();
         configureWidget.clickIteration();
-        JsonPath jsonPath = Utils.findElementJson(projectName, resources.getResponseList());
+        JsonPath jsonPath = Utils.findElementJson(newProjectName, resources.getResponseList());
         LOGGER.info("Iterations quantity displayed in match2: " + configureWidget.getStoryIterationSize());
         LOGGER.info("Iterations quantity displayed in pivotal response: " + jsonPath.get(CURRENT_ITERATION_NUMBER));
         getAssertion().assertEquals(configureWidget.getStoryIterationSize(), jsonPath.get(CURRENT_ITERATION_NUMBER));

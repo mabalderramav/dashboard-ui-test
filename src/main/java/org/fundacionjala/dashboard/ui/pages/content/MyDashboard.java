@@ -20,7 +20,7 @@ public class MyDashboard extends AbstractBasePage {
     @FindBy(xpath = "//div[@class='truncated text item title' and text()='")
     private WebElement boardBase;
 
-    @FindBy(id = "main-sidebar")
+    @FindBy(css = "div.main.container.pusher")
     private WebElement mainContainer;
 
     /**
@@ -53,12 +53,11 @@ public class MyDashboard extends AbstractBasePage {
      */
     public void clickInTheRightSideOfPage() {
         //This positions define a point in the right component of the screen where to make click.
-        final int positionX = 500;
-        final int positionY = 100;
+        final int positionX = 100;
+        final int positionY = 200;
 
         //Makes click in the position x and y of the main container
         wait.until(ExpectedConditions.elementToBeClickable(mainContainer));
-        mainContainer.click();
         Actions action = new Actions(driver);
         action.moveToElement(mainContainer, positionX, positionY).click().build().perform();
     }

@@ -9,6 +9,5 @@ public enum EnumWizardWidget {
     ITERATION,
     BURN,
     STORY_TYPE,
-    TASK_BURN;
-
+    TASK_BURN
 }

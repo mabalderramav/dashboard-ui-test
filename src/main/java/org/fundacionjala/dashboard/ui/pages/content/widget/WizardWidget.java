@@ -16,7 +16,6 @@ import org.fundacionjala.dashboard.ui.pages.Steps;
  */
 public class WizardWidget extends AbstractBasePage {
 
-    //@FindBy(xpath = "//div[@id='mach-wizard']/div/div[3]/div/div/div[2]/div[1]/div[2]/div")
     @FindBy(xpath = "//h4[contains(text(), 'Projects')]")
     private WebElement projectButton;
 

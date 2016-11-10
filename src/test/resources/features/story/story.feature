@@ -21,8 +21,7 @@ Feature: Story Item Test
 
   @deleteAllProjects @deleteAllBoards
   Scenario: C146_Verify all project information display in the dropdown option
-    When I add a table widget with the STORY option
-      |  |  |
+    When I add a table widget with the STORY option without configuration
     And I send a GET request to /projects
     Then Verify the projects quantity
     And Verify all information displayed in the project dropdown field
@@ -31,6 +30,6 @@ Feature: Story Item Test
   Scenario: C152_Verify that the iteration count showed to 'iteration' drop down list on M2 is the same as on PT
     When I add a table widget with the STORY option
       | PROJECTS | AT01 project-01 |
-    Then Verify the iterations quantity AT01 project-01
+    Then Verify the iterations quantity [Project1.name]
     And Consolidate all soft assert results
 

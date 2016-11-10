@@ -23,7 +23,8 @@ import org.fundacionjala.dashboard.ui.pages.content.widget.EnumConfigure;
  */
 public class ConfigureWidget extends AbstractBasePage {
 
-    public static final int WAIT_TIME = 2000;
+    private static final int WAIT_TIME = 2000;
+
     @FindBy(css = "div[data-key='Project'] div.ui.dropdown input.search")
     private WebElement autoCompleteProject;
 
@@ -66,6 +67,9 @@ public class ConfigureWidget extends AbstractBasePage {
 
     @FindBy(css = "div.menu.transition.visible  div.item")
     private WebElement itemsDropDownList;
+
+    @FindBy(css = "div[data-key='Project'] div.ui.dropdown div.menu div")
+    private List<WebElement> projectList;
 
     private By element = By.cssSelector("div.menu.transition.visible  div.item");
 
@@ -236,8 +240,7 @@ public class ConfigureWidget extends AbstractBasePage {
     public List<WebElement> clickProjectDropdownField() {
         wait.until(ExpectedConditions.elementToBeClickable(autoCompleteProject));
         autoCompleteProject.click();
-        return driver.findElements(By.cssSelector("div[data-key='Project'] "
-                + "div.ui.dropdown div.menu div"));
+        return projectList;
     }
 
     /**
