@@ -13,8 +13,7 @@ Feature: Project table widget
   Scenario: C13-C29-C30-C31-C32-C33-C34-C35
     Verify that ALL Projects from PT are displayed when adding the TABLE widget
     The listed test cases Ids are executed into this scenario, this scenario cover all of them.
-    When I add a table widget with the PROJECT option
-      |  |  |
+    When I add a table widget with the PROJECT option without configuration
     And I click project Save button
     Then All displayed projects should be the same that I sent in the request
     And I expect the columns size should be the by default

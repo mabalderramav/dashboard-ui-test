@@ -30,6 +30,7 @@ public class WidgetSteps {
      * @param newConfigureMap is a map tha contains all the configurations.
      */
 
+
     @When("^I add a (table|info|list) widget with the (PROJECT|STORY|ITERATION|BURN|STORY_TYPE|TASK_BURN) option$")
     public void iAddAWidgetInTheBoard(
             final String type, final EnumWizardWidget option, final Map<EnumConfigure, String> newConfigureMap) {
@@ -53,6 +54,10 @@ public class WidgetSteps {
         }
     }
 
+    @When("^I add a (table|info|list) widget with the (PROJECT|STORY|ITERATION|BURN|STORY_TYPE|TASK_BURN) option without configuration$")
+    public void iAddAWidgetInTheBoard(final String type, final EnumWizardWidget option){
+        iAddAWidgetInTheBoard(type, option, null);
+    }
     /**
      * Method to click on the save button.
      *
