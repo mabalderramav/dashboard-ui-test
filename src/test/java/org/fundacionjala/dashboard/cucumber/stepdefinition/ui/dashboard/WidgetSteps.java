@@ -23,14 +23,12 @@ public class WidgetSteps {
     private static final String PROJECT_OPT = "project";
 
     /**
-     * Method to add a widget for a features.project.
+     * Method to add a widget for a features.
      *
      * @param type            Type of widget.
      * @param option          option type of widget to be selected.
      * @param newConfigureMap is a map tha contains all the configurations.
      */
-
-
     @When("^I add a (table|info|list) widget with the (PROJECT|STORY|ITERATION|BURN|STORY_TYPE|TASK_BURN) option$")
     public void iAddAWidgetInTheBoard(
             final String type, final EnumWizardWidget option, final Map<EnumConfigure, String> newConfigureMap) {
@@ -54,10 +52,18 @@ public class WidgetSteps {
         }
     }
 
-    @When("^I add a (table|info|list) widget with the (PROJECT|STORY|ITERATION|BURN|STORY_TYPE|TASK_BURN) option without configuration$")
-    public void iAddAWidgetInTheBoard(final String type, final EnumWizardWidget option){
+    /**
+     * Method to add a widget for a features, project.
+     *
+     * @param type   Type of widget.
+     * @param option option type of widget to be selected.
+     */
+    @When("^I add a (table|info|list) widget with the (PROJECT|STORY|ITERATION|BURN|STORY_TYPE|TASK_BURN) option "
+            + "without configuration$")
+    public void iAddAWidgetInTheBoard(final String type, final EnumWizardWidget option) {
         iAddAWidgetInTheBoard(type, option, null);
     }
+
     /**
      * Method to click on the save button.
      *

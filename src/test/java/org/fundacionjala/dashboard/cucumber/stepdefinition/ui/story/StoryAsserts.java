@@ -83,7 +83,7 @@ public class StoryAsserts {
      */
     @Then("^Verify the iterations quantity (.*)$")
     public void verifyTheIterationsQuantity(final String projectName) {
-        String newProjectName=Mapper.mapEndpoint(projectName);
+        String newProjectName = Mapper.mapEndpoint(projectName);
         ConfigureWidget configureWidget = new ConfigureWidget();
         configureWidget.clickIteration();
         JsonPath jsonPath = Utils.findElementJson(newProjectName, resources.getResponseList());
