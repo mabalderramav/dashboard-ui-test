@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -21,7 +22,7 @@ import org.fundacionjala.dashboard.utils.Environment;
  */
 public class TopMenu extends AbstractBasePage {
 
-    public static final int DURATION = 3;
+    private static final int MIN_TIMEOUT = 3;
 
     private static final Logger LOGGER = LogManager.getLogger(TopMenu.class);
 
@@ -48,6 +49,9 @@ public class TopMenu extends AbstractBasePage {
 
     @FindBy(xpath = "//a[@data-action='show-main-menu']")
     private WebElement generalMenu;
+
+    @FindBy(css = "div.main.container.pusher")
+    private WebElement mainContainer;
 
     /**
      * This method clicks the Board button.
@@ -116,8 +120,8 @@ public class TopMenu extends AbstractBasePage {
         String userLogged = "";
 
         try {
-            driver.manage().timeouts().implicitlyWait(DURATION, TimeUnit.SECONDS);
-            wait.withTimeout(DURATION, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(MIN_TIMEOUT, TimeUnit.SECONDS);
+            wait.withTimeout(MIN_TIMEOUT, TimeUnit.SECONDS);
             userLogged = this.userMenu.getText();
         } catch (NoSuchElementException e) {
             LOGGER.error("Couldn't find the user name on top menu");
